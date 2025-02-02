@@ -1,0 +1,18 @@
+@use "@angular/material" as mat;
+@import "palette";
+
+$inky-primary: mat.define-palette($my-primary-color, 800);
+$inky-accent: mat.define-palette($my-second-color);
+$inky-warn: mat.define-palette($my-warn-color, 400);
+
+$inky-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $inky-primary,
+      accent: $inky-accent,
+      warn: $inky-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($inky-theme);

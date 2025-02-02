@@ -1,0 +1,31 @@
+// Colores generales de la app
+$white: #ffffff;
+$black: #000000;
+$gray-light: #f5f5f5;
+$gray-dark: #333333;
+$success: #28a745;
+$warning: #ffc107;
+$error: #dc3545;
+$tertiary: #b6b3a9;
+
+// Variables para usar en toda la app
+$border-color: $gray-dark;
+$text-color: $black;
+$background-light: $gray-light;
+$background-black: $black;
+$tertiary: $tertiary;
+
+// Mapas de colores para facilitar uso
+$colors: (
+  "primary": #76b476,
+  "secondary": #592720,
+  "tertiary": #b6b3a9,
+  "warning": $warning,
+  "error": $error,
+  "success": $success,
+);
+
+// Función para obtener colores fácilmente
+@function get-color($key) {
+  @return map-get($colors, $key);
+}
