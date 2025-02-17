@@ -1,17 +1,41 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SpinnerCircleModule } from './components/spinner-circle/spinner-circle.module';
-import { SpinnerCubeModule } from './components/spinner-cube/spinner-cube.module';
+
+import { SpinnerCircleComponent } from './components/spinner-circle/spinner-circle.component';
+import { SpinnerCubeComponent } from './components/spinner-cube/spinner-cube.component';
 import { MaterialModule } from './models/material.module';
+import { HeadComponent } from './components/head/head.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SpinnerCircleComponent,
+    SpinnerCubeComponent,
+    HeadComponent,
+    SidebarComponent,
+    BreadcrumbsComponent,
+  ],
+  exports: [
+    TranslateModule,
+    SpinnerCircleComponent,
+    SpinnerCubeComponent,
+    HeadComponent,
+    SidebarComponent,
+    MaterialModule,
+    BreadcrumbsComponent,
+  ],
   imports: [
     CommonModule,
-    SpinnerCircleModule,
-    SpinnerCubeModule,
+    TranslateModule,
+    RouterModule,
     MaterialModule,
+    BrowserModule,
+    BreadcrumbModule,
   ],
-  exports: [SpinnerCircleModule, SpinnerCubeModule, MaterialModule],
 })
 export class SharedModule {}

@@ -14,8 +14,28 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatSidenavModule,
+    MatListModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatMenuModule,
+    MatSelectModule,
+  ],
   exports: [
     CommonModule,
     MatButtonModule,
@@ -31,6 +51,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSnackBarModule,
     MatTableModule,
     MatCheckboxModule,
+    MatMenuModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule {}

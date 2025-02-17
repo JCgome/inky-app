@@ -1,44 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ROUTES } from './shared/constants/route-constants';
+import { PagesRoutingModule } from './pages/pages.routing';
+import { AuthRoutingModule } from './auth/auth.routing';
 
 const routes: Routes = [
-  {
-    path: ROUTES.LOGIN,
-    loadChildren: () =>
-      import('./features/auth/auth.module').then((m) => m.AuthModule),
-  },
-  {
-    path: ROUTES.DASHBOARD,
-    loadChildren: () =>
-      import('./features/dashboard/dashboard.module').then(
-        (m) => m.DashboardModule
-      ),
-  },
-  {
-    path: ROUTES.PRODUCTS,
-    loadChildren: () =>
-      import('./features/products/products.module').then(
-        (m) => m.ProductsModule
-      ),
-  },
-  {
-    path: ROUTES.CATEGORIES,
-    loadChildren: () =>
-      import('./features/categories/categories.module').then(
-        (m) => m.CategoriesModule
-      ),
-  },
-  {
-    path: ROUTES.CLIENTS,
-    loadChildren: () =>
-      import('./features/clients/clients.module').then((m) => m.ClientsModule),
-  },
-  { path: '**', redirectTo: ROUTES.LOGIN },
+  { path: '', redirectTo: ROUTES.DASHBOARD, pathMatch: 'full' },
+  //! Crear pag 404
+  /* { path: '**', component: Error404 }, */
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    PagesRoutingModule,
+    AuthRoutingModule,
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -1,31 +1,78 @@
-// Colores generales de la app
-$white: #ffffff;
-$black: #000000;
-$gray-light: #f5f5f5;
-$gray-dark: #333333;
-$success: #28a745;
-$warning: #ffc107;
-$error: #dc3545;
-$tertiary: #b6b3a9;
-
-// Variables para usar en toda la app
-$border-color: $gray-dark;
-$text-color: $black;
-$background-light: $gray-light;
-$background-black: $black;
-$tertiary: $tertiary;
-
-// Mapas de colores para facilitar uso
 $colors: (
-  "primary": #76b476,
-  "secondary": #592720,
-  "tertiary": #b6b3a9,
-  "warning": $warning,
-  "error": $error,
-  "success": $success,
+  "primary": (
+    100: #d2e8d3,
+    200: #b6d9b9,
+    300: #9bcb9e,
+    400: #87bf8a,
+    500: #76b476,
+    600: #6ca56c,
+    700: #619261,
+    800: #588157,
+    900: #486147,
+  ),
+  "secondary": (
+    100: #d1b5af,
+    200: #b98f85,
+    300: #a26a5d,
+    400: #8c4d41,
+    500: #592720,
+    600: #4f221c,
+    700: #451d19,
+    800: #3b1815,
+    900: #2a100d,
+  ),
+  "neutral": (
+    100: #f4f1e7,
+    200: #eae7dd,
+    300: #dad7cd,
+    400: #b6b3a9,
+    500: #96938a,
+    600: #6d6b62,
+    700: #2e2e2e,
+    800: #1e1e1e,
+    900: #000000,
+  ),
+  "error": (
+    100: #fed0d3,
+    200: #ee9f9d,
+    300: #e47b77,
+    400: #ee5f55,
+    500: #f2523c,
+    600: #e44a3b,
+    700: #d24035,
+    800: #c53a2e,
+    900: #b63023,
+  ),
+  "warning": (
+    100: #ffc4a3,
+    200: #ffa072,
+    300: #ff7d41,
+    400: #ff641f,
+    500: #ff4f00,
+    600: #e64800,
+    700: #cc3f00,
+    800: #b23600,
+    900: #8a2800,
+  ),
+  "info": (
+    100: #b4e5f9,
+    200: #84d5f4,
+    300: #55c4ec,
+    400: #37b8e4,
+    500: #2baddb,
+    600: #249ec8,
+    700: #168aad,
+    800: #087794,
+    900: #005567,
+  ),
 );
 
-// Función para obtener colores fácilmente
-@function get-color($key) {
-  @return map-get($colors, $key);
+@function inky-colors($key, $shade: null) {
+  $color-map: map-get($colors, $key);
+
+  @if type-of($color-map) == "map" and $shade != null {
+    @return map-get($color-map, $shade);
+  }
+
+  @return $color-map;
 }

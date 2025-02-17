@@ -1,0 +1,17 @@
+{
+  "SIDEBAR": {
+    "DASHBOARD": "Panel de control",
+    "PRODUCTS": "Productos",
+    "CATEGORIES": "Categorias",
+    "CLIENTS": "Clientes"
+  },
+
+  "home": {
+    "welcome": "¡Bienvenido a nuestra aplicación!",
+    "logo": "Inky"
+  },
+
+  "DASHBOARD": {
+    "TITLE": "Bienvenido dashboard"
+  }
+}

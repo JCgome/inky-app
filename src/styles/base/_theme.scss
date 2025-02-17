@@ -3,7 +3,7 @@
 
 $inky-primary: mat.define-palette($my-primary-color, 800);
 $inky-accent: mat.define-palette($my-second-color);
-$inky-warn: mat.define-palette($my-warn-color, 400);
+$inky-warn: mat.define-palette($my-warn-color, 600);
 
 $inky-theme: mat.define-light-theme(
   (

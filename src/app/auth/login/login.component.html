@@ -1,0 +1,51 @@
+<section class="login">
+  <div class="login__container">
+    <div class="login__logo">
+      <img src="/assets/img/logo/logo.png" alt="Logo" />
+    </div>
+
+    <form class="login__form">
+      <div class="login__group">
+        <p class="login__label">Email:</p>
+        <mat-form-field appearance="outline" class="login__input">
+          <input type="email" matInput placeholder="inky@gmail.com" />
+        </mat-form-field>
+      </div>
+
+      <div class="login__group">
+        <p class="login__label">Contraseña:</p>
+        <mat-form-field appearance="outline" class="login__input">
+          <input
+            type="password"
+            matInput
+            placeholder="Introduce tu contraseña"
+          />
+          <mat-icon matSuffix>visibility_off</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="login__actions">
+        <mat-checkbox
+          class="login__checkbox"
+          color="primary"
+          labelPosition="before"
+          >Recordar</mat-checkbox
+        >
+        <a href="#" class="login__forgot">¿Olvidaste la contraseña?</a>
+      </div>
+
+      <div class="login__buttons">
+        <button mat-flat-button color="primary" class="login__button">
+          Acceder
+        </button>
+        <button
+          mat-flat-button
+          color="warn"
+          class="login__button login__button--cancel"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

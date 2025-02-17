@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="mat-elevation-z3">
+  <button mat-icon-button (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <h1 class="title-logo">{{ "home.logo" | translate }}</h1>
+
+  <span class="spacer"></span>
+
+  <div class="language-selector">
+    <button mat-button [matMenuTriggerFor]="languageMenu" class="flag-button">
+      <img
+        [src]="getFlagSelected()"
+        class="flag-icon"
+        alt="Idioma seleccionado"
+      />
+    </button>
+    <mat-menu #languageMenu="matMenu">
+      <button
+        mat-menu-item
+        *ngFor="let lang of languages"
+        (click)="cambiarIdioma(lang.code)"
+      >
+        <img
+          [src]="lang.flag"
+          class="flag-icon"
+          alt="Bandera de {{ lang.code }}"
+        />
+      </button>
+    </mat-menu>
+  </div>
+
+  <button mat-icon-button>
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <button mat-icon-button>
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>

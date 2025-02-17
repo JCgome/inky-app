@@ -1,0 +1,17 @@
+{
+  "SIDEBAR": {
+    "DASHBOARD": "Dashboard",
+    "PRODUCTS": "Products",
+    "CATEGORIES": "Categories",
+    "CLIENTS": "Clients"
+  },
+
+  "home": {
+    "welcome": "Welcome to our application!",
+    "logo": "Inky"
+  },
+
+  "DASHBOARD": {
+    "TITLE": "Welcome dashboard"
+  }
+}
