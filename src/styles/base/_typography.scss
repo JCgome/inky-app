@@ -5,8 +5,14 @@ $font-logo: "Caveat", "Inter";
 
 $heading-logo: (
   font-family: $font-logo,
-  font-size: 30px,
+  font-size: 33px,
   font-weight: 200,
+);
+
+$heading-600: (
+  font-family: $font-primary,
+  font-size: 50px,
+  font-weight: 900,
 );
 
 $heading-500: (

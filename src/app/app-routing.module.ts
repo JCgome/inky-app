@@ -3,11 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { ROUTES } from './shared/constants/route-constants';
 import { PagesRoutingModule } from './pages/pages.routing';
 import { AuthRoutingModule } from './auth/auth.routing';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: ROUTES.DASHBOARD, pathMatch: 'full' },
-  //! Crear pag 404
-  /* { path: '**', component: Error404 }, */
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

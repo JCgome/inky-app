@@ -1,5 +1,6 @@
 @import "src/styles/base/colors";
 @import "src/styles/base/_typography.scss";
+@import "src/styles/base/_responsive.scss";
 
 .login {
   display: flex;
@@ -20,9 +21,30 @@
     background: rgba(255, 255, 255, 0.15);
     border: 2px solid inky-colors("neutral", 400);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
     border-radius: 10px;
     padding: 30px 40px;
+
+    @include laptop {
+      width: 40%;
+      padding: 25px;
+    }
+
+    @include tablet {
+      width: 40%;
+      padding: 20px;
+    }
+
+    @include mobile {
+      width: 70%;
+      padding: 25px;
+    }
+
+    @include landscape {
+      width: 90%;
+      height: auto;
+      max-height: 85vh;
+      padding: 20px;
+    }
   }
 
   &__logo {
@@ -34,6 +56,18 @@
       width: 130px;
       height: 130px;
       object-fit: cover;
+
+      @include tablet {
+        transform: scale(0.8);
+      }
+
+      @include mobile {
+        transform: scale(0.6);
+      }
+
+      @include landscape {
+        display: none;
+      }
     }
   }
 
@@ -59,13 +93,6 @@
     }
   }
 
-  &__actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    @include inky-fonts($body-300);
-  }
-
   &__forgot {
     color: inky-colors("neutral", 800);
     text-decoration: none;
@@ -73,17 +100,37 @@
     &:hover {
       text-decoration: underline;
     }
+
+    @include landscape {
+      display: none;
+    }
   }
 
   &__buttons {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 15px;
     margin-top: 30px;
+
+    @include mobile {
+      height: 80px;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @include landscape {
+      flex-direction: row;
+    }
   }
 
   &__button {
-    flex: 1;
-    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    height: 50px;
+
     @include inky-fonts($body-100);
     font-weight: bold;
     text-transform: uppercase;

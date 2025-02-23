@@ -1,26 +1,53 @@
 @import "src/styles/base/colors";
 @import "src/styles/base/_typography.scss";
 
-mat-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
-}
+.navbar {
+  mat-toolbar {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 70px;
+  }
 
-.title-logo {
-  @include inky-fonts($heading-logo);
-}
+  &__title {
+    @include inky-fonts($heading-logo);
+    margin-left: 20px;
+  }
 
-.spacer {
-  flex: 1 1 auto;
-}
+  &__spacer {
+    flex: 1 1 auto;
+  }
 
-.language-selector,
-.icon-buttons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  &__language {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    &-button {
+      cursor: pointer;
+    }
+
+    &-flag {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
+
+  &__buttons-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  mat-icon {
+    width: auto;
+    height: auto;
+    font-size: 25px;
+  }
 }
 
 ::ng-deep .mat-mdc-menu-panel {
@@ -29,16 +56,12 @@ mat-toolbar {
   max-width: 60px !important;
   padding: 0 !important;
   overflow: hidden !important;
-  margin-left: 3px;
 }
 
-.flag-icon {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  object-fit: cover;
-  cursor: pointer;
-  mat-icon {
-    font-size: 25px;
-  }
+::ng-deep .mat-mdc-icon-button .mat-mdc-button-persistent-ripple,
+::ng-deep .mat-mdc-icon-button .mat-mdc-button-ripple,
+::ng-deep .mat-mdc-icon-button .mat-mdc-button-persistent-ripple::before {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
