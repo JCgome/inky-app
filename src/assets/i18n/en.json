@@ -3,7 +3,9 @@
     "DASHBOARD": "Dashboard",
     "PRODUCTS": "Products",
     "CATEGORIES": "Categories",
-    "CLIENTS": "Clients"
+    "CLIENTS": "Clients",
+    "PROMOTIONS": "Promotions",
+    "STORE": "Stock"
   },
 
   "home": {

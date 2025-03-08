@@ -6,6 +6,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsComponent } from './products/products.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ClientsComponent } from './clients/clients.component';
+import { PromotionsComponent } from './promotions/promotions.component';
+import { StoreComponent } from './store/store.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,16 @@ const routes: Routes = [
         path: ROUTES.CLIENTS,
         component: ClientsComponent,
         data: { title: 'SIDEBAR.CLIENTS', icon: 'people' },
+      },
+      {
+        path: ROUTES.PROMOTIONS,
+        component: PromotionsComponent,
+        data: { title: 'SIDEBAR.PROMOTIONS', icon: 'price_change' },
+      },
+      {
+        path: ROUTES.STORE,
+        component: StoreComponent,
+        data: { title: 'SIDEBAR.STORE', icon: 'inventory' },
       },
     ],
   },

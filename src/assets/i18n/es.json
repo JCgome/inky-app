@@ -3,7 +3,9 @@
     "DASHBOARD": "Panel de control",
     "PRODUCTS": "Productos",
     "CATEGORIES": "Categorias",
-    "CLIENTS": "Clientes"
+    "CLIENTS": "Clientes",
+    "PROMOTIONS": "Promociones",
+    "STORE": "Almacen"
   },
 
   "home": {

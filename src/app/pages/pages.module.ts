@@ -8,6 +8,8 @@ import { ProductsComponent } from './products/products.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
+import { StoreComponent } from './store/store.component';
+import { PromotionsComponent } from './promotions/promotions.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { PagesComponent } from './pages.component';
     ClientsComponent,
     CategoriesComponent,
     ProductsComponent,
+    StoreComponent,
+    PromotionsComponent,
   ],
   exports: [
     PagesComponent,
@@ -23,6 +27,8 @@ import { PagesComponent } from './pages.component';
     ClientsComponent,
     CategoriesComponent,
     ProductsComponent,
+    StoreComponent,
+    PromotionsComponent,
   ],
   imports: [CommonModule, RouterModule, SharedModule],
 })
