@@ -50,6 +50,12 @@
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .navbar button[mat-icon-button] mat-icon {
+    display: none;
+  }
+}
+
 ::ng-deep .mat-mdc-menu-panel {
   min-width: 60px !important;
   width: 60px !important;

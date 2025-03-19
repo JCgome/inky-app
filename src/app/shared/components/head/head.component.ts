@@ -44,4 +44,8 @@ export class HeadComponent {
       'assets/flags/gb.svg'
     );
   }
+
+  isTabletOrMobile(): boolean {
+    return window.innerWidth <= 1024;
+  }
 }

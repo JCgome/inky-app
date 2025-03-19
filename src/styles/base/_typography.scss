@@ -1,12 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 $font-primary: "Inter", sans-serif;
 $font-logo: "Caveat", "Inter";
+$font-secondary: "Anton", sans-serif;
 
 $heading-logo: (
   font-family: $font-logo,
   font-size: 33px,
   font-weight: 200,
+);
+
+$title-components: (
+  font-family: $font-secondary,
+  font-size: 35px,
+  font-weight: 500,
 );
 
 $heading-600: (
@@ -72,6 +79,12 @@ $label-200: (
   font-family: $font-primary,
   font-size: 12px,
   font-weight: 500,
+);
+
+$title-table: (
+  font-family: $font-primary,
+  font-size: 40px,
+  font-weight: 400,
 );
 
 $span-100: (

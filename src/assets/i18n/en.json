@@ -15,5 +15,14 @@
 
   "DASHBOARD": {
     "TITLE": "Welcome dashboard"
+  },
+
+  "PRODUCT": {
+    "PRODUCTS": "Products",
+    "ADD": "Add products",
+    "CODE": "IBN",
+    "NAME": "Name",
+    "STOCK": "Stock",
+    "CATEGORY": "Category"
   }
 }

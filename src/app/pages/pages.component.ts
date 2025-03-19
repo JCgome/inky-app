@@ -8,5 +8,21 @@ import { Component, computed, signal } from '@angular/core';
 export class PagesComponent {
   opened = true;
   collapsed = signal(false);
-  sidenavWidth = computed(() => (this.collapsed() ? '65px' : '250px'));
+  sidenavWidth(): string {
+    return this.isTabletOrMobile()
+      ? '60px'
+      : this.collapsed()
+      ? '60px'
+      : '250px';
+  }
+
+  isTabletOrMobile(): boolean {
+    return window.innerWidth <= 1024;
+  }
+
+  toggleSidebar() {
+    if (!this.isTabletOrMobile()) {
+      this.collapsed.set(!this.collapsed());
+    }
+  }
 }

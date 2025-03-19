@@ -16,6 +16,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   imports: [
@@ -35,6 +37,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatMenuModule,
     MatSelectModule,
+    MatPaginatorModule,
+    MatTooltipModule,
   ],
   exports: [
     CommonModule,
@@ -53,6 +57,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatMenuModule,
     MatSelectModule,
+    MatPaginatorModule,
+    MatTooltipModule,
   ],
 })
 export class MaterialModule {}

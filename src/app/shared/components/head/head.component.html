@@ -1,6 +1,6 @@
 <section class="navbar">
   <mat-toolbar color="primary">
-    <button mat-icon-button (click)="toggleMenu()">
+    <button mat-icon-button (click)="toggleMenu()" *ngIf="!isTabletOrMobile()">
       <mat-icon>menu</mat-icon>
     </button>
 

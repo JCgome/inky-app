@@ -1,6 +1,7 @@
 import {
   Component,
   computed,
+  effect,
   EventEmitter,
   Input,
   Output,
@@ -16,10 +17,16 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SidebarComponent {
   @Output() closeMenu = new EventEmitter<void>();
-  sideNavCollapsed = signal(false);
+
+  isTabletOrMobile = signal(window.innerWidth <= 1024);
+
+  sideNavCollapsed = signal(this.isTabletOrMobile());
+
   @Input()
   set collapsed(val: boolean) {
-    this.sideNavCollapsed.set(val);
+    if (!this.isTabletOrMobile()) {
+      this.sideNavCollapsed.set(val);
+    }
   }
   get collapsed(): boolean {
     return this.sideNavCollapsed();
@@ -33,6 +40,13 @@ export class SidebarComponent {
     this.loadMenuItems();
     this.translate.onLangChange.subscribe(() => {
       this.loadMenuItems();
+    });
+
+    window.addEventListener('resize', () => {
+      this.isTabletOrMobile.set(window.innerWidth <= 1024);
+      if (this.isTabletOrMobile()) {
+        this.sideNavCollapsed.set(true);
+      }
     });
   }
 
