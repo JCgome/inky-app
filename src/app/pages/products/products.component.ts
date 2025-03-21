@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ROUTES } from '@app/shared/constants/route-constants';
 
 @Component({
   selector: 'app-products',
@@ -32,11 +34,17 @@ export class ProductsComponent implements OnInit {
     { id: '0012 ', nombre: 'Producto 3', precio: 30, categoria: 'C' },
   ];
 
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
   ngOnInit() {
     this.dataSource.data = this.products;
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  goAddProducts() {
+    this.router.navigate(['add-products'], { relativeTo: this.route });
   }
 }

@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { ROUTES } from '@app/shared/constants/route-constants';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProductsComponent } from './products/products.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ClientsComponent } from './clients/clients.component';
 import { PromotionsComponent } from './promotions/promotions.component';
@@ -21,7 +20,8 @@ const routes: Routes = [
       },
       {
         path: ROUTES.PRODUCTS,
-        component: ProductsComponent,
+        loadChildren: () =>
+          import('./products/products.module').then((m) => m.ProductsModule),
         data: { title: 'SIDEBAR.PRODUCTS', icon: 'shopping_cart' },
       },
       {

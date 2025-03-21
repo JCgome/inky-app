@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ClientsComponent } from './clients/clients.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { ProductsComponent } from './products/products.component';
 
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
@@ -17,7 +16,6 @@ import { PromotionsComponent } from './promotions/promotions.component';
     DashboardComponent,
     ClientsComponent,
     CategoriesComponent,
-    ProductsComponent,
     StoreComponent,
     PromotionsComponent,
   ],
@@ -26,7 +24,6 @@ import { PromotionsComponent } from './promotions/promotions.component';
     DashboardComponent,
     ClientsComponent,
     CategoriesComponent,
-    ProductsComponent,
     StoreComponent,
     PromotionsComponent,
   ],
