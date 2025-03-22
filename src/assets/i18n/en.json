@@ -1,4 +1,9 @@
 {
+  "REPLICABLE": {
+    "BTN_CANCEL": "Cancel",
+    "BTN_SAVE": "Save"
+  },
+
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
     "PRODUCTS": "Products",
@@ -23,6 +28,25 @@
     "CODE": "IBN",
     "NAME": "Name",
     "STOCK": "Stock",
-    "CATEGORY": "Category"
+    "CATEGORY": "Category",
+
+    "ADD_PRODUCTS": {
+      "TITLE_PRODUCTS": "Add Products",
+      "TITLE": "Tittle Book",
+      "AUTHOR": "Author",
+      "ID": "ISBN",
+      "GENDER": "Category",
+      "YEAR_PUBLISH": "Year of publication",
+      "PRICE": "Price",
+      "STOCK": "Stock",
+      "NUMBER_PAG": "N° Pages",
+      "FORMAT": "Format",
+      "LANGUAGE": "Language",
+      "PUBLISHER": "Publishing house",
+      "PROVIDER": "Provider",
+      "IMAGE_PRODUCT": "Product Image",
+      "SELECT_IMAGE": "Select Image",
+      "SELECT_FILE": "Selected File:"
+    }
   }
 }

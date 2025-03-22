@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSelectModule,
     MatPaginatorModule,
     MatTooltipModule,
+    ReactiveFormsModule,
   ],
   exports: [
     CommonModule,
@@ -59,6 +61,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSelectModule,
     MatPaginatorModule,
     MatTooltipModule,
+    ReactiveFormsModule,
   ],
 })
 export class MaterialModule {}

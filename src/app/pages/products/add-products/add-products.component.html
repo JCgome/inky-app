@@ -1,1 +1,194 @@
-<p>add-products works!</p>
+<mat-card class="add-products">
+  <mat-card-title class="add-products__title">
+    {{ labels.title_products | translate }}
+  </mat-card-title>
+  <mat-card-content class="add-products__content">
+    <form
+      [formGroup]="form"
+      class="add-products__form"
+      (ngSubmit)="guardarProducto()"
+    >
+      <div class="add-products__layout">
+        <div class="add-products__fields">
+          <!-- TITULO DEL LIBRO -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.title_books | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <input matInput formControlName="title" />
+            </mat-form-field>
+          </div>
+
+          <!-- AUTOR-->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.author | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <input matInput formControlName="author" />
+            </mat-form-field>
+          </div>
+
+          <!-- ISBN -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.isbn | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <input matInput formControlName="isbn" type="number" />
+            </mat-form-field>
+          </div>
+
+          <!-- STOCK -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.stock | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <input matInput formControlName="stock" type="number" />
+            </mat-form-field>
+          </div>
+
+          <!-- AÑO PUBLICACION -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.year_publish | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <input matInput formControlName="year_publish" type="number" />
+            </mat-form-field>
+          </div>
+
+          <!-- PRECIO -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.price | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <input matInput formControlName="price" type="number" />
+            </mat-form-field>
+          </div>
+
+          <!-- CATEGORIA -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">
+              {{ labels.gender | translate }}
+            </label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <mat-select formControlName="gender">
+                <mat-option value="one">Novela Clasica</mat-option>
+                <mat-option value="two">Novela Negra</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- NUM PAGINAS -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.number_pag | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <input matInput formControlName="number_pag" type="number" />
+            </mat-form-field>
+          </div>
+
+          <!-- FORMATO -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.format | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <mat-select formControlName="format">
+                <mat-option value="one">Tapa dura</mat-option>
+                <mat-option value="two">Tapa blanda</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- IDIOMA -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.language | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <input matInput formControlName="language" type="text" />
+            </mat-form-field>
+          </div>
+
+          <!-- EDITORIAL -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.publisher | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <input matInput formControlName="publisher" />
+            </mat-form-field>
+          </div>
+
+          <!-- PROOVEDOR -->
+          <div class="add-products__field-group">
+            <label class="add-products__label">{{
+              labels.provider | translate
+            }}</label>
+            <mat-form-field appearance="outline" class="add-products__field">
+              <input matInput formControlName="provider" />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="add-products__image-wrapper">
+        <label class="add-products__label">{{
+          labels.image_product | translate
+        }}</label>
+
+        <!-- input oculto -->
+        <input
+          type="file"
+          #fileInput
+          class="add-products__image-input"
+          accept="image/*"
+          hidden
+          (change)="onFileSelected(fileInput)"
+        />
+
+        <!-- botón visible -->
+        <button
+          mat-stroked-button
+          type="button"
+          (click)="fileInput.click()"
+          class="add-products__image-btn"
+        >
+          <mat-icon>publish</mat-icon>
+          {{ labels.select_image | translate }}
+        </button>
+
+        <span *ngIf="selectedFileName" class="add-products__image-filename">
+          {{ labels.select_file | translate }} {{ selectedFileName }}
+        </span>
+      </div>
+
+      <!-- Botones -->
+      <div class="add-products__actions">
+        <button
+          mat-flat-button
+          color="warn"
+          type="button"
+          class="add-products__btn add-products__btn--cancel"
+          (click)="goCancel()"
+        >
+          {{ labels.btn_cancel | translate }}
+        </button>
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          class="add-products__btn add-products__btn--save"
+        >
+          {{ labels.btn_save | translate }}
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

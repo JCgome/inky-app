@@ -1,4 +1,9 @@
 {
+  "REPLICABLE": {
+    "BTN_CANCEL": "Cancelar",
+    "BTN_SAVE": "Guardar"
+  },
+
   "SIDEBAR": {
     "DASHBOARD": "Panel de control",
     "PRODUCTS": "Productos",
@@ -23,6 +28,25 @@
     "CODE": "IBN",
     "NAME": "Nombre",
     "STOCK": "Stock",
-    "CATEGORY": "Categoría"
+    "CATEGORY": "Categoría",
+
+    "ADD_PRODUCTS": {
+      "TITLE_PRODUCTS": "Añadir Productos",
+      "TITLE": "Título",
+      "AUTHOR": "Autor",
+      "ID": "ISBN",
+      "GENDER": "Genero/Categoria",
+      "YEAR_PUBLISH": "Año de Publicación",
+      "PRICE": "Precio",
+      "STOCK": "Stock",
+      "NUMBER_PAG": "N° Páginas",
+      "FORMAT": "Formato",
+      "LANGUAGE": "Idioma",
+      "PUBLISHER": "Editorial",
+      "PROVIDER": "Proovedor",
+      "IMAGE_PRODUCT": "Imagen del producto",
+      "SELECT_IMAGE": "Selecciona Imagen",
+      "SELECT_FILE": "Archivo Seleccionado:"
+    }
   }
 }
