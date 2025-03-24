@@ -12,6 +12,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddProductsComponent {
   form: FormGroup = this.fb.group({});
   selectedFileName: string = '';
+  isEditMode = false;
+  editingProductId: number | null = null;
 
   labels = {
     title_products: 'PRODUCT.ADD_PRODUCTS.TITLE_PRODUCTS',
@@ -37,7 +39,8 @@ export class AddProductsComponent {
   constructor(
     private fb: FormBuilder,
     private productService: MockProductService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -56,25 +59,53 @@ export class AddProductsComponent {
       provider: [''],
       image: [null],
     });
+
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.loadProductToEdit(+id);
+    }
+  }
+
+  loadProductToEdit(id: number) {
+    this.isEditMode = true;
+    this.editingProductId = id;
+
+    this.productService.getProductById(id).subscribe((product) => {
+      if (product) {
+        this.form.patchValue(product);
+      } else {
+        this.router.navigate([ROUTES.DASHBOARD, ROUTES.PRODUCTS]);
+      }
+    });
   }
 
   onFileSelected(input: HTMLInputElement) {
     const file = input.files?.[0];
     if (file) {
       this.selectedFileName = file.name;
-      this.form.patchValue({ image: file.name }); // simulación
+      this.form.patchValue({ image: file.name });
     }
   }
 
   goCancel() {
-    this.router.navigate([ROUTES.DASHBOARD]);
+    this.router.navigate([ROUTES.DASHBOARD, ROUTES.PRODUCTS]);
   }
 
   guardarProducto() {
     if (this.form.valid) {
-      this.productService.crearProducto(this.form.value).subscribe(() => {
-        this.router.navigate([ROUTES.DASHBOARD, ROUTES.PRODUCTS]);
-      });
+      const product = this.form.value;
+
+      if (this.isEditMode && this.editingProductId !== null) {
+        this.productService
+          .updateProduct(this.editingProductId, product)
+          .subscribe(() => {
+            this.router.navigate([ROUTES.DASHBOARD, ROUTES.PRODUCTS]);
+          });
+      } else {
+        this.productService.createProduct(product).subscribe(() => {
+          this.router.navigate([ROUTES.DASHBOARD, ROUTES.PRODUCTS]);
+        });
+      }
     }
   }
 }

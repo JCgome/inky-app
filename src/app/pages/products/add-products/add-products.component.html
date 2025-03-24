@@ -1,6 +1,10 @@
 <mat-card class="add-products">
   <mat-card-title class="add-products__title">
-    {{ labels.title_products | translate }}
+    {{
+      isEditMode
+        ? "Editar: " + form.get("title")?.value
+        : (labels.title_products | translate)
+    }}
   </mat-card-title>
   <mat-card-content class="add-products__content">
     <form

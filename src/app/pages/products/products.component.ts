@@ -27,7 +27,7 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.productService.listarProductos().subscribe((productos) => {
+    this.productService.getProducts().subscribe((productos) => {
       this.dataSource = new MatTableDataSource(productos);
       this.dataSource.paginator = this.paginator;
     });
@@ -39,5 +39,14 @@ export class ProductsComponent implements OnInit {
 
   goAddProducts() {
     this.router.navigate(['add-products'], { relativeTo: this.route });
+  }
+
+  editProducts(id: number) {
+    this.router.navigate([
+      ROUTES.DASHBOARD,
+      ROUTES.PRODUCTS,
+      ROUTES.ADD_PRODUCTS,
+      id,
+    ]);
   }
 }
