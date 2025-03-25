@@ -66,6 +66,7 @@
 
       td {
         @include inky-fonts($body-200);
+        cursor: pointer;
       }
 
       th,

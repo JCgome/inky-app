@@ -5,9 +5,10 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { MaterialModule } from '@app/shared/models/material.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { AddProductsComponent } from './add-products/add-products.component';
+import { ViewModalComponent } from './view-modal/view-modal.component';
 
 @NgModule({
-  declarations: [ProductsComponent, AddProductsComponent],
+  declarations: [ProductsComponent, AddProductsComponent, ViewModalComponent],
   imports: [
     CommonModule,
     ProductsRoutingModule,

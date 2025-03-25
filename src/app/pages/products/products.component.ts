@@ -1,9 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MockProductService } from '@app/core/services/mock-product.service';
 import { ROUTES } from '@app/shared/constants/route-constants';
+import { ViewModalComponent } from './view-modal/view-modal.component';
 
 @Component({
   selector: 'app-products',
@@ -23,7 +25,8 @@ export class ProductsComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private productService: MockProductService
+    private productService: MockProductService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -48,5 +51,16 @@ export class ProductsComponent implements OnInit {
       ROUTES.ADD_PRODUCTS,
       id,
     ]);
+  }
+
+  viewProduct(id: number): void {
+    this.productService.getProductById(id).subscribe((product) => {
+      this.dialog.open(ViewModalComponent, {
+        width: '50vw',
+        height: '60vh',
+        disableClose: true,
+        data: product,
+      });
+    });
   }
 }

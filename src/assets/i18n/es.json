@@ -30,7 +30,7 @@
     "STOCK": "Stock",
     "CATEGORY": "Categoría",
 
-    "ADD_PRODUCTS": {
+    "MANAGEMENT_PRODUCTS": {
       "TITLE_PRODUCTS": "Añadir Productos",
       "TITLE": "Título",
       "AUTHOR": "Autor",

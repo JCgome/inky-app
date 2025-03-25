@@ -1,0 +1,79 @@
+<section class="view">
+  <div class="view__header">
+    <button
+      mat-icon-button
+      mat-dialog-close
+      aria-label="Cerrar"
+      class="view__header-close"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <h1 class="view__title">{{ product.title }}</h1>
+    <h3 class="view__author">{{ product.author }}</h3>
+  </div>
+
+  <mat-dialog-content class="view__content">
+    <div class="view__body">
+      <img
+        [src]="product.image"
+        alt="{{ product.title }}"
+        class="view__image"
+      />
+
+      <div class="view__info">
+        <p class="view__field">
+          <span class="view__field-label">{{ labels.isbn | translate }}:</span>
+          <span class="view__field-value">{{ product.isbn }}</span>
+        </p>
+        <p class="view__field">
+          <span class="view__field-label">{{ labels.stock | translate }}:</span>
+          <span class="view__field-value">{{ product.stock }}</span>
+        </p>
+        <p class="view__field">
+          <span class="view__field-label"
+            >{{ labels.gender | translate }}:</span
+          >
+          <span class="view__field-value">{{ product.gender }}</span>
+        </p>
+        <p class="view__field">
+          <span class="view__field-label">{{ labels.price | translate }}:</span>
+          <span class="view__field-value">{{ product.price }}</span>
+        </p>
+        <p class="view__field">
+          <span class="view__field-label"
+            >{{ labels.year_publish | translate }}:</span
+          >
+          <span class="view__field-value">{{ product.year_publish }}</span>
+        </p>
+        <p class="view__field">
+          <span class="view__field-label"
+            >{{ labels.number_pag | translate }}:</span
+          >
+          <span class="view__field-value">{{ product.number_pag }}</span>
+        </p>
+        <p class="view__field">
+          <span class="view__field-label"
+            >{{ labels.format | translate }}:</span
+          >
+          <span class="view__field-value">{{ product.format }}</span>
+        </p>
+        <p class="view__field">
+          <span class="view__field-label">{{ labels.price | translate }}:</span>
+          <span class="view__field-value">{{ product.language }}</span>
+        </p>
+        <p class="view__field">
+          <span class="view__field-label"
+            >{{ labels.publisher | translate }}:</span
+          >
+          <span class="view__field-value">{{ product.publisher }}</span>
+        </p>
+        <p class="view__field">
+          <span class="view__field-label"
+            >{{ labels.provider | translate }}:</span
+          >
+          <span class="view__field-value">{{ product.provider }}</span>
+        </p>
+      </div>
+    </div>
+  </mat-dialog-content>
+</section>

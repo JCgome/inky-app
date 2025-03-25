@@ -15,7 +15,8 @@ export const DEFAULT_PRODUCTS: Producto[] = [
     language: 'Español',
     publisher: 'Penguin Clásicos',
     provider: 'Distribuidora XYZ',
-    image: 'don_quijote.jpg',
+    image:
+      'https://m.media-amazon.com/images/I/91CIwR3QU1L._UF1000,1000_QL80_.jpg',
   },
   {
     id: 2,
