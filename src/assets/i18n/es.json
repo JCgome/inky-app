@@ -1,7 +1,10 @@
 {
   "REPLICABLE": {
     "BTN_CANCEL": "Cancelar",
-    "BTN_SAVE": "Guardar"
+    "BTN_SAVE": "Guardar",
+    "BTN_DELETE": "Eliminar",
+    "HEADING_DELETE": "¿Estas seguro?",
+    "TITLE_DELETE": "¿Realmente quiere borrar este libro? este proceso no se puede deshacer"
   },
 
   "SIDEBAR": {

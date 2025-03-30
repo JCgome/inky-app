@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MockProductService } from '@app/core/services/mock-product.service';
 import { ROUTES } from '@app/shared/constants/route-constants';
 import { ViewModalComponent } from './view-modal/view-modal.component';
+import { DialogDeleteComponent } from '@app/shared/components/dialog-delete/dialog-delete.component';
 
 @Component({
   selector: 'app-products',
@@ -44,7 +45,7 @@ export class ProductsComponent implements OnInit {
     this.router.navigate(['add-products'], { relativeTo: this.route });
   }
 
-  editProducts(id: number) {
+  goeditProducts(id: number) {
     this.router.navigate([
       ROUTES.DASHBOARD,
       ROUTES.PRODUCTS,
@@ -53,7 +54,7 @@ export class ProductsComponent implements OnInit {
     ]);
   }
 
-  viewProduct(id: number): void {
+  goviewProduct(id: number): void {
     this.productService.getProductById(id).subscribe((product) => {
       this.dialog.open(ViewModalComponent, {
         width: '50vw',
@@ -61,6 +62,24 @@ export class ProductsComponent implements OnInit {
         disableClose: true,
         data: product,
       });
+    });
+  }
+
+  goDeleteProduct(id: number): void {
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width: '30vw',
+      height: '45vh',
+      disableClose: true,
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.productService.deleteProduct(id).subscribe(() => {
+          this.productService.getProducts().subscribe((productos) => {
+            this.dataSource.data = productos;
+          });
+        });
+      }
     });
   }
 }

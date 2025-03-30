@@ -1,7 +1,10 @@
 {
   "REPLICABLE": {
     "BTN_CANCEL": "Cancel",
-    "BTN_SAVE": "Save"
+    "BTN_SAVE": "Save",
+    "BTN_DELETE": "Delete",
+    "HEADING_DELETE": "Are you sure?",
+    "TITLE_DELETE": "Do you really want to delete this book? this process cannot be undone"
   },
 
   "SIDEBAR": {

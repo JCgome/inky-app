@@ -57,11 +57,15 @@
             <button
               mat-icon-button
               color="primary"
-              (click)="editProducts(element.id)"
+              (click)="goeditProducts(element.id); $event.stopPropagation()"
             >
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn">
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="goDeleteProduct(element.id); $event.stopPropagation()"
+            >
               <mat-icon>delete</mat-icon>
             </button>
           </td>
@@ -71,7 +75,7 @@
         <tr
           mat-row
           *matRowDef="let row; columns: displayedColumns"
-          (click)="viewProduct(row.id)"
+          (click)="goviewProduct(row.id)"
           class="clickable-row"
         ></tr>
       </table>
