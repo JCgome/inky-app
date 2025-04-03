@@ -9,4 +9,5 @@ export const ROUTES = {
   STORE: 'store',
   PROMOTIONS: 'promotions',
   ADD_PRODUCTS: 'add-products',
+  ADD_CLIENTS: 'add-clients',
 };

@@ -1,1 +1,89 @@
-<p>clients works!</p>
+<div class="clients">
+  <div class="clients__container">
+    <div class="clients__head">
+      <h2>{{ labels.tittle_clients | translate }}</h2>
+      <div class="clients__head-actions">
+        <button
+          mat-flat-button
+          color="primary"
+          class="clients__head-actions-new"
+          (click)="goAddClients()"
+        >
+          {{ labels.btn_add | translate }}
+        </button>
+        <button mat-fab>
+          <mat-icon>filter_list</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="clients__table">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Columna DNI -->
+        <ng-container matColumnDef="nif">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ labels.nif | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.nif }}</td>
+        </ng-container>
+
+        <!-- Columna Nombre -->
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ labels.name_clients | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.firstName }}</td>
+        </ng-container>
+
+        <!-- Columna Apellidos -->
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ labels.surname_clients | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.lastName }}</td>
+        </ng-container>
+
+        <!-- Columna Editorial -->
+        <ng-container matColumnDef="companyName">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ labels.company | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.companyName }}</td>
+        </ng-container>
+
+        <!-- Columna Email -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ labels.email | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="actions-column"></th>
+          <td mat-cell *matCellDef="let element" class="actions-column">
+            <button mat-icon-button color="primary">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+          class="clickable-row"
+        ></tr>
+      </table>
+
+      <mat-paginator
+        #paginator
+        [pageSize]="10"
+        [hidePageSize]="true"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </div>
+</div>

@@ -31,7 +31,8 @@ const routes: Routes = [
       },
       {
         path: ROUTES.CLIENTS,
-        component: ClientsComponent,
+        loadChildren: () =>
+          import('./clients/clients.module').then((m) => m.ClientsModule),
         data: { title: 'SIDEBAR.CLIENTS', icon: 'people' },
       },
       {

@@ -51,5 +51,15 @@
       "SELECT_IMAGE": "Select Image",
       "SELECT_FILE": "Selected File:"
     }
+  },
+
+  "CLIENTS": {
+    "CLIENTS": "Clients",
+    "ADD": "Create Clients",
+    "NIF": "NIF",
+    "NAME": "Name",
+    "LASTNAME": "Surname",
+    "COMPANY": "Publisher",
+    "EMAIL": "email address"
   }
 }

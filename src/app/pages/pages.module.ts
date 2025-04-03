@@ -9,20 +9,20 @@ import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
 import { StoreComponent } from './store/store.component';
 import { PromotionsComponent } from './promotions/promotions.component';
+import { AddClientsComponent } from './clients/add-clients/add-clients.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
     DashboardComponent,
-    ClientsComponent,
     CategoriesComponent,
     StoreComponent,
     PromotionsComponent,
+    AddClientsComponent,
   ],
   exports: [
     PagesComponent,
     DashboardComponent,
-    ClientsComponent,
     CategoriesComponent,
     StoreComponent,
     PromotionsComponent,
