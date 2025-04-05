@@ -1,6 +1,8 @@
 $mobile: 576px;
-$tablet: 768px;
-$laptop: 1024px;
+$tabletMin: 768px;
+$tabletMax: 1180px;
+$laptopMin: 1080px;
+$laptopMax: 1920px;
 $desktop: 1280px;
 
 @mixin mobile {
@@ -10,19 +12,19 @@ $desktop: 1280px;
 }
 
 @mixin landscape {
-  @media (min-width: 600px) and (max-width: 1380px) and (orientation: landscape) {
+  @media (min-width: 600px) and (max-width: 1180px) and (orientation: landscape) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media (max-width: #{$tablet}) {
+  @media (min-width: #{$tabletMin}) and (max-width: #{$tabletMax}) {
     @content;
   }
 }
 
 @mixin laptop {
-  @media (max-width: #{$laptop}) {
+  @media (min-width: #{$laptopMin}) and (max-width: #{$laptopMax}) {
     @content;
   }
 }

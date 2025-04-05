@@ -1,13 +1,15 @@
+@import "../base/colors";
+@import "../base/typography";
+
 @include tablet {
   .table-responsive table {
-    width: 0 !important;
+    width: 0px !important;
   }
 }
 
 @include landscape {
   .table-responsive {
-    width: 90%;
-    max-width: 1000px;
+    width: 98%;
     height: auto;
   }
 
@@ -36,3 +38,43 @@
     }
   }
 }
+
+
+ @include laptop { 
+  .table-responsive {
+   width: 98%;
+  table-layout: auto;
+
+
+  scrollbar-width: thin;
+  scrollbar-color: #999 #f1f1f1;
+  }
+
+  .table-responsive th {
+    font-size: 16px !important;
+  }
+
+  .table-responsive td {
+    font-size: 14px !important;
+  }
+
+  .table-responsive .actions-column {
+    min-width: 80px;
+    text-align: center;
+
+  }
+
+  .table-responsive .actions-column {
+    min-width: 80px;
+    text-align: center;
+
+    button {
+      width: 32px;
+      height: 32px;
+
+      mat-icon {
+        font-size: 18px;
+      }
+    }
+  }
+} 

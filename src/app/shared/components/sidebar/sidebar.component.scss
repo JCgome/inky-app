@@ -1,53 +1,33 @@
-@import "src/styles/base/colors";
-@import "src/styles/base/_typography.scss";
-
-:host * {
-  transition: all 500ms ease-in-out;
-  overflow: hidden;
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
 }
 
 .sidenav-header {
-  padding-top: 24px;
-  text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
+  padding: 16px 0;
 
-  > img {
+  img {
     border-radius: 100%;
     object-fit: cover;
     margin-bottom: 10px;
-  }
-
-  .header-text {
-    height: 3rem;
-    > h2 {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.5rem;
-    }
-
-    > p {
-      margin: 0;
-      font-size: 0.8rem;
-    }
+    border-radius: 8px;
   }
 }
 
 mat-nav-list {
-  overflow-x: hidden;
-}
+  width: 100%;
 
-.hide-header-text {
-  opacity: 0;
-  height: 0px !important;
-}
+  a.menu-item {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
 
-.menu-item {
-  border-left: 5px solid;
-  border-left-color: rgba(0, 0, 0, 0);
-}
-
-.selected-menu-item {
-  border-left-color: inky-colors("primary", 500);
-  background: rgba(0, 0, 0, 0.05);
+    mat-icon {
+      font-size: 24px;
+    }
+  }
 }

@@ -6,14 +6,10 @@ import { Component, computed, signal } from '@angular/core';
   styleUrls: ['./pages.component.scss'],
 })
 export class PagesComponent {
-  opened = true;
+  opened = false;
   collapsed = signal(false);
   sidenavWidth(): string {
-    return this.isTabletOrMobile()
-      ? '60px'
-      : this.collapsed()
-      ? '60px'
-      : '250px';
+    return '60px';
   }
 
   isTabletOrMobile(): boolean {

@@ -1,8 +1,8 @@
-<app-head (toggleSidebar)="collapsed.set(!collapsed())"></app-head>
+<app-head></app-head>
 
-<mat-sidenav-container>
-  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
-    <app-sidebar [collapsed]="collapsed()"></app-sidebar>
+<mat-sidenav-container class="main-container">
+  <mat-sidenav mode="side" opened [style.width]="sidenavWidth()">
+    <app-sidebar></app-sidebar>
   </mat-sidenav>
 
   <mat-sidenav-content class="content">
