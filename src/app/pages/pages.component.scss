@@ -21,6 +21,24 @@ mat-sidenav-container {
   height: calc(100vh - 80px);
 }
 
+mat-sidenav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  mat-nav-list {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .sidenav-header {
+    flex-shrink: 0;
+  }
+}
+
+
 mat-sidenav,
 mat-sidenav-content {
   transition: all 50ms ease-in-out;
