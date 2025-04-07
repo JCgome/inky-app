@@ -1,19 +1,19 @@
 {
-  "REPLICABLE": {
-    "BTN_CANCEL": "Cancel",
-    "BTN_SAVE": "Save",
-    "BTN_DELETE": "Delete",
-    "HEADING_DELETE": "Are you sure?",
-    "TITLE_DELETE": "Do you really want to delete this book? this process cannot be undone"
+  "replicable": {
+    "btn_cancel": "Cancel",
+    "btn_save": "Save",
+    "btn_delete": "Delete",
+    "heading_delete": "Are you sure?",
+    "title_delete": "Do you really want to delete this book? this process cannot be undone"
   },
 
-  "SIDEBAR": {
-    "DASHBOARD": "Dashboard",
-    "PRODUCTS": "Products",
-    "CATEGORIES": "Categories",
-    "CLIENTS": "Clients",
-    "PROMOTIONS": "Promotions",
-    "STORE": "Stock"
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "categories": "Categories",
+    "clients": "Clients",
+    "promotions": "Promotions",
+    "store": "Stock"
   },
 
   "home": {
@@ -25,41 +25,41 @@
     "TITLE": "Welcome dashboard"
   },
 
-  "PRODUCT": {
-    "PRODUCTS": "Products",
-    "ADD": "Add products",
-    "CODE": "IBN",
-    "NAME": "Name",
-    "STOCK": "Stock",
-    "CATEGORY": "Category",
+  "product": {
+    "products": "Products",
+    "add": "Add products",
+    "code": "IBN",
+    "name": "Name",
+    "stock": "Stock",
+    "category": "Category",
 
-    "MANAGEMENT_PRODUCTS": {
-      "TITLE_PRODUCTS": "Add Products",
-      "TITLE": "Tittle Book",
-      "AUTHOR": "Author",
-      "ID": "ISBN",
-      "GENDER": "Category",
-      "YEAR_PUBLISH": "Year of publication",
-      "PRICE": "Price",
-      "STOCK": "Stock",
-      "NUMBER_PAG": "N° Pages",
-      "FORMAT": "Format",
-      "LANGUAGE": "Language",
-      "PUBLISHER": "Publishing house",
-      "PROVIDER": "Provider",
-      "IMAGE_PRODUCT": "Product Image",
-      "SELECT_IMAGE": "Select Image",
-      "SELECT_FILE": "Selected File:"
+    "management_products": {
+      "title_products": "Add Products",
+      "title": "Tittle Book",
+      "author": "Author",
+      "id": "ISBN",
+      "gender": "Category",
+      "year_publish": "Year of publication",
+      "price": "Price",
+      "stock": "Stock",
+      "number_pag": "N° Pages",
+      "format": "Format",
+      "language": "Language",
+      "publisher": "Publishing house",
+      "provider": "Provider",
+      "image_product": "Product Image",
+      "select_image": "Select Image",
+      "select_file": "Selected File:"
     }
   },
 
-  "CLIENTS": {
-    "CLIENTS": "Clients",
-    "ADD": "Create Clients",
-    "NIF": "NIF",
-    "NAME": "Name",
-    "LASTNAME": "Surname",
-    "COMPANY": "Publisher",
-    "EMAIL": "email address"
+  "client": {
+    "clients": "Clients",
+    "add": "Create Clients",
+    "nif": "NIF",
+    "name": "Name",
+    "last_name": "Surname",
+    "company": "Publisher",
+    "email": "email address"
   }
 }

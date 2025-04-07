@@ -15,8 +15,12 @@ import { DialogDeleteComponent } from '@app/shared/components/dialog-delete/dial
 })
 export class ProductsComponent implements OnInit {
   labels = {
-    product: 'PRODUCT.PRODUCTS',
-    add_product: 'PRODUCT.ADD',
+    product: 'product.products',
+    isbn: 'product.code',
+    title_book: 'product.name',
+    stock: 'product.stock',
+    category: 'product.category',
+    add_product: 'product.add',
   };
   displayedColumns = ['isbn', 'title', 'stock', 'gender', 'actions'];
 
@@ -47,9 +51,9 @@ export class ProductsComponent implements OnInit {
 
   goeditProducts(id: number) {
     this.router.navigate([
-      ROUTES.DASHBOARD,
-      ROUTES.PRODUCTS,
-      ROUTES.ADD_PRODUCTS,
+      ROUTES.dashboard,
+      ROUTES.products,
+      ROUTES.add_products,
       id,
     ]);
   }

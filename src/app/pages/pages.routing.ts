@@ -10,40 +10,40 @@ import { StoreComponent } from './store/store.component';
 
 const routes: Routes = [
   {
-    path: ROUTES.DASHBOARD,
+    path: ROUTES.dashboard,
     component: PagesComponent,
     children: [
       {
         path: '',
         component: DashboardComponent,
-        data: { title: 'SIDEBAR.DASHBOARD', icon: 'dashboard' },
+        data: { title: 'sidebar.dashboard', icon: 'dashboard' },
       },
       {
-        path: ROUTES.PRODUCTS,
+        path: ROUTES.products,
         loadChildren: () =>
           import('./products/products.module').then((m) => m.ProductsModule),
-        data: { title: 'SIDEBAR.PRODUCTS', icon: 'shopping_cart' },
+        data: { title: 'sidebar.products', icon: 'menu_book' },
       },
       {
-        path: ROUTES.CATEGORIES,
+        path: ROUTES.categories,
         component: CategoriesComponent,
-        data: { title: 'SIDEBAR.CATEGORIES', icon: 'category' },
+        data: { title: 'sidebar.categories', icon: 'category' },
       },
       {
-        path: ROUTES.CLIENTS,
+        path: ROUTES.clients,
         loadChildren: () =>
           import('./clients/clients.module').then((m) => m.ClientsModule),
-        data: { title: 'SIDEBAR.CLIENTS', icon: 'people' },
+        data: { title: 'sidebar.clients', icon: 'people' },
       },
       {
-        path: ROUTES.PROMOTIONS,
+        path: ROUTES.promotions,
         component: PromotionsComponent,
-        data: { title: 'SIDEBAR.PROMOTIONS', icon: 'price_change' },
+        data: { title: 'sidebar.promotions', icon: 'price_change' },
       },
       {
-        path: ROUTES.STORE,
+        path: ROUTES.store,
         component: StoreComponent,
-        data: { title: 'SIDEBAR.STORE', icon: 'inventory' },
+        data: { title: 'sidebar.store', icon: 'inventory' },
       },
     ],
   },

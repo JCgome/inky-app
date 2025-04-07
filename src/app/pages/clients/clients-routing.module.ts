@@ -11,7 +11,7 @@ const routes: Routes = [
   },
 
   {
-    path: ROUTES.ADD_CLIENTS,
+    path: ROUTES.add_clients,
     component: AddClientsComponent,
   },
 ];

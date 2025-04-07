@@ -1,19 +1,19 @@
 {
-  "REPLICABLE": {
-    "BTN_CANCEL": "Cancelar",
-    "BTN_SAVE": "Guardar",
-    "BTN_DELETE": "Eliminar",
-    "HEADING_DELETE": "¿Estas seguro?",
-    "TITLE_DELETE": "¿Realmente quiere borrar este libro? este proceso no se puede deshacer"
+  "replicable": {
+    "btn_cancel": "Cancelar",
+    "btn_save": "Guardar",
+    "btn_delete": "Eliminar",
+    "heading_delete": "¿Estas seguro?",
+    "title_delete": "¿Realmente quiere borrar este libro? este proceso no se puede deshacer"
   },
 
-  "SIDEBAR": {
-    "DASHBOARD": "Panel de control",
-    "PRODUCTS": "Productos",
-    "CATEGORIES": "Categorias",
-    "CLIENTS": "Clientes",
-    "PROMOTIONS": "Promociones",
-    "STORE": "Almacen"
+  "sidebar": {
+    "dashboard": "Panel de control",
+    "products": "Productos",
+    "categories": "Categorias",
+    "clients": "Clientes",
+    "promotions": "Promociones",
+    "store": "Almacen"
   },
 
   "home": {
@@ -25,41 +25,41 @@
     "TITLE": "Bienvenido dashboard"
   },
 
-  "PRODUCT": {
-    "PRODUCTS": "Productos",
-    "ADD": "Agregar productos",
-    "CODE": "IBN",
-    "NAME": "Nombre",
-    "STOCK": "Stock",
-    "CATEGORY": "Categoría",
+  "product": {
+    "products": "Productos",
+    "add": "Agregar productos",
+    "code": "IBN",
+    "name": "Nombre",
+    "stock": "Stock",
+    "category": "Categoría",
 
-    "MANAGEMENT_PRODUCTS": {
-      "TITLE_PRODUCTS": "Añadir Productos",
-      "TITLE": "Título",
-      "AUTHOR": "Autor",
-      "ID": "ISBN",
-      "GENDER": "Genero/Categoria",
-      "YEAR_PUBLISH": "Año de Publicación",
-      "PRICE": "Precio",
-      "STOCK": "Stock",
-      "NUMBER_PAG": "N° Páginas",
-      "FORMAT": "Formato",
-      "LANGUAGE": "Idioma",
-      "PUBLISHER": "Editorial",
-      "PROVIDER": "Proovedor",
-      "IMAGE_PRODUCT": "Imagen del producto",
-      "SELECT_IMAGE": "Selecciona Imagen",
-      "SELECT_FILE": "Archivo Seleccionado:"
+    "management_products": {
+      "title_products": "Añadir Productos",
+      "title": "Título",
+      "author": "Autor",
+      "id": "ISBN",
+      "gender": "Genero/Categoria",
+      "year_publish": "Año de Publicación",
+      "price": "Precio",
+      "stock": "Stock",
+      "number_pag": "N° Páginas",
+      "format": "Formato",
+      "language": "Idioma",
+      "publisher": "Editorial",
+      "provider": "Proovedor",
+      "image_product": "Imagen del producto",
+      "select_image": "Selecciona Imagen",
+      "select_file": "Archivo Seleccionado:"
     }
   },
 
-  "CLIENTS": {
-    "CLIENTS": "Clientes",
-    "ADD": "Crear Clientes",
-    "NIF": "NIF",
-    "NAME": "Nombres",
-    "LASTNAME": "Apellidos",
-    "COMPANY": "Editorial",
-    "EMAIL": "Correo electronico"
+  "client": {
+    "clients": "Clientes",
+    "add": "Crear Clientes",
+    "nif": "NIF",
+    "name": "Nombres",
+    "last_name": "Apellidos",
+    "company": "Editorial",
+    "email": "Correo electronico"
   }
 }

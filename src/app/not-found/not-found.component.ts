@@ -11,6 +11,6 @@ export class NotFoundComponent {
   constructor(private router: Router) {}
 
   goHome() {
-    this.router.navigate([ROUTES.DASHBOARD]);
+    this.router.navigate([ROUTES.dashboard]);
   }
 }

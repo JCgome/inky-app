@@ -38,8 +38,7 @@ mat-sidenav {
   }
 }
 
-
 mat-sidenav,
 mat-sidenav-content {
-  transition: all 50ms ease-in-out;
+  transition: margin-left 300ms ease, width 300ms ease;
 }

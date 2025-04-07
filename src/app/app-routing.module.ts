@@ -6,7 +6,7 @@ import { PagesRoutingModule } from './pages/pages.routing';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: ROUTES.DASHBOARD, pathMatch: 'full' },
+  { path: '', redirectTo: ROUTES.dashboard, pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },
 ];
 

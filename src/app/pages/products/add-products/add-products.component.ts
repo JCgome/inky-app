@@ -16,24 +16,24 @@ export class AddProductsComponent {
   editingProductId: number | null = null;
 
   labels = {
-    title_products: 'PRODUCT.MANAGEMENT_PRODUCTS.TITLE_PRODUCTS',
-    title_books: 'PRODUCT.MANAGEMENT_PRODUCTS.TITLE',
-    author: 'PRODUCT.MANAGEMENT_PRODUCTS.AUTHOR',
-    isbn: 'PRODUCT.MANAGEMENT_PRODUCTS.ID',
-    gender: 'PRODUCT.MANAGEMENT_PRODUCTS.GENDER',
-    year_publish: 'PRODUCT.MANAGEMENT_PRODUCTS.YEAR_PUBLISH',
-    price: 'PRODUCT.MANAGEMENT_PRODUCTS.PRICE',
-    stock: 'PRODUCT.MANAGEMENT_PRODUCTS.STOCK',
-    number_pag: 'PRODUCT.MANAGEMENT_PRODUCTS.NUMBER_PAG',
-    format: 'PRODUCT.MANAGEMENT_PRODUCTS.FORMAT',
-    language: 'PRODUCT.MANAGEMENT_PRODUCTS.LANGUAGE',
-    publisher: 'PRODUCT.MANAGEMENT_PRODUCTS.PUBLISHER',
-    provider: 'PRODUCT.MANAGEMENT_PRODUCTS.PROVIDER',
-    image_product: 'PRODUCT.MANAGEMENT_PRODUCTS.IMAGE_PRODUCT',
-    select_image: 'PRODUCT.MANAGEMENT_PRODUCTS.SELECT_IMAGE',
-    select_file: 'PRODUCT.MANAGEMENT_PRODUCTS.SELECT_FILE',
-    btn_cancel: 'REPLICABLE.BTN_CANCEL',
-    btn_save: 'REPLICABLE.BTN_SAVE',
+    title_products: 'product.management_products.title_products',
+    title_books: 'product.management_products.title',
+    author: 'product.management_products.author',
+    isbn: 'product.management_products.id',
+    gender: 'product.management_products.gender',
+    year_publish: 'product.management_products.year_publish',
+    price: 'product.management_products.price',
+    stock: 'product.management_products.stock',
+    number_pag: 'product.management_products.number_pag',
+    format: 'product.management_products.format',
+    language: 'product.management_products.language',
+    publisher: 'product.management_products.publisher',
+    provider: 'product.management_products.provider',
+    image_product: 'product.management_products.image_product',
+    select_image: 'product.management_products.select_image',
+    select_file: 'product.management_products.select_file',
+    btn_cancel: 'replicable.btn_cancel',
+    btn_save: 'replicable.btn_save',
   };
 
   constructor(
@@ -74,7 +74,7 @@ export class AddProductsComponent {
       if (product) {
         this.form.patchValue(product);
       } else {
-        this.router.navigate([ROUTES.DASHBOARD, ROUTES.PRODUCTS]);
+        this.router.navigate([ROUTES.dashboard, ROUTES.products]);
       }
     });
   }
@@ -88,7 +88,7 @@ export class AddProductsComponent {
   }
 
   goCancel() {
-    this.router.navigate([ROUTES.DASHBOARD, ROUTES.PRODUCTS]);
+    this.router.navigate([ROUTES.dashboard, ROUTES.products]);
   }
 
   guardarProducto() {
@@ -99,11 +99,11 @@ export class AddProductsComponent {
         this.productService
           .updateProduct(this.editingProductId, product)
           .subscribe(() => {
-            this.router.navigate([ROUTES.DASHBOARD, ROUTES.PRODUCTS]);
+            this.router.navigate([ROUTES.dashboard, ROUTES.products]);
           });
       } else {
         this.productService.createProduct(product).subscribe(() => {
-          this.router.navigate([ROUTES.DASHBOARD, ROUTES.PRODUCTS]);
+          this.router.navigate([ROUTES.dashboard, ROUTES.products]);
         });
       }
     }

@@ -11,13 +11,13 @@ import { CLIENTS_MOCK } from '@app/core/models/mock-clients.data';
 })
 export class ClientsComponent {
   labels = {
-    tittle_clients: 'CLIENTS.CLIENTS',
-    btn_add: 'CLIENTS.ADD',
-    nif: 'CLIENTS.NIF',
-    name_clients: 'CLIENTS.NAME',
-    surname_clients: 'CLIENTS.LASTNAME',
-    company: 'CLIENTS.COMPANY',
-    email: 'CLIENTS.EMAIL',
+    tittle_clients: 'client.clients',
+    btn_add: 'client.add',
+    nif: 'client.nif',
+    name_clients: 'client.name',
+    surname_clients: 'client.last_name',
+    company: 'client.company',
+    email: 'client.email',
   };
   displayedColumns = [
     'nif',
