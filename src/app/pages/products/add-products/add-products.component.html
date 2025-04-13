@@ -2,7 +2,7 @@
   <mat-card-title class="add-products__title">
     {{
       isEditMode
-        ? "Editar: " + form.get("title")?.value
+        ? (labels.title_edit | translate)
         : (labels.title_products | translate)
     }}
   </mat-card-title>

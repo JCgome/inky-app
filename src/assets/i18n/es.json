@@ -3,8 +3,9 @@
     "btn_cancel": "Cancelar",
     "btn_save": "Guardar",
     "btn_delete": "Eliminar",
-    "heading_delete": "¿Estas seguro?",
-    "title_delete": "¿Realmente quiere borrar este libro? este proceso no se puede deshacer"
+    "title_edit": "Editar",
+    "heading_delete": "Solicitud de eliminación",
+    "title_delete": "Esta acción eliminará el registro de forma permanente. ¿Deseas proceder?"
   },
 
   "sidebar": {
@@ -60,6 +61,20 @@
     "name": "Nombres",
     "last_name": "Apellidos",
     "company": "Editorial",
-    "email": "Correo electronico"
+    "email": "Correo electronico",
+
+    "management_clients": {
+      "title_clients": "Crear Clientes",
+      "nif": "NIF",
+      "name": "Nombre",
+      "surname": "Apellidos",
+      "publisher": "Editorial",
+      "mail": "Correo electronico",
+      "phone": "Telefono",
+      "address": "Direccion",
+      "postal_code": "Codigo Postal",
+      "city": "Ciudad",
+      "country": "Pais"
+    }
   }
 }

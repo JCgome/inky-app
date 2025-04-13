@@ -57,7 +57,7 @@
             <button
               mat-icon-button
               color="primary"
-              (click)="goeditProducts(element.id); $event.stopPropagation()"
+              (click)="goeditProducts(element.id)"
             >
               <mat-icon>edit</mat-icon>
             </button>
@@ -75,7 +75,7 @@
         <tr
           mat-row
           *matRowDef="let row; columns: displayedColumns"
-          (click)="goviewProduct(row.id)"
+          (click)="goViewProduct(row.id)"
           class="clickable-row"
         ></tr>
       </table>

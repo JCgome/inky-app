@@ -12,6 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { TranslateModule } from '@ngx-translate/core';
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { DetailsModalComponent } from './components/details-modal/details-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
     SidebarComponent,
     BreadcrumbsComponent,
     DialogDeleteComponent,
+    DetailsModalComponent,
   ],
   exports: [
     TranslateModule,

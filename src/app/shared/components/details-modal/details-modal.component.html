@@ -1,0 +1,32 @@
+<section class="view">
+  <div class="view__header">
+    <button
+      mat-icon-button
+      mat-dialog-close
+      aria-label="Cerrar"
+      class="view__header-close"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <h1 class="view__title">{{ data[headerTitleKey] }}</h1>
+    <h3 class="view__author">{{ data[headerSubtitleKey] }}</h3>
+  </div>
+
+  <mat-dialog-content class="view__content">
+    <div class="view__body">
+      <img
+        *ngIf="imageKey"
+        [src]="data[imageKey]"
+        alt="{{ data[headerTitleKey] }}"
+        class="view__image"
+      />
+
+      <div class="view__info">
+        <p class="view__field" *ngFor="let field of fields">
+          <span class="view__field-label">{{ field.label | translate }}:</span>
+          <span class="view__field-value">{{ data[field.key] }}</span>
+        </p>
+      </div>
+    </div>
+  </mat-dialog-content>
+</section>

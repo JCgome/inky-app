@@ -14,6 +14,11 @@ const routes: Routes = [
     path: ROUTES.add_clients,
     component: AddClientsComponent,
   },
+
+  {
+    path: `${ROUTES.add_clients}/:id`,
+    component: AddClientsComponent,
+  },
 ];
 
 @NgModule({

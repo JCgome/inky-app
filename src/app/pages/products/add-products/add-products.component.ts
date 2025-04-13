@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ROUTES } from '@app/shared/constants/route-constants';
 import { MockProductService } from '@app/core/services/mock-product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './add-products.component.html',
   styleUrls: ['./add-products.component.scss'],
 })
-export class AddProductsComponent {
+export class AddProductsComponent implements OnInit {
   form: FormGroup = this.fb.group({});
   selectedFileName: string = '';
   isEditMode = false;
@@ -34,6 +34,7 @@ export class AddProductsComponent {
     select_file: 'product.management_products.select_file',
     btn_cancel: 'replicable.btn_cancel',
     btn_save: 'replicable.btn_save',
+    title_edit: 'replicable.title_edit',
   };
 
   constructor(

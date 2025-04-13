@@ -5,8 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MockProductService } from '@app/core/services/mock-product.service';
 import { ROUTES } from '@app/shared/constants/route-constants';
-import { ViewModalComponent } from './view-modal/view-modal.component';
 import { DialogDeleteComponent } from '@app/shared/components/dialog-delete/dialog-delete.component';
+import { DetailsModalComponent } from '@app/shared/components/details-modal/details-modal.component';
 
 @Component({
   selector: 'app-products',
@@ -21,6 +21,22 @@ export class ProductsComponent implements OnInit {
     stock: 'product.stock',
     category: 'product.category',
     add_product: 'product.add',
+    title_products: 'product.management_products.title_products',
+    title_books: 'product.management_products.title',
+    author: 'product.management_products.author',
+    gender: 'product.management_products.gender',
+    year_publish: 'product.management_products.year_publish',
+    price: 'product.management_products.price',
+    number_pag: 'product.management_products.number_pag',
+    format: 'product.management_products.format',
+    language: 'product.management_products.language',
+    publisher: 'product.management_products.publisher',
+    provider: 'product.management_products.provider',
+    image_product: 'product.management_products.image_product',
+    select_image: 'product.management_products.select_image',
+    select_file: 'product.management_products.select_file',
+    btn_cancel: 'replicable.btn_cancel',
+    btn_save: 'replicable.btn_save',
   };
   displayedColumns = ['isbn', 'title', 'stock', 'gender', 'actions'];
 
@@ -58,13 +74,30 @@ export class ProductsComponent implements OnInit {
     ]);
   }
 
-  goviewProduct(id: number): void {
+  goViewProduct(id: number): void {
     this.productService.getProductById(id).subscribe((product) => {
-      this.dialog.open(ViewModalComponent, {
+      this.dialog.open(DetailsModalComponent, {
         width: '50vw',
         height: '60vh',
         disableClose: true,
-        data: product,
+        data: {
+          data: product,
+          fields: [
+            { label: this.labels.isbn, key: 'isbn' },
+            { label: this.labels.stock, key: 'stock' },
+            { label: this.labels.gender, key: 'gender' },
+            { label: this.labels.price, key: 'price' },
+            { label: this.labels.year_publish, key: 'year_publish' },
+            { label: this.labels.number_pag, key: 'number_pag' },
+            { label: this.labels.format, key: 'format' },
+            { label: this.labels.language, key: 'language' },
+            { label: this.labels.publisher, key: 'publisher' },
+            { label: this.labels.provider, key: 'provider' },
+          ],
+          headerTitleKey: 'title',
+          headerSubtitleKey: 'author',
+          imageKey: 'image',
+        },
       });
     });
   }

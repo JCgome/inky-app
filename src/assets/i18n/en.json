@@ -3,8 +3,9 @@
     "btn_cancel": "Cancel",
     "btn_save": "Save",
     "btn_delete": "Delete",
-    "heading_delete": "Are you sure?",
-    "title_delete": "Do you really want to delete this book? this process cannot be undone"
+    "title_edit": "Edit",
+    "heading_delete": "Deletion Confirmation",
+    "title_delete": "You are about to permanently delete this record. Please confirm to proceed."
   },
 
   "sidebar": {
@@ -60,6 +61,20 @@
     "name": "Name",
     "last_name": "Surname",
     "company": "Publisher",
-    "email": "email address"
+    "email": "email address",
+
+    "management_clients": {
+      "title_clients": "Add Clients",
+      "nif": "NIF",
+      "name": "Name",
+      "surname": "Surname",
+      "publisher": "Publishing house",
+      "mail": "Email Address",
+      "phone": "Telephone",
+      "address": "Adress",
+      "postal_code": "Zip Code",
+      "city": "City",
+      "country": "Country"
+    }
   }
 }

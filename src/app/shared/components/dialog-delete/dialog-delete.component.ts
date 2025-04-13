@@ -8,10 +8,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class DialogDeleteComponent {
   labels = {
-    heading_delete: 'REPLICABLE.HEADING_DELETE',
-    title_delete: 'REPLICABLE.TITLE_DELETE',
-    btn_cancel: 'REPLICABLE.BTN_CANCEL',
-    btn_delete: 'REPLICABLE.BTN_DELETE',
+    heading_delete: 'replicable.heading_delete',
+    title_delete: 'replicable.title_delete',
+    btn_cancel: 'replicable.btn_cancel',
+    btn_delete: 'replicable.btn_delete',
   };
 
   constructor(public dialogRef: MatDialogRef<DialogDeleteComponent>) {}
