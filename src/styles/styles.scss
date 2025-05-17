@@ -15,9 +15,3 @@ body {
   overflow: hidden;
   font-family: $font-primary;
 }
-
-@media (max-width: 900px) and (orientation: landscape) {
-  .table-responsive {
-    background: red !important;
-  }
-}

@@ -1,1 +1,447 @@
-<p>promotions works!</p>
+<section class="promotion">
+  <div class="promotion__head">
+    <h1 class="promotion__head-title">Promotions</h1>
+    <div class="promotion__head-actions">
+      <button
+        mat-raised-button
+        color="primary"
+        class="promotion__head-actions-new"
+        (click)="goAddPromotions()"
+      >
+        Agregar Promoción
+      </button>
+      <button mat-fab class="products__head-filter">
+        <mat-icon>filter_list</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="promotion__cards">
+    <mat-card class="promotion__card">
+      <div class="promotion__card-total">
+        <div class="promotion__card-total-title">
+          <span>Total de promociones</span>
+          <div class="promotion__card-total-content">
+            <h1>12.432</h1>
+            <img
+              src="../../../assets/img/images/digital.png"
+              alt="image-total"
+            />
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="promotion__card">
+      <div class="promotion__card-revenue">
+        <div class="promotion__card-revenue-title">
+          <span>Ingresos por promociones</span>
+          <div class="promotion__card-revenue-content">
+            <h1>5.190$</h1>
+            <img
+              src="../../../assets/img/images/grafico-de-ingresos.png"
+              alt="image-total"
+            />
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="promotion__card">
+      <div class="promotion__card-percentage">
+        <div class="promotion__card-percentage-title">
+          <span>Tasa de compromiso</span>
+          <div class="promotion__card-percentage-content">
+            <h1>30%</h1>
+            <img
+              src="../../../assets/img/images/grafico.png"
+              alt="image-total"
+            />
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="promotion__tabs">
+    <h3 class="promotion__tabs-title">Lista de Promociones</h3>
+
+    <mat-tab-group
+      animationDuration="2000ms"
+      fitInkBarToContent
+      class="promotion__tab-group"
+    >
+      <mat-tab>
+        <ng-template mat-tab-label>Promociones Activas</ng-template>
+        <div class="promotion__tab-content">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                  (change)="$event ? toggleAllRows() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  [aria-label]="checkboxLabel()"
+                >
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)"
+                  [aria-label]="checkboxLabel(row)"
+                >
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Nombre de la promoción</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="discountType">
+              <th mat-header-cell *matHeaderCellDef>Tipo de descuento</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.discountType }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="startDate">
+              <th mat-header-cell *matHeaderCellDef>Fecha de inicio</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.startDate | date }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="endDate">
+              <th mat-header-cell *matHeaderCellDef>Fecha final</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.endDate | date }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="subscriptionCount">
+              <th mat-header-cell *matHeaderCellDef>Número de inscripción</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.subscriptionCount }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="averagePercentage">
+              <th mat-header-cell *matHeaderCellDef>Porcentaje de media</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.averagePercentage }}%
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="grossIncome">
+              <th mat-header-cell *matHeaderCellDef>Ingresos brutos</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.grossIncome | currency }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-chip
+                  [ngClass]="{
+                    'chip-activa': element.status === 'Activa',
+                    'chip-proxima': element.status === 'Proximas',
+                    'chip-expirada': element.status === 'Expiradas'
+                  }"
+                  selected
+                >
+                  {{ element.status }}
+                </mat-chip>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="menu"
+                  aria-label="Acciones"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon color="primary">edit</mat-icon>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon color="warn">delete</mat-icon>
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <mat-paginator
+            #paginator
+            [pageSize]="6"
+            [hidePageSize]="true"
+            showFirstLastButtons
+          ></mat-paginator>
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>Próximas Promociones</ng-template>
+        <div class="promotion__tab-content">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                  (change)="$event ? toggleAllRows() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  [aria-label]="checkboxLabel()"
+                >
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)"
+                  [aria-label]="checkboxLabel(row)"
+                >
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Nombre de la promoción</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="discountType">
+              <th mat-header-cell *matHeaderCellDef>Tipo de descuento</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.discountType }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="startDate">
+              <th mat-header-cell *matHeaderCellDef>Fecha de inicio</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.startDate | date }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="endDate">
+              <th mat-header-cell *matHeaderCellDef>Fecha final</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.endDate | date }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="subscriptionCount">
+              <th mat-header-cell *matHeaderCellDef>Número de inscripción</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.subscriptionCount }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="averagePercentage">
+              <th mat-header-cell *matHeaderCellDef>Porcentaje de media</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.averagePercentage }}%
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="grossIncome">
+              <th mat-header-cell *matHeaderCellDef>Ingresos brutos</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.grossIncome | currency }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-chip
+                  [ngClass]="{
+                    'chip-activa': element.status === 'Activa',
+                    'chip-proxima': element.status === 'Proximas',
+                    'chip-expirada': element.status === 'Expiradas'
+                  }"
+                  selected
+                >
+                  {{ element.status }}
+                </mat-chip>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="menu"
+                  aria-label="Acciones"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon color="primary">edit</mat-icon>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon color="warn">delete</mat-icon>
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <mat-paginator
+            #paginator
+            [pageSize]="6"
+            [hidePageSize]="true"
+            showFirstLastButtons
+          ></mat-paginator>
+        </div>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>Promociones Finalizadas</ng-template>
+        <div class="promotion__tab-content">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+            <!-- Checkbox Column -->
+            <ng-container
+              matColumnDef="select"
+              (click)="$event.stopPropagation()"
+            >
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                  (change)="$event ? toggleAllRows() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  [aria-label]="checkboxLabel()"
+                >
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox
+                  (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)"
+                  [aria-label]="checkboxLabel(row)"
+                >
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Nombre de la promoción</th>
+              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="discountType">
+              <th mat-header-cell *matHeaderCellDef>Tipo de descuento</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.discountType }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="startDate">
+              <th mat-header-cell *matHeaderCellDef>Fecha de inicio</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.startDate | date }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="endDate">
+              <th mat-header-cell *matHeaderCellDef>Fecha final</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.endDate | date }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="subscriptionCount">
+              <th mat-header-cell *matHeaderCellDef>Número de inscripción</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.subscriptionCount }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="averagePercentage">
+              <th mat-header-cell *matHeaderCellDef>Porcentaje de media</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.averagePercentage }}%
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="grossIncome">
+              <th mat-header-cell *matHeaderCellDef>Ingresos brutos</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.grossIncome | currency }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-chip
+                  [ngClass]="{
+                    'chip-activa': element.status === 'Activa',
+                    'chip-proxima': element.status === 'Proximas',
+                    'chip-expirada': element.status === 'Expiradas'
+                  }"
+                  selected
+                >
+                  {{ element.status }}
+                </mat-chip>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="options">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="menu"
+                  aria-label="Acciones"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon>autorenew</mat-icon>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon color="primary">edit</mat-icon>
+                  </button>
+                  <button mat-menu-item>
+                    <mat-icon color="warn">delete</mat-icon>
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <mat-paginator
+            #paginator
+            [pageSize]="6"
+            [hidePageSize]="true"
+            showFirstLastButtons
+          ></mat-paginator>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</section>

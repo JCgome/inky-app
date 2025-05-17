@@ -10,4 +10,5 @@ export const ROUTES = {
   promotions: 'promotions',
   add_products: 'add-products',
   add_clients: 'add-clients',
+  add_promotions: 'add-promotions',
 };

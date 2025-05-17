@@ -4,6 +4,8 @@
 $inky-primary: mat.define-palette($my-primary-color, 800);
 $inky-accent: mat.define-palette($my-second-color);
 $inky-warn: mat.define-palette($my-warn-color, 600);
+$inky-basic: mat.define-palette($my-basic-color);
+$inky-success: mat.define-palette($my-success-color);
 
 $inky-theme: mat.define-light-theme(
   (
@@ -13,6 +15,14 @@ $inky-theme: mat.define-light-theme(
       warn: $inky-warn,
     ),
   )
+);
+
+$inky-palettes: (
+  "primary": $inky-primary,
+  "accent": $inky-accent,
+  "warn": $inky-warn,
+  "basic": $inky-basic,
+  "success": $inky-success,
 );
 
 @include mat.all-component-themes($inky-theme);

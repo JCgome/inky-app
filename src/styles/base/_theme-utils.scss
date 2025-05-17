@@ -1,0 +1,12 @@
+@use "@angular/material" as mat;
+@use "./theme" as theme;
+
+@function inky-color($palette-name, $hue: 500) {
+  $palette: map-get(theme.$inky-palettes, $palette-name);
+
+  @if $palette == null {
+    @error "Palette '#{$palette-name}' not found.";
+  }
+
+  @return mat.get-color-from-palette($palette, $hue);
+}

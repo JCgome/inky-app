@@ -4,8 +4,6 @@ import { PagesComponent } from './pages.component';
 import { ROUTES } from '@app/shared/constants/route-constants';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { ClientsComponent } from './clients/clients.component';
-import { PromotionsComponent } from './promotions/promotions.component';
 import { StoreComponent } from './store/store.component';
 
 const routes: Routes = [
@@ -37,7 +35,10 @@ const routes: Routes = [
       },
       {
         path: ROUTES.promotions,
-        component: PromotionsComponent,
+        loadChildren: () =>
+          import('./promotions/promotions.module').then(
+            (m) => m.PromotionsModule
+          ),
         data: { title: 'sidebar.promotions', icon: 'price_change' },
       },
       {

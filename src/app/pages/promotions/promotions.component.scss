@@ -1,0 +1,127 @@
+@use "/src/styles/base/theme-utils" as theme-utils;
+@import "src/styles/base/colors";
+@import "src/styles/base/_typography.scss";
+
+:host {
+  display: flex;
+  width: 85%;
+  height: calc(90vh - 80px);
+
+  .promotion__head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &-title {
+      @include inky-fonts($title-components);
+    }
+
+    &-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 25px;
+
+      &-new {
+        width: 150px;
+        height: 50px;
+        @include inky-fonts($body-300);
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .promotion__cards {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .promotion__card {
+    width: 500px;
+    height: 150px;
+    padding: 10px;
+    border-radius: 10px;
+
+    &-total,
+    &-revenue,
+    &-percentage {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    &-total-title,
+    &-revenue-title,
+    &-percentage-title {
+      @include inky-fonts($body-200);
+      padding: 10px;
+    }
+
+    &-total-content,
+    &-revenue-content,
+    &-percentage-content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      @include inky-fonts($heading-100);
+
+      img {
+        width: 20%;
+      }
+    }
+  }
+
+  .promotion__tab-content {
+    table {
+      margin-top: 10px;
+      th {
+        background: theme-utils.inky-color("basic", 300) !important;
+        @include inky-fonts($body-300);
+        font-weight: bold;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      td {
+        @include inky-fonts($label-100);
+        font-weight: 400 !important;
+      }
+    }
+  }
+
+  .promotion__tabs {
+    &-title {
+      margin-bottom: 26px;
+    }
+  }
+
+  .chip-activa {
+    background: inky-colors("primary", 600) !important;
+    color: white;
+  }
+
+  .chip-proxima {
+    background: theme-utils.inky-color("success", 800) !important;
+    color: white;
+  }
+
+  .chip-expirada {
+    background: theme-utils.inky-color("warn", 600) !important;
+    color: white;
+  }
+}
+::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: theme-utils.inky-color("basic", 800) !important;
+  font-weight: bold;
+}
+
+::ng-deep .mat-mdc-menu-item .mat-icon {
+  margin-right: 0;
+}
+
+::ng-deep mat-chip {
+  border-radius: 16px !important; /* o más si querés más ovalado */
+  padding: 4px 12px;
+  font-weight: 500;
+  font-size: 13px;
+}
