@@ -12,8 +12,7 @@
     "dashboard": "Dashboard",
     "products": "Products",
     "categories": "Categories",
-    "clients": "Clients",
-    "promotions": "Promotions",
+    "history": "History",
     "store": "Stock"
   },
 
@@ -51,30 +50,6 @@
       "image_product": "Product Image",
       "select_image": "Select Image",
       "select_file": "Selected File:"
-    }
-  },
-
-  "client": {
-    "clients": "Clients",
-    "add": "Create Clients",
-    "nif": "NIF",
-    "name": "Name",
-    "last_name": "Surname",
-    "company": "Publisher",
-    "email": "email address",
-
-    "management_clients": {
-      "title_clients": "Add Clients",
-      "nif": "NIF",
-      "name": "Name",
-      "surname": "Surname",
-      "publisher": "Publishing house",
-      "mail": "Email Address",
-      "phone": "Telephone",
-      "address": "Adress",
-      "postal_code": "Zip Code",
-      "city": "City",
-      "country": "Country"
     }
   }
 }

@@ -5,6 +5,7 @@ import { ROUTES } from '@app/shared/constants/route-constants';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { StoreComponent } from './store/store.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
         path: ROUTES.store,
         component: StoreComponent,
         data: { title: 'sidebar.store', icon: 'inventory' },
+      },
+      {
+        path: ROUTES.history,
+        component: HistoryComponent,
+        data: { title: 'sidebar.history', icon: 'receipt_long' },
       },
     ],
   },

@@ -6,5 +6,6 @@ export const ROUTES = {
   products: 'products',
   categories: 'categories',
   store: 'store',
+  history: 'history',
   add_products: 'add-products',
 };

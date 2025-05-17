@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
 import { StoreComponent } from './store/store.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { StoreComponent } from './store/store.component';
     DashboardComponent,
     CategoriesComponent,
     StoreComponent,
+    HistoryComponent,
   ],
   exports: [
     PagesComponent,

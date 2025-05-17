@@ -12,8 +12,7 @@
     "dashboard": "Panel de control",
     "products": "Productos",
     "categories": "Categorias",
-    "clients": "Clientes",
-    "promotions": "Promociones",
+    "history": "Historial",
     "store": "Almacen"
   },
 
@@ -51,30 +50,6 @@
       "image_product": "Imagen del producto",
       "select_image": "Selecciona Imagen",
       "select_file": "Archivo Seleccionado:"
-    }
-  },
-
-  "client": {
-    "clients": "Clientes",
-    "add": "Crear Clientes",
-    "nif": "NIF",
-    "name": "Nombres",
-    "last_name": "Apellidos",
-    "company": "Editorial",
-    "email": "Correo electronico",
-
-    "management_clients": {
-      "title_clients": "Crear Clientes",
-      "nif": "NIF",
-      "name": "Nombre",
-      "surname": "Apellidos",
-      "publisher": "Editorial",
-      "mail": "Correo electronico",
-      "phone": "Telefono",
-      "address": "Direccion",
-      "postal_code": "Codigo Postal",
-      "city": "Ciudad",
-      "country": "Pais"
     }
   }
 }
