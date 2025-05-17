@@ -5,10 +5,6 @@ export const ROUTES = {
   dashboard: 'dashboard',
   products: 'products',
   categories: 'categories',
-  clients: 'clients',
   store: 'store',
-  promotions: 'promotions',
   add_products: 'add-products',
-  add_clients: 'add-clients',
-  add_promotions: 'add-promotions',
 };

@@ -28,20 +28,6 @@ const routes: Routes = [
         data: { title: 'sidebar.categories', icon: 'category' },
       },
       {
-        path: ROUTES.clients,
-        loadChildren: () =>
-          import('./clients/clients.module').then((m) => m.ClientsModule),
-        data: { title: 'sidebar.clients', icon: 'people' },
-      },
-      {
-        path: ROUTES.promotions,
-        loadChildren: () =>
-          import('./promotions/promotions.module').then(
-            (m) => m.PromotionsModule
-          ),
-        data: { title: 'sidebar.promotions', icon: 'price_change' },
-      },
-      {
         path: ROUTES.store,
         component: StoreComponent,
         data: { title: 'sidebar.store', icon: 'inventory' },
