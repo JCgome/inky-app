@@ -5,6 +5,13 @@
       <div class="products__head-actions">
         <button
           mat-flat-button
+          class="products__head-actions-register"
+          (click)="goAddRegister()"
+        >
+          {{ labels.add_register | translate }}
+        </button>
+        <button
+          mat-flat-button
           color="primary"
           class="products__head-actions-new"
           (click)="goAddProducts()"

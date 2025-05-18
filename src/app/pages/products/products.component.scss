@@ -1,3 +1,4 @@
+@use "/src/styles/base/theme-utils" as theme-utils;
 @import "src/styles/base/colors";
 @import "src/styles/base/_typography.scss";
 
@@ -38,6 +39,18 @@
           height: 50px;
           @include inky-fonts($body-300);
           white-space: nowrap;
+        }
+
+        &-register {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 150px;
+          height: 50px;
+          @include inky-fonts($body-300);
+          white-space: nowrap;
+          background: theme-utils.inky-color("success", 800) !important;
+          color: white;
         }
       }
     }

@@ -3,6 +3,7 @@
     "btn_cancel": "Cancel",
     "btn_save": "Save",
     "btn_delete": "Delete",
+    "btn_register": "Register",
     "title_edit": "Edit",
     "heading_delete": "Deletion Confirmation",
     "title_delete": "You are about to permanently delete this record. Please confirm to proceed."
@@ -28,6 +29,7 @@
   "product": {
     "products": "Products",
     "add": "Add products",
+    "register": "Register Stock",
     "code": "IBN",
     "name": "Name",
     "stock": "Stock",
@@ -41,7 +43,7 @@
       "gender": "Category",
       "year_publish": "Year of publication",
       "price": "Price",
-      "stock": "Stock",
+      "edition": "Edition",
       "number_pag": "N° Pages",
       "format": "Format",
       "language": "Language",
@@ -50,6 +52,14 @@
       "image_product": "Product Image",
       "select_image": "Select Image",
       "select_file": "Selected File:"
+    },
+
+    "register_stock": {
+      "title_register": "Registration in the Warehouse",
+      "type": "Type of movement",
+      "product_stock": "Product",
+      "stock": "Stock",
+      "description": "Description"
     }
   }
 }

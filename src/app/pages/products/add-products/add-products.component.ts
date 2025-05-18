@@ -52,7 +52,7 @@ export class AddProductsComponent implements OnInit {
       gender: [''],
       year_publish: ['', Validators.required],
       price: ['', Validators.required],
-      stock: [''],
+      edition: [''],
       number_pag: [''],
       format: [''],
       language: [''],

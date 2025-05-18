@@ -3,6 +3,7 @@
     "btn_cancel": "Cancelar",
     "btn_save": "Guardar",
     "btn_delete": "Eliminar",
+    "btn_register": "Registrar",
     "title_edit": "Editar",
     "heading_delete": "Solicitud de eliminación",
     "title_delete": "Esta acción eliminará el registro de forma permanente. ¿Deseas proceder?"
@@ -28,6 +29,7 @@
   "product": {
     "products": "Productos",
     "add": "Agregar productos",
+    "register": "Registro Almacen",
     "code": "IBN",
     "name": "Nombre",
     "stock": "Stock",
@@ -41,7 +43,7 @@
       "gender": "Genero/Categoria",
       "year_publish": "Año de Publicación",
       "price": "Precio",
-      "stock": "Stock",
+      "edition": "Ediccion",
       "number_pag": "N° Páginas",
       "format": "Formato",
       "language": "Idioma",
@@ -50,6 +52,14 @@
       "image_product": "Imagen del producto",
       "select_image": "Selecciona Imagen",
       "select_file": "Archivo Seleccionado:"
+    },
+
+    "register_stock": {
+      "title_register": "Registro en el Almacen",
+      "type": "Tipo de movimiento",
+      "product_stock": "Producto",
+      "stock": "Cantidad",
+      "description": "Descripcion"
     }
   }
 }

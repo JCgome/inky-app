@@ -13,6 +13,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { TranslateModule } from '@ngx-translate/core';
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { DetailsModalComponent } from './components/details-modal/details-modal.component';
+import { RegisterStockComponent } from './components/register-stock/register-stock.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { DetailsModalComponent } from './components/details-modal/details-modal.
     BreadcrumbsComponent,
     DialogDeleteComponent,
     DetailsModalComponent,
+    RegisterStockComponent,
   ],
   exports: [
     TranslateModule,

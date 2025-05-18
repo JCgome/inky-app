@@ -7,6 +7,7 @@ import { MockProductService } from '@app/core/services/mock-product.service';
 import { ROUTES } from '@app/shared/constants/route-constants';
 import { DialogDeleteComponent } from '@app/shared/components/dialog-delete/dialog-delete.component';
 import { DetailsModalComponent } from '@app/shared/components/details-modal/details-modal.component';
+import { RegisterStockComponent } from '@app/shared/components/register-stock/register-stock.component';
 
 @Component({
   selector: 'app-products',
@@ -21,6 +22,7 @@ export class ProductsComponent implements OnInit {
     stock: 'product.stock',
     category: 'product.category',
     add_product: 'product.add',
+    add_register: 'product.register',
     title_products: 'product.management_products.title_products',
     title_books: 'product.management_products.title',
     author: 'product.management_products.author',
@@ -63,6 +65,15 @@ export class ProductsComponent implements OnInit {
 
   goAddProducts() {
     this.router.navigate(['add-products'], { relativeTo: this.route });
+  }
+
+  goAddRegister() {
+    this.dialog.open(RegisterStockComponent),
+      {
+        width: '50vw',
+        height: '60vh',
+        disableClose: true,
+      };
   }
 
   goeditProducts(id: number) {
