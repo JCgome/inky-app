@@ -6,7 +6,7 @@
         : (labels.title_products | translate)
     }}
   </mat-card-title>
-  <mat-card-content class="add-products__content">
+  <mat-dialog-content class="add-products__content">
     <form
       [formGroup]="form"
       class="add-products__form"
@@ -47,7 +47,7 @@
           <!-- STOCK -->
           <div class="add-products__field-group">
             <label class="add-products__label">{{
-              labels.stock | translate
+              labels.edition | translate
             }}</label>
             <mat-form-field appearance="outline" class="add-products__field">
               <input matInput formControlName="edition" type="text" />
@@ -195,5 +195,5 @@
         </button>
       </div>
     </form>
-  </mat-card-content>
+  </mat-dialog-content>
 </mat-card>

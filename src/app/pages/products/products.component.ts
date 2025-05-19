@@ -68,12 +68,13 @@ export class ProductsComponent implements OnInit {
   }
 
   goAddRegister() {
-    this.dialog.open(RegisterStockComponent),
-      {
-        width: '50vw',
-        height: '60vh',
-        disableClose: true,
-      };
+    const dialogConfig = {
+      with: 'auto',
+      height: 'auto',
+      disableClose: true,
+    };
+
+    this.dialog.open(RegisterStockComponent, dialogConfig);
   }
 
   goeditProducts(id: number) {

@@ -23,7 +23,7 @@ export class AddProductsComponent implements OnInit {
     gender: 'product.management_products.gender',
     year_publish: 'product.management_products.year_publish',
     price: 'product.management_products.price',
-    stock: 'product.management_products.stock',
+    edition: 'product.management_products.edition',
     number_pag: 'product.management_products.number_pag',
     format: 'product.management_products.format',
     language: 'product.management_products.language',

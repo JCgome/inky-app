@@ -12,11 +12,11 @@
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <form class="register__form">
+  <form [formGroup]="form" class="register__form">
     <div class="register__fields">
       <label class="register__labels">{{ labels.type | translate }}</label>
       <mat-form-field appearance="outline">
-        <mat-select formControlName="tipo">
+        <mat-select formControlName="type">
           <mat-option value="entrada">Entrada</mat-option>
           <mat-option value="salida">Salida</mat-option>
         </mat-select>
@@ -26,7 +26,7 @@
     <div class="register__fields">
       <label class="register__labels">{{ labels.products | translate }}</label>
       <mat-form-field appearance="outline">
-        <mat-select formControlName="productoId">
+        <mat-select formControlName="products">
           <mat-option>
             <mat-option value="one">Libro1</mat-option>
             <mat-option value="two">Libro2</mat-option>
@@ -38,7 +38,7 @@
     <div class="register__fields">
       <label class="register__labels">{{ labels.stock | translate }}</label>
       <mat-form-field appearance="outline">
-        <input matInput type="number" min="1" />
+        <input matInput formControlName="stock" type="number" min="1" />
       </mat-form-field>
     </div>
 
@@ -47,7 +47,7 @@
         labels.description | translate
       }}</label>
       <mat-form-field appearance="outline">
-        <textarea matInput></textarea>
+        <textarea matInput formControlName="description"></textarea>
       </mat-form-field>
     </div>
 
