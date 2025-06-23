@@ -91,6 +91,7 @@ export class ProductsComponent implements OnInit {
       this.dialog.open(DetailsModalComponent, {
         width: '50vw',
         height: '60vh',
+        autoFocus: false,
         disableClose: true,
         data: {
           data: product,
