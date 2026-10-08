@@ -1,9 +1,13 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MockProductService } from '@app/core/services/mock-product.service';
+import { Category, Product, StockStatus } from '@app/core/models';
+import { CatalogService } from '@app/core/services/catalog.service';
+import { ProductService } from '@app/core/services/product.service';
 import { ROUTES } from '@app/shared/constants/route-constants';
 import { DialogDeleteComponent } from '@app/shared/components/dialog-delete/dialog-delete.component';
 import { DetailsModalComponent } from '@app/shared/components/details-modal/details-modal.component';
@@ -40,22 +44,100 @@ export class ProductsComponent implements OnInit {
     btn_cancel: 'replicable.btn_cancel',
     btn_save: 'replicable.btn_save',
   };
+  filters = {
+    search: 'product.filters.search',
+    search_ph: 'product.filters.search_ph',
+    category: 'product.filters.category',
+    all: 'product.filters.all',
+    stock_status: 'product.filters.stock_status',
+    include_inactive: 'product.filters.include_inactive',
+    clear: 'product.filters.clear',
+  };
+  stockStatuses: { value: StockStatus; label: string }[] = [
+    { value: 'AVAILABLE', label: 'product.filters.available' },
+    { value: 'LOW_STOCK', label: 'product.filters.low' },
+    { value: 'OUT_OF_STOCK', label: 'product.filters.out' },
+  ];
+  categories: Category[] = [];
+  showFilters = false;
+
+  filterForm = this.fb.group({
+    search: [''],
+    categoryId: [null as number | null],
+    stockStatus: [null as StockStatus | null],
+    includeInactive: [false],
+  });
+
   displayedColumns = ['isbn', 'title', 'stock', 'gender', 'actions'];
 
-  dataSource = new MatTableDataSource<any>([]);
+  dataSource = new MatTableDataSource<Product>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private productService: MockProductService,
-    private dialog: MatDialog
-  ) {}
+    private productService: ProductService,
+    private dialog: MatDialog,
+    private fb: FormBuilder,
+    private catalogService: CatalogService
+  ) {
+    this.dataSource.filterPredicate = (p) => this.matchesFilters(p);
+  }
+
+  get activeFilters(): number {
+    const { search, categoryId, stockStatus, includeInactive } =
+      this.filterForm.value;
+    return [search?.trim(), categoryId, stockStatus, includeInactive].filter(
+      Boolean
+    ).length;
+  }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe((productos) => {
-      this.dataSource = new MatTableDataSource(productos);
-      this.dataSource.paginator = this.paginator;
+    this.catalogService.getCategories().subscribe((c) => (this.categories = c));
+    this.loadProducts();
+
+    // Los filtros se aplican en cliente; includeInactive recarga desde el back.
+    let includeInactive = false;
+    this.filterForm.valueChanges.pipe(debounceTime(250)).subscribe((v) => {
+      if (!!v.includeInactive !== includeInactive) {
+        includeInactive = !!v.includeInactive;
+        this.loadProducts();
+      }
+      this.applyFilters();
+    });
+  }
+
+  private loadProducts(): void {
+    this.productService
+      .getProducts(!!this.filterForm.value.includeInactive)
+      .subscribe((productos) => (this.dataSource.data = productos));
+  }
+
+  private applyFilters(): void {
+    // La cadena solo dispara el filterPredicate; los valores salen del form.
+    this.dataSource.filter = String(Date.now());
+    this.dataSource.paginator?.firstPage();
+  }
+
+  private matchesFilters(p: Product): boolean {
+    const { search, categoryId, stockStatus } = this.filterForm.value;
+    const q = search?.trim().toLowerCase();
+    if (categoryId && p.category?.id !== categoryId) return false;
+    if (stockStatus && p.stockStatus !== stockStatus) return false;
+    if (!q) return true;
+    return (
+      p.title.toLowerCase().includes(q) ||
+      p.isbn.includes(q) ||
+      p.authors.some((a) => a.name.toLowerCase().includes(q))
+    );
+  }
+
+  clearFilters(): void {
+    this.filterForm.reset({
+      search: '',
+      categoryId: null,
+      stockStatus: null,
+      includeInactive: false,
     });
   }
 
@@ -74,7 +156,12 @@ export class ProductsComponent implements OnInit {
       disableClose: true,
     };
 
-    this.dialog.open(RegisterStockComponent, dialogConfig);
+    this.dialog
+      .open(RegisterStockComponent, dialogConfig)
+      .afterClosed()
+      .subscribe((registered) => {
+        if (registered) this.loadProducts();
+      });
   }
 
   goeditProducts(id: number) {
@@ -94,7 +181,17 @@ export class ProductsComponent implements OnInit {
         autoFocus: false,
         disableClose: true,
         data: {
-          data: product,
+          data: {
+            ...product,
+            author: product.authors.map((a) => a.name).join(', '),
+            gender: product.category?.name,
+            publisher: product.publisher?.name,
+            provider: product.providerName,
+            stock: product.stockCurrent,
+            year_publish: product.yearPublished,
+            number_pag: product.pages,
+            image: product.imageUrl,
+          },
           fields: [
             { label: this.labels.isbn, key: 'isbn' },
             { label: this.labels.stock, key: 'stock' },
@@ -125,9 +222,7 @@ export class ProductsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.productService.deleteProduct(id).subscribe(() => {
-          this.productService.getProducts().subscribe((productos) => {
-            this.dataSource.data = productos;
-          });
+          this.loadProducts();
         });
       }
     });

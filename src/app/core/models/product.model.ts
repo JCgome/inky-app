@@ -1,16 +1,23 @@
-export interface Producto {
+import { Author } from './author.model';
+import { Category } from './category.model';
+import { Publisher } from './publisher.model';
+import { StockStatus } from './stock.model';
+
+export interface Product {
   id: number;
-  title: string;
-  author: string;
   isbn: string;
-  gender: string;
-  year_publish: number;
+  title: string;
+  authors: Author[];
+  category?: Category;
+  publisher?: Publisher;
+  providerName?: string;
+  yearPublished?: number;
+  pages?: number;
+  format?: string;
+  language?: string;
   price: number;
-  stock: string;
-  number_pag: number;
-  format: string;
-  language: string;
-  publisher: string;
-  provider: string;
-  image?: string;
+  imageUrl?: string;
+  stockCurrent: number;
+  stockStatus: StockStatus;
+  active: boolean;
 }

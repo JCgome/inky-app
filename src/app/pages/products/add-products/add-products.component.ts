@@ -1,7 +1,9 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ROUTES } from '@app/shared/constants/route-constants';
-import { MockProductService } from '@app/core/services/mock-product.service';
+import { Author, Category, Product, ProductRequest, Publisher } from '@app/core/models';
+import { CatalogService } from '@app/core/services/catalog.service';
+import { ProductService } from '@app/core/services/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -11,7 +13,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddProductsComponent implements OnInit {
   form: FormGroup = this.fb.group({});
-  selectedFileName: string = '';
+  authors: Author[] = [];
+  categories: Category[] = [];
+  publishers: Publisher[] = [];
+  formats = ['Tapa dura', 'Tapa blanda', 'Ebook'];
   isEditMode = false;
   editingProductId: number | null = null;
 
@@ -23,15 +28,12 @@ export class AddProductsComponent implements OnInit {
     gender: 'product.management_products.gender',
     year_publish: 'product.management_products.year_publish',
     price: 'product.management_products.price',
-    edition: 'product.management_products.edition',
     number_pag: 'product.management_products.number_pag',
     format: 'product.management_products.format',
     language: 'product.management_products.language',
     publisher: 'product.management_products.publisher',
     provider: 'product.management_products.provider',
     image_product: 'product.management_products.image_product',
-    select_image: 'product.management_products.select_image',
-    select_file: 'product.management_products.select_file',
     btn_cancel: 'replicable.btn_cancel',
     btn_save: 'replicable.btn_save',
     title_edit: 'replicable.title_edit',
@@ -39,27 +41,31 @@ export class AddProductsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private productService: MockProductService,
+    private productService: ProductService,
+    private catalogService: CatalogService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      title: ['', Validators.required],
-      author: ['', Validators.required],
-      isbn: ['', Validators.required],
-      gender: [''],
-      year_publish: ['', Validators.required],
-      price: ['', Validators.required],
-      edition: [''],
-      number_pag: [''],
+      title: ['', [Validators.required, Validators.maxLength(255)]],
+      authorIds: [[] as number[], Validators.required],
+      isbn: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
+      categoryId: [null as number | null],
+      yearPublished: [null as number | null, [Validators.min(1000), Validators.max(2100)]],
+      price: [null as number | null, [Validators.required, Validators.min(0)]],
+      pages: [null as number | null, Validators.min(1)],
       format: [''],
       language: [''],
-      publisher: [''],
-      provider: [''],
-      image: [null],
+      publisherId: [null as number | null],
+      providerName: [''],
+      imageUrl: [''],
     });
+
+    this.catalogService.getAuthors().subscribe((a) => (this.authors = a));
+    this.catalogService.getCategories().subscribe((c) => (this.categories = c));
+    this.catalogService.getPublishers().subscribe((p) => (this.publishers = p));
 
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -72,20 +78,8 @@ export class AddProductsComponent implements OnInit {
     this.editingProductId = id;
 
     this.productService.getProductById(id).subscribe((product) => {
-      if (product) {
-        this.form.patchValue(product);
-      } else {
-        this.router.navigate([ROUTES.dashboard, ROUTES.products]);
-      }
+      this.form.patchValue(this.toFormValue(product));
     });
-  }
-
-  onFileSelected(input: HTMLInputElement) {
-    const file = input.files?.[0];
-    if (file) {
-      this.selectedFileName = file.name;
-      this.form.patchValue({ image: file.name });
-    }
   }
 
   goCancel() {
@@ -93,20 +87,53 @@ export class AddProductsComponent implements OnInit {
   }
 
   guardarProducto() {
-    if (this.form.valid) {
-      const product = this.form.value;
-
-      if (this.isEditMode && this.editingProductId !== null) {
-        this.productService
-          .updateProduct(this.editingProductId, product)
-          .subscribe(() => {
-            this.router.navigate([ROUTES.dashboard, ROUTES.products]);
-          });
-      } else {
-        this.productService.createProduct(product).subscribe(() => {
-          this.router.navigate([ROUTES.dashboard, ROUTES.products]);
-        });
-      }
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
     }
+
+    const product = this.toRequest();
+    const request$ =
+      this.isEditMode && this.editingProductId !== null
+        ? this.productService.updateProduct(this.editingProductId, product)
+        : this.productService.createProduct(product);
+
+    request$.subscribe(() => this.goCancel());
+  }
+
+  private toFormValue(product: Product) {
+    return {
+      title: product.title,
+      authorIds: product.authors.map((a) => a.id),
+      isbn: product.isbn,
+      categoryId: product.category?.id ?? null,
+      yearPublished: product.yearPublished ?? null,
+      price: product.price,
+      pages: product.pages ?? null,
+      format: product.format ?? '',
+      language: product.language ?? '',
+      publisherId: product.publisher?.id ?? null,
+      providerName: product.providerName ?? '',
+      imageUrl: product.imageUrl ?? '',
+    };
+  }
+
+  /** Strings vacíos / null se omiten para que el backend los trate como ausentes. */
+  private toRequest(): ProductRequest {
+    const v = this.form.value;
+    return {
+      isbn: v.isbn,
+      title: v.title,
+      authorIds: v.authorIds,
+      categoryId: v.categoryId ?? undefined,
+      publisherId: v.publisherId ?? undefined,
+      providerName: v.providerName || undefined,
+      yearPublished: v.yearPublished ?? undefined,
+      pages: v.pages ?? undefined,
+      format: v.format || undefined,
+      language: v.language || undefined,
+      price: v.price,
+      imageUrl: v.imageUrl || undefined,
+    };
   }
 }

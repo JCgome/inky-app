@@ -34,6 +34,18 @@
     "name": "Nombre",
     "stock": "Stock",
     "category": "Categoría",
+    "filters": {
+      "search": "Buscar",
+      "search_ph": "Título, ISBN o autor",
+      "category": "Categoría",
+      "all": "Todas",
+      "stock_status": "Estado de stock",
+      "include_inactive": "Incluir inactivos",
+      "clear": "Limpiar",
+      "available": "Disponible",
+      "low": "Stock bajo",
+      "out": "Agotado"
+    },
 
     "management_products": {
       "title_products": "Añadir Productos",

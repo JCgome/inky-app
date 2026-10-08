@@ -55,6 +55,36 @@
       }
     }
 
+    &__head-actions-filter--active {
+      background: theme-utils.inky-color("success", 900) !important;
+      color: white !important;
+    }
+
+    &__filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 16px;
+      padding: 12px 10px 0;
+      background: white;
+      flex-shrink: 0;
+
+      .mat-mdc-form-field {
+        flex: 1 1 200px;
+        min-width: 0;
+      }
+
+      &-search {
+        flex-basis: 260px !important;
+      }
+
+      .mat-mdc-checkbox,
+      button {
+        flex: 0 0 auto;
+        margin-bottom: 22px; // alinea con los campos (espacio del hint)
+      }
+    }
+
     &__table {
       flex: 1;
       overflow-x: auto;
@@ -110,3 +140,4 @@
     }
   }
 }
+

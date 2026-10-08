@@ -30,7 +30,9 @@
               labels.author | translate
             }}</label>
             <mat-form-field appearance="outline" class="add-products__field">
-              <input matInput formControlName="author" />
+              <mat-select formControlName="authorIds" multiple>
+                <mat-option *ngFor="let x of authors" [value]="x.id">{{ x.name }}</mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
 
@@ -40,17 +42,7 @@
               labels.isbn | translate
             }}</label>
             <mat-form-field appearance="outline" class="add-products__field">
-              <input matInput formControlName="isbn" type="number" />
-            </mat-form-field>
-          </div>
-
-          <!-- STOCK -->
-          <div class="add-products__field-group">
-            <label class="add-products__label">{{
-              labels.edition | translate
-            }}</label>
-            <mat-form-field appearance="outline" class="add-products__field">
-              <input matInput formControlName="edition" type="text" />
+              <input matInput formControlName="isbn" type="text" maxlength="13" inputmode="numeric" />
             </mat-form-field>
           </div>
 
@@ -60,7 +52,7 @@
               labels.year_publish | translate
             }}</label>
             <mat-form-field appearance="outline" class="add-products__field">
-              <input matInput formControlName="year_publish" type="number" />
+              <input matInput formControlName="yearPublished" type="number" />
             </mat-form-field>
           </div>
 
@@ -70,7 +62,7 @@
               labels.price | translate
             }}</label>
             <mat-form-field appearance="outline" class="add-products__field">
-              <input matInput formControlName="price" type="number" />
+              <input matInput formControlName="price" type="number" min="0" step="0.01" />
             </mat-form-field>
           </div>
 
@@ -80,9 +72,8 @@
               {{ labels.gender | translate }}
             </label>
             <mat-form-field appearance="outline" class="add-products__field">
-              <mat-select formControlName="gender">
-                <mat-option value="one">Novela Clasica</mat-option>
-                <mat-option value="two">Novela Negra</mat-option>
+              <mat-select formControlName="categoryId">
+                <mat-option *ngFor="let x of categories" [value]="x.id">{{ x.name }}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -93,7 +84,7 @@
               labels.number_pag | translate
             }}</label>
             <mat-form-field appearance="outline" class="add-products__field">
-              <input matInput formControlName="number_pag" type="number" />
+              <input matInput formControlName="pages" type="number" />
             </mat-form-field>
           </div>
 
@@ -104,9 +95,7 @@
             }}</label>
             <mat-form-field appearance="outline" class="add-products__field">
               <mat-select formControlName="format">
-                <mat-option value="one">Tapa dura</mat-option>
-                <mat-option value="two">Tapa blanda</mat-option>
-                <mat-option value="three">Ebook</mat-option>
+                <mat-option *ngFor="let x of formats" [value]="x">{{ x }}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -127,7 +116,9 @@
               labels.publisher | translate
             }}</label>
             <mat-form-field appearance="outline" class="add-products__field">
-              <input matInput formControlName="publisher" />
+              <mat-select formControlName="publisherId">
+                <mat-option *ngFor="let x of publishers" [value]="x.id">{{ x.name }}</mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
 
@@ -137,7 +128,7 @@
               labels.provider | translate
             }}</label>
             <mat-form-field appearance="outline" class="add-products__field">
-              <input matInput formControlName="provider" />
+              <input matInput formControlName="providerName" />
             </mat-form-field>
           </div>
         </div>
@@ -147,31 +138,9 @@
         <label class="add-products__label">{{
           labels.image_product | translate
         }}</label>
-
-        <!-- input oculto -->
-        <input
-          type="file"
-          #fileInput
-          class="add-products__image-input"
-          accept="image/*"
-          hidden
-          (change)="onFileSelected(fileInput)"
-        />
-
-        <!-- botón visible -->
-        <button
-          mat-stroked-button
-          type="button"
-          (click)="fileInput.click()"
-          class="add-products__image-btn"
-        >
-          <mat-icon>publish</mat-icon>
-          {{ labels.select_image | translate }}
-        </button>
-
-        <span *ngIf="selectedFileName" class="add-products__image-filename">
-          {{ labels.select_file | translate }} {{ selectedFileName }}
-        </span>
+        <mat-form-field appearance="outline" class="add-products__field">
+          <input matInput formControlName="imageUrl" placeholder="https://" />
+        </mat-form-field>
       </div>
 
       <!-- Botones -->

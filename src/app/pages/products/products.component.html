@@ -18,11 +18,68 @@
         >
           {{ labels.add_product | translate }}
         </button>
-        <button mat-fab class="products__head-actions-filter">
+        <button
+          mat-fab
+          class="products__head-actions-filter"
+          [class.products__head-actions-filter--active]="
+            showFilters || activeFilters > 0
+          "
+          [attr.aria-expanded]="showFilters"
+          (click)="showFilters = !showFilters"
+        >
           <mat-icon>filter_list</mat-icon>
         </button>
       </div>
     </div>
+    <form
+      *ngIf="showFilters"
+      [formGroup]="filterForm"
+      class="products__filters"
+    >
+      <mat-form-field appearance="outline" class="products__filters-search">
+        <mat-label>{{ filters.search | translate }}</mat-label>
+        <input
+          matInput
+          formControlName="search"
+          [placeholder]="filters.search_ph | translate"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ filters.category | translate }}</mat-label>
+        <mat-select formControlName="categoryId">
+          <mat-option [value]="null">{{ filters.all | translate }}</mat-option>
+          <mat-option *ngFor="let c of categories" [value]="c.id">
+            {{ c.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ filters.stock_status | translate }}</mat-label>
+        <mat-select formControlName="stockStatus">
+          <mat-option [value]="null">{{ filters.all | translate }}</mat-option>
+          <mat-option *ngFor="let s of stockStatuses" [value]="s.value">
+            {{ s.label | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="includeInactive">
+        {{ filters.include_inactive | translate }}
+      </mat-checkbox>
+
+      <button
+        mat-stroked-button
+        type="button"
+        [disabled]="activeFilters === 0"
+        (click)="clearFilters()"
+      >
+        {{ filters.clear | translate }}
+      </button>
+    </form>
+
     <div class="products__table table-responsive">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- Columna ID -->
@@ -46,7 +103,7 @@
           <th mat-header-cell *matHeaderCellDef>
             {{ labels.stock | translate }}
           </th>
-          <td mat-cell *matCellDef="let element">{{ element.stock }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.stockCurrent }}</td>
         </ng-container>
 
         <!-- Columna Categoría -->
@@ -54,7 +111,7 @@
           <th mat-header-cell *matHeaderCellDef>
             {{ labels.category | translate }}
           </th>
-          <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.category?.name }}</td>
         </ng-container>
 
         <!-- Columna Acciones -->

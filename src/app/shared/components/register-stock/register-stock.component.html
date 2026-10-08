@@ -12,13 +12,13 @@
       <mat-icon>close</mat-icon>
     </button>
   </div>
-  <form [formGroup]="form" class="register__form">
+  <form [formGroup]="form" class="register__form" (ngSubmit)="register()">
     <div class="register__fields">
       <label class="register__labels">{{ labels.type | translate }}</label>
       <mat-form-field appearance="outline">
         <mat-select formControlName="type">
-          <mat-option value="entrada">Entrada</mat-option>
-          <mat-option value="salida">Salida</mat-option>
+          <mat-option value="IN">Entrada</mat-option>
+          <mat-option value="OUT">Salida</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -26,10 +26,9 @@
     <div class="register__fields">
       <label class="register__labels">{{ labels.products | translate }}</label>
       <mat-form-field appearance="outline">
-        <mat-select formControlName="products">
-          <mat-option>
-            <mat-option value="one">Libro1</mat-option>
-            <mat-option value="two">Libro2</mat-option>
+        <mat-select formControlName="bookId">
+          <mat-option *ngFor="let p of products" [value]="p.id">
+            {{ p.title }} ({{ p.isbn }})
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -38,7 +37,7 @@
     <div class="register__fields">
       <label class="register__labels">{{ labels.stock | translate }}</label>
       <mat-form-field appearance="outline">
-        <input matInput formControlName="stock" type="number" min="1" />
+        <input matInput formControlName="quantity" type="number" min="1" />
       </mat-form-field>
     </div>
 
@@ -47,7 +46,7 @@
         labels.description | translate
       }}</label>
       <mat-form-field appearance="outline">
-        <textarea matInput formControlName="description"></textarea>
+        <textarea matInput formControlName="note"></textarea>
       </mat-form-field>
     </div>
 
