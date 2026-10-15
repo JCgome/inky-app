@@ -1,105 +1,123 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Category, Product, StockStatus } from '@app/core/models';
+import { CatalogService } from '@app/core/services/catalog.service';
+import { ProductService } from '@app/core/services/product.service';
 import { RegisterStockComponent } from '@app/shared/components/register-stock/register-stock.component';
-export interface PeriodicElement {
-  title: string;
-  isbn: number;
-  stock: number;
-  symbol: string;
-  status: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    isbn: 1,
-    title: 'Hydrogen',
-    stock: 1.0079,
-    symbol: 'H',
-    status: 'disponible',
-  },
-  {
-    isbn: 2,
-    title: 'Helium',
-    stock: 4.0026,
-    symbol: 'He',
-    status: 'disponible',
-  },
-  {
-    isbn: 3,
-    title: 'Lithium',
-    stock: 6.941,
-    symbol: 'Li',
-    status: 'disponible',
-  },
-  {
-    isbn: 4,
-    title: 'Beryllium',
-    stock: 9.0122,
-    symbol: 'Be',
-    status: 'disponible',
-  },
-  { isbn: 5, title: 'Boron', stock: 10.811, symbol: 'B', status: 'disponible' },
-  {
-    isbn: 6,
-    title: 'Carbon',
-    stock: 12.0107,
-    symbol: 'C',
-    status: 'disponible',
-  },
-  {
-    isbn: 7,
-    title: 'Nitrogen',
-    stock: 14.0067,
-    symbol: 'N',
-    status: 'disponible',
-  },
-  {
-    isbn: 8,
-    title: 'Oxygen',
-    stock: 15.9994,
-    symbol: 'O',
-    status: 'disponible',
-  },
-  {
-    isbn: 9,
-    title: 'Fluorine',
-    stock: 18.9984,
-    symbol: 'F',
-    status: 'disponible',
-  },
-  {
-    isbn: 10,
-    title: 'Neon',
-    stock: 20.1797,
-    symbol: 'Ne',
-    status: 'disponible',
-  },
-];
 @Component({
   selector: 'app-store',
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.scss'],
 })
-export class StoreComponent implements AfterViewInit {
-  displayedColumns: string[] = [
-    'isbn',
-    'title',
-    'stock',
-    'symbol',
-    'status',
-    'description',
+export class StoreComponent implements OnInit {
+  displayedColumns: string[] = ['isbn', 'title', 'stock', 'category', 'status'];
+  dataSource = new MatTableDataSource<Product>([]);
+
+  filters = {
+    search: 'product.filters.search',
+    search_ph: 'product.filters.search_ph',
+    category: 'product.filters.category',
+    all: 'product.filters.all',
+    stock_status: 'product.filters.stock_status',
+    clear: 'product.filters.clear',
+  };
+  stockStatuses: { value: StockStatus; label: string }[] = [
+    { value: 'AVAILABLE', label: 'product.filters.available' },
+    { value: 'LOW_STOCK', label: 'product.filters.low' },
+    { value: 'OUT_OF_STOCK', label: 'product.filters.out' },
   ];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  categories: Category[] = [];
+  showFilters = false;
 
-  constructor(private dialog: MatDialog) {}
+  filterForm = this.fb.group({
+    search: [''],
+    categoryId: [null as number | null],
+    stockStatus: [null as StockStatus | null],
+  });
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  totalStock = 0;
+  outOfStockCount = 0;
+  totalValue = 0;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  statusLabels: Record<StockStatus, string> = {
+    AVAILABLE: 'product.filters.available',
+    LOW_STOCK: 'product.filters.low',
+    OUT_OF_STOCK: 'product.filters.out',
+  };
+
+  // La tabla se renderiza tras cargar; el paginador se engancha al aparecer.
+  @ViewChild(MatPaginator) set paginator(p: MatPaginator) {
+    if (p) this.dataSource.paginator = p;
+  }
+
+  constructor(
+    private dialog: MatDialog,
+    private productService: ProductService,
+    private catalogService: CatalogService,
+    private fb: FormBuilder,
+  ) {
+    this.dataSource.filterPredicate = (p) => this.matchesFilters(p);
+  }
+
+  get activeFilters(): number {
+    const { search, categoryId, stockStatus } = this.filterForm.value;
+    return [search?.trim(), categoryId, stockStatus].filter(Boolean).length;
+  }
+
+  ngOnInit(): void {
+    this.catalogService.getCategories().subscribe((c) => (this.categories = c));
+    this.loadStock();
+
+    // Los filtros se aplican en cliente sobre la tabla.
+    this.filterForm.valueChanges
+      .pipe(debounceTime(250))
+      .subscribe(() => this.applyFilters());
+  }
+
+  private applyFilters(): void {
+    // La cadena solo dispara el filterPredicate; los valores salen del form.
+    this.dataSource.filter = String(Date.now());
+    this.dataSource.paginator?.firstPage();
+  }
+
+  private matchesFilters(p: Product): boolean {
+    const { search, categoryId, stockStatus } = this.filterForm.value;
+    const q = search?.trim().toLowerCase();
+    if (categoryId && p.category?.id !== categoryId) return false;
+    if (stockStatus && p.stockStatus !== stockStatus) return false;
+    if (!q) return true;
+    return (
+      p.title.toLowerCase().includes(q) ||
+      p.isbn.includes(q) ||
+      p.authors.some((a) => a.name.toLowerCase().includes(q))
+    );
+  }
+
+  clearFilters(): void {
+    this.filterForm.reset({ search: '', categoryId: null, stockStatus: null });
+  }
+
+  private loadStock(): void {
+    this.productService.getProducts().subscribe((products) => {
+      this.dataSource.data = products;
+      this.totalStock = products.reduce((sum, p) => sum + p.stockCurrent, 0);
+      this.outOfStockCount = products.filter(
+        (p) => p.stockStatus === 'OUT_OF_STOCK',
+      ).length;
+      this.totalValue = products.reduce(
+        (sum, p) => sum + p.price * p.stockCurrent,
+        0,
+      );
+    });
+  }
+
+  statusLabel(p: Product): string {
+    return this.statusLabels[p.stockStatus];
   }
 
   goAddRegister() {
@@ -109,6 +127,11 @@ export class StoreComponent implements AfterViewInit {
       disableClose: true,
     };
 
-    this.dialog.open(RegisterStockComponent, dialogConfig);
+    this.dialog
+      .open(RegisterStockComponent, dialogConfig)
+      .afterClosed()
+      .subscribe((registered) => {
+        if (registered) this.loadStock();
+      });
   }
 }
