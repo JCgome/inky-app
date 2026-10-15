@@ -1,1 +1,82 @@
-<p>categories works!</p>
+<section class="categories">
+  <div class="categories__head">
+    <h1 class="categories__head-title">{{ labels.title | translate }}</h1>
+    <div class="categories__head-actions">
+      <mat-form-field appearance="outline" class="categories__head-search">
+        <input
+          matInput
+          [value]="search"
+          (input)="search = $any($event.target).value"
+          [placeholder]="labels.search_ph | translate"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+      <button
+        mat-flat-button
+        color="primary"
+        class="categories__head-new"
+        (click)="openForm()"
+      >
+        {{ labels.new | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="categories__grid" *ngIf="filtered.length; else empty">
+    <mat-card class="categories__card" *ngFor="let c of filtered">
+      <div class="categories__card-top">
+        <span
+          class="categories__card-icon"
+          [style.background]="'hsl(' + hue(c) + ', 45%, 92%)'"
+          [style.color]="'hsl(' + hue(c) + ', 45%, 32%)'"
+        >
+          <mat-icon>category</mat-icon>
+        </span>
+        <span class="categories__card-badge">
+          {{ c.bookCount ?? 0 }} {{ labels.books | translate }}
+        </span>
+      </div>
+
+      <h2 class="categories__card-name" [title]="c.name">{{ c.name }}</h2>
+      <p class="categories__card-desc">
+        {{ c.description || (labels.no_description | translate) }}
+      </p>
+
+      <div class="categories__card-actions">
+        <button
+          mat-icon-button
+          [matTooltip]="labels.view_books | translate"
+          [disabled]="!c.bookCount"
+          (click)="viewBooks(c)"
+        >
+          <mat-icon>menu_book</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          [matTooltip]="labels.edit | translate"
+          (click)="openForm(c)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          [matTooltip]="
+            (c.bookCount ? labels.delete_blocked : labels.delete) | translate
+          "
+          [disabled]="!!c.bookCount"
+          (click)="remove(c)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </div>
+
+  <ng-template #empty>
+    <p class="categories__empty" *ngIf="!loading">
+      {{ labels.empty | translate }}
+    </p>
+  </ng-template>
+</section>

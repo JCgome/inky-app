@@ -8,7 +8,6 @@
     "heading_delete": "Solicitud de desactivación",
     "title_delete": "Esta acción desactivará el registro. ¿Deseas proceder?"
   },
-
   "sidebar": {
     "dashboard": "Panel de control",
     "products": "Productos",
@@ -16,16 +15,13 @@
     "history": "Historial",
     "store": "Almacen"
   },
-
   "home": {
     "welcome": "¡Bienvenido a nuestra aplicación!",
     "logo": "Inky"
   },
-
   "DASHBOARD": {
     "TITLE": "Bienvenido dashboard"
   },
-
   "product": {
     "products": "Productos",
     "add": "Agregar productos",
@@ -56,7 +52,6 @@
       "low": "Stock bajo",
       "out": "Agotado"
     },
-
     "management_products": {
       "title_products": "Añadir Productos",
       "title": "Título",
@@ -75,7 +70,6 @@
       "select_image": "Selecciona Imagen",
       "select_file": "Archivo Seleccionado:"
     },
-
     "register_stock": {
       "title_register": "Registro en el Almacen",
       "type": "Tipo de movimiento",
@@ -83,5 +77,27 @@
       "stock": "Cantidad",
       "description": "Descripcion"
     }
+  },
+  "categories": {
+    "title": "Categorías",
+    "new": "Nueva categoría",
+    "search_ph": "Buscar categoría",
+    "books": "libros",
+    "no_description": "Sin descripción",
+    "empty": "No hay categorías",
+    "view_books": "Ver libros",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "delete_blocked": "No se puede eliminar: tiene libros",
+    "delete_heading": "Eliminar categoría",
+    "delete_message": "Esta acción eliminará la categoría de forma permanente. ¿Deseas proceder?",
+    "close": "Cerrar",
+    "form": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "required": "El nombre es obligatorio",
+      "duplicated": "Ya existe una categoría con ese nombre"
+    },
+    "books_title": "Libros"
   }
 }

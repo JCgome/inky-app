@@ -4,3 +4,8 @@ export interface Category {
   description?: string;
   bookCount?: number;
 }
+
+export interface CategoryRequest {
+  name: string;
+  description?: string;
+}

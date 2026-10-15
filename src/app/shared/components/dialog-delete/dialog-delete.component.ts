@@ -1,5 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
+export interface DialogDeleteData {
+  heading?: string;
+  message?: string;
+  confirm?: string;
+}
 
 @Component({
   selector: 'app-dialog-delete',
@@ -8,13 +14,16 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class DialogDeleteComponent {
   labels = {
-    heading_delete: 'replicable.heading_delete',
-    title_delete: 'replicable.title_delete',
+    heading_delete: this.data?.heading ?? 'replicable.heading_delete',
+    title_delete: this.data?.message ?? 'replicable.title_delete',
     btn_cancel: 'replicable.btn_cancel',
-    btn_delete: 'replicable.btn_delete',
+    btn_delete: this.data?.confirm ?? 'replicable.btn_delete',
   };
 
-  constructor(public dialogRef: MatDialogRef<DialogDeleteComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<DialogDeleteComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) private data: DialogDeleteData | null
+  ) {}
 
   onConfirm(): void {
     this.dialogRef.close(true);

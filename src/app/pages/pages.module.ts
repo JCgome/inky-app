@@ -7,6 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
 import { StoreComponent } from './store/store.component';
 import { HistoryComponent } from './history/history.component';
+import { CategoryFormComponent } from './categories/category-form/category-form.component';
+import { CategoryBooksComponent } from './categories/category-books/category-books.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { HistoryComponent } from './history/history.component';
     CategoriesComponent,
     StoreComponent,
     HistoryComponent,
+    CategoryFormComponent,
+    CategoryBooksComponent,
   ],
   exports: [
     PagesComponent,

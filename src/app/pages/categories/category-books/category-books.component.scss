@@ -1,0 +1,77 @@
+@import "src/styles/base/colors";
+@import "src/styles/base/_typography.scss";
+
+.category-books {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  max-height: 80vh;
+  background: #fff;
+  padding: 4rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  &__header {
+    &-title {
+      @include inky-fonts($title-components);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    &-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10;
+      padding: 4px;
+
+      mat-icon {
+        font-size: 20px;
+      }
+    }
+  }
+
+  &__description {
+    @include inky-fonts($body-200);
+    margin: 0 0 1.5rem;
+    text-align: center;
+    color: inky-colors("neutral", 700);
+  }
+
+  &__labels {
+    @include inky-fonts($label-100);
+    color: inky-colors("neutral", 700);
+    margin-bottom: 0.25rem;
+    display: inline-block;
+  }
+
+  &__list {
+    flex: 1;
+    min-height: 0;
+    margin: 0;
+    padding: 0 16px 0 0; // separa el scroll de los ISBN
+    overflow-y: auto;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid inky-colors("neutral", 200);
+    @include inky-fonts($body-200);
+
+    &-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &-isbn {
+      flex-shrink: 0;
+      color: inky-colors("neutral", 700);
+    }
+  }
+}
