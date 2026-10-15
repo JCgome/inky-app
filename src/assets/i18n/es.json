@@ -2,11 +2,11 @@
   "replicable": {
     "btn_cancel": "Cancelar",
     "btn_save": "Guardar",
-    "btn_delete": "Eliminar",
+    "btn_delete": "Desactivar",
     "btn_register": "Registrar",
     "title_edit": "Editar",
-    "heading_delete": "Solicitud de eliminación",
-    "title_delete": "Esta acción eliminará el registro de forma permanente. ¿Deseas proceder?"
+    "heading_delete": "Solicitud de desactivación",
+    "title_delete": "Esta acción desactivará el registro. ¿Deseas proceder?"
   },
 
   "sidebar": {
@@ -34,6 +34,16 @@
     "name": "Nombre",
     "stock": "Stock",
     "category": "Categoría",
+    "add_tabs": {
+      "manual": "Manual",
+      "by_isbn": "Por ISBN",
+      "isbn_hint": "Título, autores, editorial, año y páginas se obtienen automáticamente a partir del ISBN."
+    },
+    "tabs": {
+      "active": "Activos",
+      "inactive": "Inactivos",
+      "restore": "Reactivar"
+    },
     "filters": {
       "search": "Buscar",
       "search_ph": "Título, ISBN o autor",

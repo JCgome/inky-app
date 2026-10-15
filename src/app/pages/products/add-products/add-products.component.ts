@@ -1,10 +1,23 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ROUTES } from '@app/shared/constants/route-constants';
-import { Author, Category, Product, ProductRequest, Publisher } from '@app/core/models';
+import {
+  Author,
+  BookFromIsbnRequest,
+  Category,
+  Product,
+  ProductRequest,
+  Publisher,
+} from '@app/core/models';
 import { CatalogService } from '@app/core/services/catalog.service';
 import { ProductService } from '@app/core/services/product.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-add-products',
@@ -13,6 +26,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddProductsComponent implements OnInit {
   form: FormGroup = this.fb.group({});
+  isbnForm: FormGroup = this.fb.group({});
+  tabLabels = {
+    manual: 'product.add_tabs.manual',
+    by_isbn: 'product.add_tabs.by_isbn',
+    isbn_hint: 'product.add_tabs.isbn_hint',
+  };
   authors: Author[] = [];
   categories: Category[] = [];
   publishers: Publisher[] = [];
@@ -63,6 +82,15 @@ export class AddProductsComponent implements OnInit {
       imageUrl: [''],
     });
 
+    this.isbnForm = this.fb.group({
+      isbn: ['', [Validators.required, isbn13Validator]],
+      categoryId: [null as number | null],
+      price: [null as number | null, [Validators.required, Validators.min(0)]],
+      format: [''],
+      language: [''],
+      providerName: [''],
+    });
+
     this.catalogService.getAuthors().subscribe((a) => (this.authors = a));
     this.catalogService.getCategories().subscribe((c) => (this.categories = c));
     this.catalogService.getPublishers().subscribe((p) => (this.publishers = p));
@@ -101,6 +129,25 @@ export class AddProductsComponent implements OnInit {
     request$.subscribe(() => this.goCancel());
   }
 
+  guardarPorIsbn() {
+    if (this.isbnForm.invalid) {
+      this.isbnForm.markAllAsTouched();
+      return;
+    }
+
+    const v = this.isbnForm.value;
+    const request: BookFromIsbnRequest = {
+      isbn: v.isbn,
+      categoryId: v.categoryId ?? undefined,
+      price: v.price,
+      format: v.format || undefined,
+      language: v.language || undefined,
+      providerName: v.providerName || undefined,
+    };
+
+    this.productService.createFromIsbn(request).subscribe(() => this.goCancel());
+  }
+
   private toFormValue(product: Product) {
     return {
       title: product.title,
@@ -136,4 +183,10 @@ export class AddProductsComponent implements OnInit {
       imageUrl: v.imageUrl || undefined,
     };
   }
+}
+
+/** El backend acepta espacios y guiones; valida 13 dígitos tras limpiarlos. */
+function isbn13Validator(control: AbstractControl): ValidationErrors | null {
+  const value = String(control.value ?? '').replace(/[\s-]/g, '');
+  return !value || /^\d{13}$/.test(value) ? null : { isbn: true };
 }

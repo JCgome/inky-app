@@ -34,13 +34,22 @@
     "name": "Name",
     "stock": "Stock",
     "category": "Category",
+    "add_tabs": {
+      "manual": "Manual",
+      "by_isbn": "By ISBN",
+      "isbn_hint": "Title, authors, publisher, year and pages are fetched automatically from the ISBN."
+    },
+    "tabs": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "restore": "Restore"
+    },
     "filters": {
       "search": "Search",
       "search_ph": "Title, ISBN or author",
       "category": "Category",
       "all": "All",
       "stock_status": "Stock status",
-      "include_inactive": "Include inactive",
       "clear": "Clear",
       "available": "Available",
       "low": "Low stock",

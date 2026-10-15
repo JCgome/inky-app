@@ -7,6 +7,94 @@
     }}
   </mat-card-title>
   <mat-dialog-content class="add-products__content">
+    <!-- Al editar solo existe el formulario manual -->
+    <ng-container *ngIf="!isEditMode; else manualForm">
+      <mat-tab-group animationDuration="0ms">
+        <mat-tab [label]="tabLabels.manual | translate">
+          <ng-container *ngTemplateOutlet="manualForm"></ng-container>
+        </mat-tab>
+        <mat-tab [label]="tabLabels.by_isbn | translate">
+        <form
+          [formGroup]="isbnForm"
+          class="add-products__form"
+          (ngSubmit)="guardarPorIsbn()"
+        >
+          <p class="add-products__hint">{{ tabLabels.isbn_hint | translate }}</p>
+          <div class="add-products__layout">
+            <div class="add-products__fields">
+              <div class="add-products__field-group">
+                <label class="add-products__label">{{ labels.isbn | translate }}</label>
+                <mat-form-field appearance="outline" class="add-products__field">
+                  <input matInput formControlName="isbn" type="text" inputmode="numeric" />
+                </mat-form-field>
+              </div>
+
+              <div class="add-products__field-group">
+                <label class="add-products__label">{{ labels.price | translate }}</label>
+                <mat-form-field appearance="outline" class="add-products__field">
+                  <input matInput formControlName="price" type="number" min="0" step="0.01" />
+                </mat-form-field>
+              </div>
+
+              <div class="add-products__field-group">
+                <label class="add-products__label">{{ labels.gender | translate }}</label>
+                <mat-form-field appearance="outline" class="add-products__field">
+                  <mat-select formControlName="categoryId">
+                    <mat-option *ngFor="let x of categories" [value]="x.id">{{ x.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="add-products__field-group">
+                <label class="add-products__label">{{ labels.format | translate }}</label>
+                <mat-form-field appearance="outline" class="add-products__field">
+                  <mat-select formControlName="format">
+                    <mat-option *ngFor="let x of formats" [value]="x">{{ x }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="add-products__field-group">
+                <label class="add-products__label">{{ labels.language | translate }}</label>
+                <mat-form-field appearance="outline" class="add-products__field">
+                  <input matInput formControlName="language" type="text" />
+                </mat-form-field>
+              </div>
+
+              <div class="add-products__field-group">
+                <label class="add-products__label">{{ labels.provider | translate }}</label>
+                <mat-form-field appearance="outline" class="add-products__field">
+                  <input matInput formControlName="providerName" />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="add-products__actions">
+            <button
+              mat-flat-button
+              color="warn"
+              type="button"
+              class="add-products__btn add-products__btn--cancel"
+              (click)="goCancel()"
+            >
+              {{ labels.btn_cancel | translate }}
+            </button>
+            <button
+              mat-flat-button
+              color="primary"
+              type="submit"
+              class="add-products__btn add-products__btn--save"
+            >
+              {{ labels.btn_save | translate }}
+            </button>
+          </div>
+        </form>
+        </mat-tab>
+      </mat-tab-group>
+    </ng-container>
+
+    <ng-template #manualForm>
     <form
       [formGroup]="form"
       class="add-products__form"
@@ -164,5 +252,6 @@
         </button>
       </div>
     </form>
+    </ng-template>
   </mat-dialog-content>
 </mat-card>

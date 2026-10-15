@@ -44,13 +44,17 @@ export class ProductsComponent implements OnInit {
     btn_cancel: 'replicable.btn_cancel',
     btn_save: 'replicable.btn_save',
   };
+  tabs = {
+    active: 'product.tabs.active',
+    inactive: 'product.tabs.inactive',
+    restore: 'product.tabs.restore',
+  };
   filters = {
     search: 'product.filters.search',
     search_ph: 'product.filters.search_ph',
     category: 'product.filters.category',
     all: 'product.filters.all',
     stock_status: 'product.filters.stock_status',
-    include_inactive: 'product.filters.include_inactive',
     clear: 'product.filters.clear',
   };
   stockStatuses: { value: StockStatus; label: string }[] = [
@@ -65,13 +69,22 @@ export class ProductsComponent implements OnInit {
     search: [''],
     categoryId: [null as number | null],
     stockStatus: [null as StockStatus | null],
-    includeInactive: [false],
   });
 
   displayedColumns = ['isbn', 'title', 'stock', 'gender', 'actions'];
 
+  inactiveColumns = ['isbn', 'title', 'gender', 'actions'];
+
   dataSource = new MatTableDataSource<Product>([]);
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  inactiveDataSource = new MatTableDataSource<Product>([]);
+
+  // Cada tab renderiza su tabla de forma diferida: se engancha el paginador al aparecer.
+  @ViewChild('activePaginator') set activePaginator(p: MatPaginator) {
+    if (p) this.dataSource.paginator = p;
+  }
+  @ViewChild('inactivePaginator') set inactivePaginator(p: MatPaginator) {
+    if (p) this.inactiveDataSource.paginator = p;
+  }
 
   constructor(
     private router: Router,
@@ -85,32 +98,25 @@ export class ProductsComponent implements OnInit {
   }
 
   get activeFilters(): number {
-    const { search, categoryId, stockStatus, includeInactive } =
-      this.filterForm.value;
-    return [search?.trim(), categoryId, stockStatus, includeInactive].filter(
-      Boolean
-    ).length;
+    const { search, categoryId, stockStatus } = this.filterForm.value;
+    return [search?.trim(), categoryId, stockStatus].filter(Boolean).length;
   }
 
   ngOnInit() {
     this.catalogService.getCategories().subscribe((c) => (this.categories = c));
     this.loadProducts();
 
-    // Los filtros se aplican en cliente; includeInactive recarga desde el back.
-    let includeInactive = false;
-    this.filterForm.valueChanges.pipe(debounceTime(250)).subscribe((v) => {
-      if (!!v.includeInactive !== includeInactive) {
-        includeInactive = !!v.includeInactive;
-        this.loadProducts();
-      }
-      this.applyFilters();
-    });
+    // Los filtros se aplican en cliente sobre la tabla de activos.
+    this.filterForm.valueChanges
+      .pipe(debounceTime(250))
+      .subscribe(() => this.applyFilters());
   }
 
   private loadProducts(): void {
-    this.productService
-      .getProducts(!!this.filterForm.value.includeInactive)
-      .subscribe((productos) => (this.dataSource.data = productos));
+    this.productService.getProducts(true).subscribe((productos) => {
+      this.dataSource.data = productos.filter((p) => p.active);
+      this.inactiveDataSource.data = productos.filter((p) => !p.active);
+    });
   }
 
   private applyFilters(): void {
@@ -137,12 +143,11 @@ export class ProductsComponent implements OnInit {
       search: '',
       categoryId: null,
       stockStatus: null,
-      includeInactive: false,
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+  restoreProduct(id: number): void {
+    this.productService.activateProduct(id).subscribe(() => this.loadProducts());
   }
 
   goAddProducts() {
