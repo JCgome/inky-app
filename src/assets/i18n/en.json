@@ -98,5 +98,33 @@
       "duplicated": "A category with that name already exists"
     },
     "books_title": "Books"
+  },
+  "dashboard": {
+    "title": "Inventory overview",
+    "kpi": {
+      "titles": "Titles in catalog",
+      "units": "Copies in stock",
+      "low": "Low stock",
+      "value": "Inventory value",
+      "value_hint": "at selling price",
+      "out": "out of stock",
+      "in_categories": "categories"
+    },
+    "by_category": "Stock by category",
+    "restock": {
+      "title": "Restock needed",
+      "view_all": "View all",
+      "empty": "All stock is up to date",
+      "title_col": "Title",
+      "isbn": "ISBN",
+      "stock": "Stock",
+      "status": "Status"
+    },
+    "empty": "No data",
+    "movements": {
+      "title": "Stock movements · last 8 weeks",
+      "entries": "Entries",
+      "exits": "Exits"
+    }
   }
 }

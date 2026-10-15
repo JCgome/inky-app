@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { RouterModule } from '@angular/router';
+import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
 import { StoreComponent } from './store/store.component';
@@ -26,6 +27,6 @@ import { CategoryBooksComponent } from './categories/category-books/category-boo
     CategoriesComponent,
     StoreComponent,
   ],
-  imports: [CommonModule, RouterModule, SharedModule],
+  imports: [CommonModule, RouterModule, SharedModule, NgChartsModule],
 })
 export class PagesModule {}

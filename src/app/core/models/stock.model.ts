@@ -19,3 +19,10 @@ export interface StockMovement {
   note?: string;
   createdAt: string;
 }
+
+export interface WeeklyStockSummary {
+  /** Lunes de la semana (ISO yyyy-MM-dd). */
+  weekStart: string;
+  entries: number;
+  exits: number;
+}

@@ -99,5 +99,33 @@
       "duplicated": "Ya existe una categoría con ese nombre"
     },
     "books_title": "Libros"
+  },
+  "dashboard": {
+    "title": "Resumen del inventario",
+    "kpi": {
+      "titles": "Títulos en catálogo",
+      "units": "Ejemplares en stock",
+      "low": "Bajo stock mínimo",
+      "value": "Valor del inventario",
+      "value_hint": "según precio de venta",
+      "out": "agotados",
+      "in_categories": "categorías"
+    },
+    "by_category": "Stock por categoría",
+    "restock": {
+      "title": "Reposición necesaria",
+      "view_all": "Ver los",
+      "empty": "Todo el stock está al día",
+      "title_col": "Título",
+      "isbn": "ISBN",
+      "stock": "Stock",
+      "status": "Estado"
+    },
+    "empty": "Sin datos",
+    "movements": {
+      "title": "Movimientos de stock · últimas 8 semanas",
+      "entries": "Entradas",
+      "exits": "Salidas"
+    }
   }
 }

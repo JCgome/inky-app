@@ -1,1 +1,142 @@
-<h1>{{ labels.title | translate }}</h1>
+<section class="dashboard">
+  <header class="dashboard__head">
+    <span class="dashboard__head-date">{{ dateLabel }}</span>
+    <h1 class="dashboard__head-title">{{ labels.title | translate }}</h1>
+  </header>
+
+  <div class="dashboard__kpis">
+    <mat-card class="dashboard__kpi">
+      <span class="dashboard__kpi-label">{{ labels.kpi_titles | translate }}</span>
+      <strong class="dashboard__kpi-value">{{ totalTitles | number }}</strong>
+      <span class="dashboard__kpi-hint">
+        {{ categoriesCount }} {{ labels.kpi_in_categories | translate }}
+      </span>
+    </mat-card>
+
+    <mat-card class="dashboard__kpi">
+      <span class="dashboard__kpi-label">{{ labels.kpi_units | translate }}</span>
+      <strong class="dashboard__kpi-value">{{ totalUnits | number }}</strong>
+    </mat-card>
+
+    <mat-card class="dashboard__kpi dashboard__kpi--warn">
+      <span class="dashboard__kpi-label">{{ labels.kpi_low | translate }}</span>
+      <strong class="dashboard__kpi-value">{{ lowCount | number }}</strong>
+      <span class="dashboard__kpi-hint">
+        {{ outCount }} {{ labels.kpi_out | translate }}
+      </span>
+    </mat-card>
+
+    <mat-card class="dashboard__kpi">
+      <span class="dashboard__kpi-label">{{ labels.kpi_value | translate }}</span>
+      <strong class="dashboard__kpi-value"
+        >{{ inventoryValue | number : "1.0-0" }}€</strong
+      >
+      <span class="dashboard__kpi-hint">{{ labels.kpi_value_hint | translate }}</span>
+    </mat-card>
+  </div>
+
+  <div class="dashboard__charts">
+    <mat-card class="dashboard__panel">
+      <h2 class="dashboard__panel-title">{{ labels.movements | translate }}</h2>
+      <div class="dashboard__chart" *ngIf="hasMovements; else noData">
+        <canvas
+          baseChart
+          type="line"
+          [data]="movementsChart"
+          [options]="movementsChartOptions"
+        ></canvas>
+      </div>
+    </mat-card>
+
+    <mat-card class="dashboard__panel dashboard__categories">
+      <h2 class="dashboard__panel-title">{{ labels.by_category | translate }}</h2>
+
+      <div class="dashboard__chart" *ngIf="stockByCategory.length; else noData">
+        <canvas
+          baseChart
+          type="bar"
+          [data]="categoryChart"
+          [options]="categoryChartOptions"
+        ></canvas>
+      </div>
+
+      <ng-template #noData>
+        <p class="dashboard__empty" *ngIf="!loading">
+          {{ labels.empty | translate }}
+        </p>
+      </ng-template>
+    </mat-card>
+  </div>
+
+  <div class="dashboard__panels">
+    <mat-card class="dashboard__panel dashboard__restock">
+      <div class="dashboard__panel-head">
+        <h2 class="dashboard__panel-title">
+          <mat-icon>warning_amber</mat-icon>
+          {{ labels.restock | translate }}
+        </h2>
+        <button
+          mat-button
+          color="primary"
+          *ngIf="restockTotal > restock.length"
+          (click)="goStore()"
+        >
+          {{ labels.restock_all | translate }} {{ restockTotal }}
+        </button>
+      </div>
+
+      <table
+        mat-table
+        [dataSource]="restock"
+        class="dashboard__table"
+        *ngIf="restock.length; else noRestock"
+      >
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>{{ labels.col_title | translate }}</th>
+          <td mat-cell *matCellDef="let p" [title]="p.title">
+            <span class="dashboard__book-title">{{ p.title }}</span>
+            <span class="dashboard__book-authors">
+              <ng-container *ngFor="let a of p.authors; let last = last"
+                >{{ a.name }}{{ last ? "" : ", " }}</ng-container
+              >
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="isbn">
+          <th mat-header-cell *matHeaderCellDef>{{ labels.col_isbn | translate }}</th>
+          <td mat-cell *matCellDef="let p">{{ p.isbn }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="stock">
+          <th mat-header-cell *matHeaderCellDef class="dashboard__num">
+            {{ labels.col_stock | translate }}
+          </th>
+          <td mat-cell *matCellDef="let p" class="dashboard__num">
+            {{ p.stockCurrent }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>{{ labels.col_status | translate }}</th>
+          <td mat-cell *matCellDef="let p">
+            <span
+              class="dashboard__chip"
+              [class.dashboard__chip--out]="p.stockStatus === 'OUT_OF_STOCK'"
+              >{{ statusLabel(p) | translate }}</span
+            >
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="restockColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: restockColumns"></tr>
+      </table>
+
+      <ng-template #noRestock>
+        <p class="dashboard__empty" *ngIf="!loading">
+          {{ labels.restock_empty | translate }}
+        </p>
+      </ng-template>
+    </mat-card>
+  </div>
+</section>
