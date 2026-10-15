@@ -1,11 +1,15 @@
 @use "@angular/material" as mat;
 @import "base/theme";
 @import "base/typography";
+@import "base/responsive";
+@import "components/table";
+@import "components/head";
 @include mat.core();
 
 html,
 body {
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;

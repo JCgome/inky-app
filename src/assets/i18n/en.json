@@ -1,17 +1,130 @@
 {
-  "SIDEBAR": {
-    "DASHBOARD": "Dashboard",
-    "PRODUCTS": "Products",
-    "CATEGORIES": "Categories",
-    "CLIENTS": "Clients"
+  "replicable": {
+    "btn_cancel": "Cancel",
+    "btn_save": "Save",
+    "btn_delete": "Delete",
+    "btn_register": "Register",
+    "title_edit": "Edit",
+    "heading_delete": "Deletion Confirmation",
+    "title_delete": "You are about to permanently delete this record. Please confirm to proceed."
   },
-
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "categories": "Categories",
+    "history": "History",
+    "store": "Stock"
+  },
   "home": {
     "welcome": "Welcome to our application!",
     "logo": "Inky"
   },
-
   "DASHBOARD": {
     "TITLE": "Welcome dashboard"
+  },
+  "product": {
+    "products": "Products",
+    "add": "Add products",
+    "register": "Register Stock",
+    "code": "IBN",
+    "name": "Name",
+    "stock": "Stock",
+    "category": "Category",
+    "add_tabs": {
+      "manual": "Manual",
+      "by_isbn": "By ISBN",
+      "isbn_hint": "Title, authors, publisher, year and pages are fetched automatically from the ISBN."
+    },
+    "tabs": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "restore": "Restore"
+    },
+    "filters": {
+      "search": "Search",
+      "search_ph": "Title, ISBN or author",
+      "category": "Category",
+      "all": "All",
+      "stock_status": "Stock status",
+      "clear": "Clear",
+      "available": "Available",
+      "low": "Low stock",
+      "out": "Out of stock"
+    },
+    "management_products": {
+      "title_products": "Add Products",
+      "title": "Tittle Book",
+      "author": "Author",
+      "id": "ISBN",
+      "gender": "Category",
+      "year_publish": "Year of publication",
+      "price": "Price",
+      "edition": "Edition",
+      "number_pag": "N° Pages",
+      "format": "Format",
+      "language": "Language",
+      "publisher": "Publishing house",
+      "provider": "Provider",
+      "image_product": "Product Image",
+      "select_image": "Select Image",
+      "select_file": "Selected File:"
+    },
+    "register_stock": {
+      "title_register": "Registration in the Warehouse",
+      "type": "Type of movement",
+      "product_stock": "Product",
+      "stock": "Stock",
+      "description": "Description"
+    }
+  },
+  "categories": {
+    "title": "Categories",
+    "new": "New category",
+    "search_ph": "Search category",
+    "books": "books",
+    "no_description": "No description",
+    "empty": "No categories",
+    "view_books": "View books",
+    "edit": "Edit",
+    "delete": "Delete",
+    "delete_blocked": "Cannot delete: it has books",
+    "delete_heading": "Delete category",
+    "delete_message": "This will permanently delete the category. Do you want to proceed?",
+    "close": "Close",
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "required": "Name is required",
+      "duplicated": "A category with that name already exists"
+    },
+    "books_title": "Books"
+  },
+  "dashboard": {
+    "title": "Inventory overview",
+    "kpi": {
+      "titles": "Titles in catalog",
+      "units": "Copies in stock",
+      "low": "Low stock",
+      "value": "Inventory value",
+      "value_hint": "at selling price",
+      "out": "out of stock",
+      "in_categories": "categories"
+    },
+    "by_category": "Stock by category",
+    "restock": {
+      "title": "Restock needed",
+      "view_all": "View all",
+      "empty": "All stock is up to date",
+      "title_col": "Title",
+      "isbn": "ISBN",
+      "stock": "Stock",
+      "status": "Status"
+    },
+    "empty": "No data",
+    "movements": {
+      "title": "Stock movements · last 8 weeks",
+      "entries": "Entries",
+      "exits": "Exits"
+    }
   }
 }

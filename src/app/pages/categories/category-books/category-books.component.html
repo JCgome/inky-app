@@ -1,0 +1,27 @@
+<section class="category-books">
+  <div class="category-books__header">
+    <h1 class="category-books__header-title">{{ category.name }}</h1>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      type="button"
+      aria-label="Cerrar"
+      class="category-books__header-close"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <p class="category-books__description" *ngIf="category.description">
+    {{ category.description }}
+  </p>
+
+  <ul class="category-books__list">
+    <li class="category-books__item" *ngFor="let b of books">
+      <span class="category-books__item-title" [title]="b.title">{{
+        b.title
+      }}</span>
+      <span class="category-books__item-isbn">{{ b.isbn }}</span>
+    </li>
+  </ul>
+</section>

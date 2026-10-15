@@ -5,10 +5,7 @@
     <app-sidebar [collapsed]="collapsed()"></app-sidebar>
   </mat-sidenav>
 
-  <mat-sidenav-content class="content">
-    <div class="breadcrumbs">
-      <app-breadcrumbs></app-breadcrumbs>
-    </div>
+  <mat-sidenav-content class="content" [style.marginLeft]="contentMargin()">
     <div class="fixed-content">
       <router-outlet></router-outlet>
     </div>

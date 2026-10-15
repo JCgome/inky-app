@@ -1,0 +1,25 @@
+<div class="delete-modal">
+  <div class="icon-delete">
+    <img src="../../../../assets/icons/delete-file.ico" alt="" />
+  </div>
+  <h2 mat-dialog-title>{{ labels.heading_delete | translate }}</h2>
+  <mat-dialog-content>{{ labels.title_delete | translate }}</mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-cancel"
+      (click)="onCancel()"
+    >
+      {{ labels.btn_cancel | translate }}
+    </button>
+    <button
+      mat-raised-button
+      class="btn-confirm"
+      color="warn"
+      (click)="onConfirm()"
+    >
+      {{ labels.btn_delete | translate }}
+    </button>
+  </mat-dialog-actions>
+</div>

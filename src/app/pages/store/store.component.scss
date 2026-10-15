@@ -1,0 +1,191 @@
+@use "/src/styles/base/theme-utils" as theme-utils;
+@import "src/styles/base/colors";
+@import "src/styles/base/_typography.scss";
+
+:host {
+  display: flex;
+  width: 85%;
+  height: calc(90vh - 80px);
+  .stock {
+    width: 100%;
+
+    &__head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &-title {
+        @include inky-fonts($title-components);
+      }
+
+      &-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 25px;
+      }
+    }
+
+    &__head-filter--active {
+      background: theme-utils.inky-color("success", 900) !important;
+      color: white !important;
+    }
+
+    &__filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 16px;
+      margin-top: 24px;
+      padding: 12px 10px 0;
+      background: white;
+
+      .mat-mdc-form-field {
+        flex: 1 1 200px;
+        min-width: 0;
+      }
+
+      &-search {
+        flex-basis: 260px !important;
+      }
+
+      button {
+        flex: 0 0 auto;
+        margin-bottom: 22px; // alinea con los campos (espacio del hint)
+      }
+    }
+
+    &__cards {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+    }
+
+    &__card {
+      flex: 1 1 0;
+      min-width: 0;
+      height: 200px;
+      padding: 10px;
+      border-radius: 10px;
+
+      &-total,
+      &-low,
+      &-hight {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      &-total-title,
+      &-low-title,
+      &-hight-title {
+        @include inky-fonts($body-200);
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        padding: 10px;
+      }
+
+      &-total-content,
+      &-low-content,
+      &-hight-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex: 1;
+        min-height: 0;
+        @include inky-fonts($heading-100);
+
+        h1 {
+          margin: 0;
+        }
+
+        img {
+          width: 45%;
+          max-width: 200px;
+          height: 100%;
+          max-height: 140px;
+          object-fit: contain;
+          object-position: right center;
+        }
+      }
+    }
+
+    &__table {
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: auto;
+      margin-top: 24px;
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed; // anchos estables entre páginas
+
+        .mat-column-isbn {
+          width: 170px;
+        }
+
+        .mat-column-stock {
+          width: 110px;
+        }
+
+        td,
+        th {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .mat-column-category {
+          width: 180px;
+        }
+
+        .mat-column-status {
+          width: 140px;
+        }
+
+        .mat-column-description {
+          width: 80px;
+        }
+
+        .mat-column-title {
+          overflow: hidden;
+          text-overflow: ellipsis; // el título largo se recorta, no empuja columnas
+        }
+      }
+
+      th {
+        background: inky-colors("secondary", 300) !important;
+        @include inky-fonts($body-100);
+        color: white;
+        text-align: left;
+        font-weight: bold;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      td {
+        @include inky-fonts($body-200);
+        cursor: pointer;
+      }
+
+      th,
+      td {
+        text-align: left;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+
+      tr {
+        transition: background 0.3s ease-in-out;
+
+        &:hover {
+          background: inky-colors("neutral", 200) !important;
+        }
+      }
+    }
+  }
+}

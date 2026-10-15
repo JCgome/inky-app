@@ -3,34 +3,40 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { ROUTES } from '@app/shared/constants/route-constants';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProductsComponent } from './products/products.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { ClientsComponent } from './clients/clients.component';
+import { StoreComponent } from './store/store.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   {
-    path: ROUTES.DASHBOARD,
+    path: ROUTES.dashboard,
     component: PagesComponent,
     children: [
       {
         path: '',
         component: DashboardComponent,
-        data: { title: 'SIDEBAR.DASHBOARD', icon: 'dashboard' },
+        data: { title: 'sidebar.dashboard', icon: 'dashboard' },
       },
       {
-        path: ROUTES.PRODUCTS,
-        component: ProductsComponent,
-        data: { title: 'SIDEBAR.PRODUCTS', icon: 'shopping_cart' },
+        path: ROUTES.products,
+        loadChildren: () =>
+          import('./products/products.module').then((m) => m.ProductsModule),
+        data: { title: 'sidebar.products', icon: 'menu_book' },
       },
       {
-        path: ROUTES.CATEGORIES,
+        path: ROUTES.categories,
         component: CategoriesComponent,
-        data: { title: 'SIDEBAR.CATEGORIES', icon: 'category' },
+        data: { title: 'sidebar.categories', icon: 'category' },
       },
       {
-        path: ROUTES.CLIENTS,
-        component: ClientsComponent,
-        data: { title: 'SIDEBAR.CLIENTS', icon: 'people' },
+        path: ROUTES.store,
+        component: StoreComponent,
+        data: { title: 'sidebar.store', icon: 'inventory' },
+      },
+      {
+        path: ROUTES.history,
+        component: HistoryComponent,
+        data: { title: 'sidebar.history', icon: 'receipt_long' },
       },
     ],
   },

@@ -1,9 +1,11 @@
 export const ROUTES = {
-  HOME: '',
-  LOGIN: 'login',
-  REGISTER: 'register',
-  DASHBOARD: 'dashboard',
-  PRODUCTS: 'products',
-  CATEGORIES: 'categories',
-  CLIENTS: 'clients',
+  home: '',
+  login: 'login',
+  register: 'register',
+  dashboard: 'dashboard',
+  products: 'products',
+  categories: 'categories',
+  store: 'store',
+  history: 'history',
+  add_products: 'add-products',
 };

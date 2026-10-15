@@ -16,7 +16,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   imports: [
     CommonModule,
@@ -35,6 +40,12 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatMenuModule,
     MatSelectModule,
+    MatPaginatorModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     CommonModule,
@@ -53,6 +64,12 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatMenuModule,
     MatSelectModule,
+    MatPaginatorModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
 })
 export class MaterialModule {}

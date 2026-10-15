@@ -1,0 +1,193 @@
+@use "/src/styles/base/theme-utils" as theme-utils;
+@import "src/styles/base/colors";
+@import "src/styles/base/_typography.scss";
+
+:host {
+  display: flex;
+  width: 85%;
+  height: calc(90vh - 80px);
+
+  .dashboard {
+    width: 100%;
+    overflow-y: auto;
+    padding-bottom: 24px;
+
+    &__head {
+      &-date {
+        display: block;
+        @include inky-fonts($body-100);
+        color: inky-colors("neutral", 700);
+
+        &::first-letter {
+          text-transform: uppercase;
+        }
+      }
+
+      &-title {
+        @include inky-fonts($title-components);
+        margin: 4px 0 0;
+      }
+    }
+
+    &__kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    &__kpi {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 18px 20px;
+      border-radius: 10px;
+
+      &-label {
+        @include inky-fonts($body-100);
+        color: inky-colors("neutral", 700);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      &-value {
+        @include inky-fonts($heading-100);
+        font-size: 36px;
+        line-height: 1.1;
+      }
+
+      &-hint {
+        @include inky-fonts($body-100);
+        color: inky-colors("neutral", 700);
+      }
+
+      &--warn &-hint {
+        color: theme-utils.inky-color("warn", 600);
+      }
+    }
+
+    &__charts {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    &__panels {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    &__chart {
+      position: relative;
+      height: 300px;
+    }
+
+    &__panel {
+      padding: 20px;
+      border-radius: 10px;
+
+      &-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+
+      &-title {
+        @include inky-fonts($heading-100);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 8px;
+
+        mat-icon {
+          color: theme-utils.inky-color("warn", 600);
+        }
+      }
+
+      &-head &-title {
+        margin: 0;
+      }
+    }
+
+    &__table {
+      width: 100%;
+      table-layout: fixed;
+
+      th {
+        @include inky-fonts($body-100);
+        color: inky-colors("neutral", 700);
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      td {
+        @include inky-fonts($body-200);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .mat-column-isbn {
+        width: 170px;
+      }
+
+      .mat-column-stock {
+        width: 110px;
+      }
+
+      .mat-column-status {
+        width: 130px;
+      }
+    }
+
+    &__num {
+      text-align: right;
+      padding-right: 24px;
+    }
+
+    &__book-title {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__book-authors {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 12px;
+      color: inky-colors("neutral", 700);
+    }
+
+    &__chip {
+      @include inky-fonts($body-100);
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: inky-colors("neutral", 200);
+      white-space: nowrap;
+
+      &--out {
+        background: theme-utils.inky-color("warn", 100);
+        color: theme-utils.inky-color("warn", 800);
+      }
+    }
+
+    &__empty {
+      @include inky-fonts($body-200);
+      padding: 24px 0;
+      text-align: center;
+      color: inky-colors("neutral", 700);
+    }
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  :host .dashboard__charts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

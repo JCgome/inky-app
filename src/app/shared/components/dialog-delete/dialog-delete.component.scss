@@ -1,0 +1,52 @@
+@import "src/styles/base/colors";
+@import "src/styles/base/_typography.scss";
+
+.delete-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+
+  .icon-delete {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 36px;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  h2[mat-dialog-title] {
+    @include inky-fonts($heading-300);
+    margin: 0;
+  }
+
+  mat-dialog-content {
+    @include inky-fonts($body-100);
+    margin: 16px 0;
+  }
+
+  mat-dialog-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+
+    button {
+      min-width: 120px;
+      height: 50px;
+    }
+
+    .btn-cancel {
+      background: inky-colors("primary", 900) !important;
+    }
+
+    .btn-confirm {
+      background: inky-colors("error", 900) !important;
+    }
+  }
+}

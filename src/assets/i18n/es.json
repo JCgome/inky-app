@@ -1,17 +1,131 @@
 {
-  "SIDEBAR": {
-    "DASHBOARD": "Panel de control",
-    "PRODUCTS": "Productos",
-    "CATEGORIES": "Categorias",
-    "CLIENTS": "Clientes"
+  "replicable": {
+    "btn_cancel": "Cancelar",
+    "btn_save": "Guardar",
+    "btn_delete": "Desactivar",
+    "btn_register": "Registrar",
+    "title_edit": "Editar",
+    "heading_delete": "Solicitud de desactivación",
+    "title_delete": "Esta acción desactivará el registro. ¿Deseas proceder?"
   },
-
+  "sidebar": {
+    "dashboard": "Panel de control",
+    "products": "Productos",
+    "categories": "Categorias",
+    "history": "Historial",
+    "store": "Almacen"
+  },
   "home": {
     "welcome": "¡Bienvenido a nuestra aplicación!",
     "logo": "Inky"
   },
-
   "DASHBOARD": {
     "TITLE": "Bienvenido dashboard"
+  },
+  "product": {
+    "products": "Productos",
+    "add": "Agregar productos",
+    "register": "Registro Almacen",
+    "code": "IBN",
+    "name": "Nombre",
+    "stock": "Stock",
+    "category": "Categoría",
+    "add_tabs": {
+      "manual": "Manual",
+      "by_isbn": "Por ISBN",
+      "isbn_hint": "Título, autores, editorial, año y páginas se obtienen automáticamente a partir del ISBN."
+    },
+    "tabs": {
+      "active": "Activos",
+      "inactive": "Inactivos",
+      "restore": "Reactivar"
+    },
+    "filters": {
+      "search": "Buscar",
+      "search_ph": "Título, ISBN o autor",
+      "category": "Categoría",
+      "all": "Todas",
+      "stock_status": "Estado de stock",
+      "include_inactive": "Incluir inactivos",
+      "clear": "Limpiar",
+      "available": "Disponible",
+      "low": "Stock bajo",
+      "out": "Agotado"
+    },
+    "management_products": {
+      "title_products": "Añadir Productos",
+      "title": "Título",
+      "author": "Autor",
+      "id": "ISBN",
+      "gender": "Genero/Categoria",
+      "year_publish": "Año de Publicación",
+      "price": "Precio",
+      "edition": "Ediccion",
+      "number_pag": "N° Páginas",
+      "format": "Formato",
+      "language": "Idioma",
+      "publisher": "Editorial",
+      "provider": "Proovedor",
+      "image_product": "Imagen del producto",
+      "select_image": "Selecciona Imagen",
+      "select_file": "Archivo Seleccionado:"
+    },
+    "register_stock": {
+      "title_register": "Registro en el Almacen",
+      "type": "Tipo de movimiento",
+      "product_stock": "Producto",
+      "stock": "Cantidad",
+      "description": "Descripcion"
+    }
+  },
+  "categories": {
+    "title": "Categorías",
+    "new": "Nueva categoría",
+    "search_ph": "Buscar categoría",
+    "books": "libros",
+    "no_description": "Sin descripción",
+    "empty": "No hay categorías",
+    "view_books": "Ver libros",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "delete_blocked": "No se puede eliminar: tiene libros",
+    "delete_heading": "Eliminar categoría",
+    "delete_message": "Esta acción eliminará la categoría de forma permanente. ¿Deseas proceder?",
+    "close": "Cerrar",
+    "form": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "required": "El nombre es obligatorio",
+      "duplicated": "Ya existe una categoría con ese nombre"
+    },
+    "books_title": "Libros"
+  },
+  "dashboard": {
+    "title": "Resumen del inventario",
+    "kpi": {
+      "titles": "Títulos en catálogo",
+      "units": "Ejemplares en stock",
+      "low": "Bajo stock mínimo",
+      "value": "Valor del inventario",
+      "value_hint": "según precio de venta",
+      "out": "agotados",
+      "in_categories": "categorías"
+    },
+    "by_category": "Stock por categoría",
+    "restock": {
+      "title": "Reposición necesaria",
+      "view_all": "Ver los",
+      "empty": "Todo el stock está al día",
+      "title_col": "Título",
+      "isbn": "ISBN",
+      "stock": "Stock",
+      "status": "Estado"
+    },
+    "empty": "Sin datos",
+    "movements": {
+      "title": "Movimientos de stock · últimas 8 semanas",
+      "entries": "Entradas",
+      "exits": "Salidas"
+    }
   }
 }

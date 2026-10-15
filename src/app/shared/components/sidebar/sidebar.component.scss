@@ -5,9 +5,19 @@
   transition: all 500ms ease-in-out;
 }
 
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+
 .sidenav-header {
   padding-top: 24px;
   text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
 
   > img {
     border-radius: 100%;
@@ -29,6 +39,24 @@
     }
   }
 }
+
+mat-nav-list {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+}
+
+.sidenav-header {
+  flex-shrink: 0;
+}
+
 
 .hide-header-text {
   opacity: 0;

@@ -1,0 +1,60 @@
+<section class="category-form">
+  <div class="category-form__header">
+    <h1 class="category-form__header-title">
+      {{ (category ? labels.title_edit : labels.title_new) | translate }}
+    </h1>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      type="button"
+      aria-label="Cerrar"
+      class="category-form__header-close"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="form" class="category-form__form" (ngSubmit)="save()">
+    <div class="category-form__fields">
+      <label class="category-form__labels">{{ labels.name | translate }}</label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="name" maxlength="100" />
+        <mat-error *ngIf="form.controls.name.hasError('duplicated')">
+          {{ labels.duplicated | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.controls.name.hasError('required')">
+          {{ labels.required | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="category-form__fields">
+      <label class="category-form__labels">{{
+        labels.description | translate
+      }}</label>
+      <mat-form-field appearance="outline">
+        <textarea
+          matInput
+          formControlName="description"
+          rows="3"
+          maxlength="255"
+        ></textarea>
+        <mat-hint align="end">
+          {{ form.controls.description.value?.length || 0 }} / 255
+        </mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="category-form__actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="category-form__actions-buttons"
+        [disabled]="saving"
+      >
+        {{ labels.btn_save | translate }}
+      </button>
+    </div>
+  </form>
+</section>

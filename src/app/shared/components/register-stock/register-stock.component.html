@@ -1,0 +1,64 @@
+<section class="register">
+  <div class="register__header">
+    <h1 class="register__header-title">
+      {{ labels.title_register | translate }}
+    </h1>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      aria-label="Cerrar"
+      class="register__header-close"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <form [formGroup]="form" class="register__form" (ngSubmit)="register()">
+    <div class="register__fields">
+      <label class="register__labels">{{ labels.type | translate }}</label>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="type">
+          <mat-option value="IN">Entrada</mat-option>
+          <mat-option value="OUT">Salida</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="register__fields">
+      <label class="register__labels">{{ labels.products | translate }}</label>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="bookId">
+          <mat-option *ngFor="let p of products" [value]="p.id">
+            {{ p.title }} ({{ p.isbn }})
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="register__fields">
+      <label class="register__labels">{{ labels.stock | translate }}</label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="quantity" type="number" min="1" />
+      </mat-form-field>
+    </div>
+
+    <div class="register__fields">
+      <label class="register__labels">{{
+        labels.description | translate
+      }}</label>
+      <mat-form-field appearance="outline">
+        <textarea matInput formControlName="note"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="register__actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="register__actions-buttons"
+      >
+        {{ labels.btn_register | translate }}
+      </button>
+    </div>
+  </form>
+</section>

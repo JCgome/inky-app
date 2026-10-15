@@ -1,0 +1,40 @@
+@include tablet {
+  .table-responsive table {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+@include landscape {
+  .table-responsive {
+    width: 95%;
+    max-width: none;
+    height: auto;
+
+  }
+
+  .table-responsive th,
+  .table-responsive td {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+
+  .table-responsive th {
+    background-color: inky-colors("secondary", 300);
+    text-transform: uppercase;
+  }
+
+  .table-responsive .actions-column {
+    min-width: 80px;
+    text-align: center;
+
+    button {
+      width: 32px;
+      height: 32px;
+
+      mat-icon {
+        font-size: 18px;
+      }
+    }
+  }
+}
