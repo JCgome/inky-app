@@ -8,7 +8,20 @@
     "heading_delete": "Deletion Confirmation",
     "title_delete": "You are about to permanently delete this record. Please confirm to proceed."
   },
+  "notifications": {
+    "stock_in": "Stock entry registered successfully",
+    "stock_out": "Stock exit registered successfully",
+    "stock_error": "The movement could not be registered",
+    "category_created": "Category created successfully",
+    "category_updated": "Category updated successfully",
+    "category_error": "The category could not be saved",
+    "product_created": "Product created successfully",
+    "product_updated": "Product updated successfully",
+    "product_error": "The product could not be saved",
+    "product_isbn_error": "The product could not be created with that ISBN"
+  },
   "sidebar": {
+    "title": "My library",
     "dashboard": "Dashboard",
     "products": "Products",
     "categories": "Categories",

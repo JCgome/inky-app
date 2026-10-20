@@ -10,6 +10,7 @@ import {
   Publisher,
 } from '@app/core/models';
 import { CatalogService } from '@app/core/services/catalog.service';
+import { NotificationService } from '@app/core/services/notification.service';
 import { ProductService } from '@app/core/services/product.service';
 import {
   AbstractControl,
@@ -62,6 +63,7 @@ export class AddProductsComponent implements OnInit {
     private fb: FormBuilder,
     private productService: ProductService,
     private catalogService: CatalogService,
+    private notification: NotificationService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -126,7 +128,17 @@ export class AddProductsComponent implements OnInit {
         ? this.productService.updateProduct(this.editingProductId, product)
         : this.productService.createProduct(product);
 
-    request$.subscribe(() => this.goCancel());
+    request$.subscribe({
+      next: () => {
+        this.notification.success(
+          this.isEditMode
+            ? 'notifications.product_updated'
+            : 'notifications.product_created'
+        );
+        this.goCancel();
+      },
+      error: () => this.notification.error('notifications.product_error'),
+    });
   }
 
   guardarPorIsbn() {
@@ -145,7 +157,13 @@ export class AddProductsComponent implements OnInit {
       providerName: v.providerName || undefined,
     };
 
-    this.productService.createFromIsbn(request).subscribe(() => this.goCancel());
+    this.productService.createFromIsbn(request).subscribe({
+      next: () => {
+        this.notification.success('notifications.product_created');
+        this.goCancel();
+      },
+      error: () => this.notification.error('notifications.product_isbn_error'),
+    });
   }
 
   private toFormValue(product: Product) {

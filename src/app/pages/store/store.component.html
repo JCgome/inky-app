@@ -105,7 +105,9 @@
     </button>
   </form>
 
-  <div class="stock__table">
+  <app-spinner-cube *ngIf="loading"></app-spinner-cube>
+
+  <div class="stock__table" [hidden]="loading">
     <table mat-table [dataSource]="dataSource">
       <!-- Position Column -->
       <ng-container matColumnDef="isbn">

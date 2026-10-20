@@ -15,6 +15,7 @@ import { RegisterStockComponent } from '@app/shared/components/register-stock/re
   styleUrls: ['./store.component.scss'],
 })
 export class StoreComponent implements OnInit {
+  loading = true;
   displayedColumns: string[] = ['isbn', 'title', 'stock', 'category', 'status'];
   dataSource = new MatTableDataSource<Product>([]);
 
@@ -103,16 +104,21 @@ export class StoreComponent implements OnInit {
   }
 
   private loadStock(): void {
-    this.productService.getProducts().subscribe((products) => {
-      this.dataSource.data = products;
-      this.totalStock = products.reduce((sum, p) => sum + p.stockCurrent, 0);
-      this.outOfStockCount = products.filter(
-        (p) => p.stockStatus === 'OUT_OF_STOCK',
-      ).length;
-      this.totalValue = products.reduce(
-        (sum, p) => sum + p.price * p.stockCurrent,
-        0,
-      );
+    this.loading = true;
+    this.productService.getProducts().subscribe({
+      next: (products) => {
+        this.dataSource.data = products;
+        this.totalStock = products.reduce((sum, p) => sum + p.stockCurrent, 0);
+        this.outOfStockCount = products.filter(
+          (p) => p.stockStatus === 'OUT_OF_STOCK',
+        ).length;
+        this.totalValue = products.reduce(
+          (sum, p) => sum + p.price * p.stockCurrent,
+          0,
+        );
+        this.loading = false;
+      },
+      error: () => (this.loading = false),
     });
   }
 

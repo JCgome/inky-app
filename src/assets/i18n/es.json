@@ -8,7 +8,20 @@
     "heading_delete": "Solicitud de desactivación",
     "title_delete": "Esta acción desactivará el registro. ¿Deseas proceder?"
   },
+  "notifications": {
+    "stock_in": "Entrada registrada correctamente",
+    "stock_out": "Salida registrada correctamente",
+    "stock_error": "No se pudo registrar el movimiento",
+    "category_created": "Categoría creada correctamente",
+    "category_updated": "Categoría actualizada correctamente",
+    "category_error": "No se pudo guardar la categoría",
+    "product_created": "Producto creado correctamente",
+    "product_updated": "Producto actualizado correctamente",
+    "product_error": "No se pudo guardar el producto",
+    "product_isbn_error": "No se pudo crear el producto con ese ISBN"
+  },
   "sidebar": {
+    "title": "Mi librería",
     "dashboard": "Panel de control",
     "products": "Productos",
     "categories": "Categorias",

@@ -26,11 +26,21 @@
     <div class="register__fields">
       <label class="register__labels">{{ labels.products | translate }}</label>
       <mat-form-field appearance="outline">
-        <mat-select formControlName="bookId">
-          <mat-option *ngFor="let p of products" [value]="p.id">
-            {{ p.title }} ({{ p.isbn }})
+        <input
+          matInput
+          type="text"
+          [formControl]="productSearch"
+          [matAutocomplete]="productAuto"
+        />
+        <mat-autocomplete
+          #productAuto="matAutocomplete"
+          [displayWith]="displayProduct"
+          (optionSelected)="onProductSelected($event)"
+        >
+          <mat-option *ngFor="let p of filteredProducts" [value]="p">
+            {{ p.title }} ({{ authorNames(p) }})
           </mat-option>
-        </mat-select>
+        </mat-autocomplete>
       </mat-form-field>
     </div>
 

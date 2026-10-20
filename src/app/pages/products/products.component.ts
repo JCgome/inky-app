@@ -19,6 +19,7 @@ import { RegisterStockComponent } from '@app/shared/components/register-stock/re
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
+  loading = true;
   labels = {
     product: 'product.products',
     isbn: 'product.code',
@@ -113,9 +114,14 @@ export class ProductsComponent implements OnInit {
   }
 
   private loadProducts(): void {
-    this.productService.getProducts(true).subscribe((productos) => {
-      this.dataSource.data = productos.filter((p) => p.active);
-      this.inactiveDataSource.data = productos.filter((p) => !p.active);
+    this.loading = true;
+    this.productService.getProducts(true).subscribe({
+      next: (productos) => {
+        this.dataSource.data = productos.filter((p) => p.active);
+        this.inactiveDataSource.data = productos.filter((p) => !p.active);
+        this.loading = false;
+      },
+      error: () => (this.loading = false),
     });
   }
 

@@ -16,6 +16,10 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
+  labels = {
+    title: 'sidebar.title',
+  };
+
   @Output() closeMenu = new EventEmitter<void>();
 
   isTabletOrMobile = signal(window.innerWidth <= 1024);
@@ -36,7 +40,10 @@ export class SidebarComponent {
 
   menuItems: { title: string; icon: string; route: string }[] = [];
 
-  constructor(private router: Router, private translate: TranslateService) {
+  constructor(
+    private router: Router,
+    private translate: TranslateService,
+  ) {
     this.loadMenuItems();
     this.translate.onLangChange.subscribe(() => {
       this.loadMenuItems();
@@ -52,12 +59,12 @@ export class SidebarComponent {
 
   private loadMenuItems(): void {
     const pagesRoute = this.router.config.find(
-      (route) => route.component?.name === 'PagesComponent'
+      (route) => route.component?.name === 'PagesComponent',
     );
 
     if (pagesRoute && pagesRoute.children) {
       const routeData = pagesRoute.children.filter(
-        (route) => route.data?.['title'] && route.data?.['icon']
+        (route) => route.data?.['title'] && route.data?.['icon'],
       );
       this.translate
         .get(routeData.map((route) => route.data!['title']))

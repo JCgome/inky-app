@@ -1,0 +1,49 @@
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 18rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border-left: 0.3rem solid;
+  background: #fff;
+  color: #1f2937;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+
+  &__icon {
+    flex-shrink: 0;
+  }
+
+  &__message {
+    flex: 1;
+    font-size: 0.9rem;
+  }
+
+  &__close {
+    flex-shrink: 0;
+  }
+
+  &--success {
+    border-color: #2e7d32;
+
+    .toast__icon {
+      color: #2e7d32;
+    }
+  }
+
+  &--error {
+    border-color: #c62828;
+
+    .toast__icon {
+      color: #c62828;
+    }
+  }
+
+  &--info {
+    border-color: #1565c0;
+
+    .toast__icon {
+      color: #1565c0;
+    }
+  }
+}

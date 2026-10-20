@@ -22,6 +22,8 @@
     </div>
   </div>
 
+  <app-spinner-cube *ngIf="loading"></app-spinner-cube>
+
   <div class="categories__grid" *ngIf="filtered.length; else empty">
     <mat-card class="categories__card" *ngFor="let c of filtered">
       <div class="categories__card-top">

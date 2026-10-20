@@ -15,3 +15,13 @@ body {
   overflow: hidden;
   font-family: $font-primary;
 }
+
+// Contenedor neutro para el snackbar: el estilo lo pone NotificationToastComponent
+.app-toast-panel {
+  .mdc-snackbar__surface {
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    min-width: 0 !important;
+  }
+}
