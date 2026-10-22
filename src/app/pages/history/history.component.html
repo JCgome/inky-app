@@ -1,1 +1,146 @@
-<p>history works!</p>
+<section class="history">
+  <div class="history__head">
+    <h1 class="history__head-title">{{ "history.title" | translate }}</h1>
+    <div class="history__head-actions">
+      <button
+        mat-fab
+        class="history__head-filter"
+        [class.history__head-filter--active]="showFilters || activeFilters > 0"
+        [attr.aria-expanded]="showFilters"
+        (click)="showFilters = !showFilters"
+      >
+        <mat-icon>filter_list</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <form *ngIf="showFilters" [formGroup]="filterForm" class="history__filters">
+    <mat-form-field appearance="outline" class="history__filters-search">
+      <mat-label>{{ "history.search" | translate }}</mat-label>
+      <input
+        matInput
+        formControlName="search"
+        [placeholder]="'history.search_ph' | translate"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ "history.type" | translate }}</mat-label>
+      <mat-select formControlName="type">
+        <mat-option [value]="null">{{ "history.all" | translate }}</mat-option>
+        <mat-option *ngFor="let t of types" [value]="t.value">
+          {{ t.label | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ "history.from" | translate }}</mat-label>
+      <input matInput [matDatepicker]="fromPicker" formControlName="from" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="fromPicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #fromPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>{{ "history.to" | translate }}</mat-label>
+      <input matInput [matDatepicker]="toPicker" formControlName="to" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="toPicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #toPicker></mat-datepicker>
+    </mat-form-field>
+
+    <button
+      mat-stroked-button
+      type="button"
+      [disabled]="activeFilters === 0"
+      (click)="clearFilters()"
+    >
+      {{ "history.clear" | translate }}
+    </button>
+  </form>
+
+  <app-spinner-cube *ngIf="loading"></app-spinner-cube>
+
+  <div class="history__table" [hidden]="loading">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "history.columns.date" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let m">
+          {{ m.createdAt | date: "dd/MM/yyyy HH:mm" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="book">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "history.columns.book" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let m" [title]="m.bookTitle">
+          {{ m.bookTitle }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "history.columns.type" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let m">
+          <span
+            class="history__badge"
+            [class.history__badge--in]="m.type === 'IN'"
+            [class.history__badge--out]="m.type === 'OUT'"
+          >
+            {{ (m.type === "IN" ? "history.in" : "history.out") | translate }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "history.columns.quantity" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let m">
+          {{ m.type === "IN" ? "+" : "-" }}{{ m.quantity }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="stockAfter">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "history.columns.stock_after" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let m">{{ m.stockAfter }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="note">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "history.columns.note" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let m" [title]="m.note ?? ''">
+          {{ m.note }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="history__empty" [attr.colspan]="displayedColumns.length">
+          {{ "history.empty" | translate }}
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      [pageSize]="10"
+      [hidePageSize]="true"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</section>

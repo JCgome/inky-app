@@ -28,6 +28,27 @@
     "history": "Historial",
     "store": "Almacen"
   },
+  "history": {
+    "title": "Historial",
+    "search": "Buscar",
+    "search_ph": "Título o nota",
+    "type": "Tipo",
+    "all": "Todos",
+    "in": "Entrada",
+    "out": "Salida",
+    "from": "Desde",
+    "to": "Hasta",
+    "clear": "Limpiar",
+    "empty": "Sin movimientos",
+    "columns": {
+      "date": "Fecha",
+      "book": "Libro",
+      "type": "Tipo",
+      "quantity": "Cantidad",
+      "stock_after": "Stock final",
+      "note": "Nota"
+    }
+  },
   "home": {
     "welcome": "¡Bienvenido a nuestra aplicación!",
     "logo": "Inky"

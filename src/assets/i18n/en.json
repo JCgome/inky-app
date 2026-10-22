@@ -28,6 +28,27 @@
     "history": "History",
     "store": "Stock"
   },
+  "history": {
+    "title": "History",
+    "search": "Search",
+    "search_ph": "Title or note",
+    "type": "Type",
+    "all": "All",
+    "in": "In",
+    "out": "Out",
+    "from": "From",
+    "to": "To",
+    "clear": "Clear",
+    "empty": "No movements",
+    "columns": {
+      "date": "Date",
+      "book": "Book",
+      "type": "Type",
+      "quantity": "Quantity",
+      "stock_after": "Stock after",
+      "note": "Note"
+    }
+  },
   "home": {
     "welcome": "Welcome to our application!",
     "logo": "Inky"

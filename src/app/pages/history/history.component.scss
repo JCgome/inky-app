@@ -1,0 +1,145 @@
+@use "/src/styles/base/theme-utils" as theme-utils;
+@import "src/styles/base/colors";
+@import "src/styles/base/_typography.scss";
+
+:host {
+  display: flex;
+  width: 85%;
+  height: calc(90vh - 80px);
+
+  .history {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__head {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &-title {
+        @include inky-fonts($title-components);
+      }
+
+      &-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 25px;
+      }
+    }
+
+    &__head-filter--active {
+      background: theme-utils.inky-color("success", 900) !important;
+      color: white !important;
+    }
+
+    &__filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 16px;
+      margin-top: 24px;
+      padding: 12px 10px 0;
+      background: white;
+
+      .mat-mdc-form-field {
+        flex: 1 1 200px;
+        min-width: 0;
+      }
+
+      &-search {
+        flex-basis: 260px !important;
+      }
+
+      button {
+        flex: 0 0 auto;
+        margin-bottom: 22px; // alinea con los campos (espacio del hint)
+      }
+    }
+
+    &__badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+
+      &--in {
+        background: #e3f6e8;
+        color: #1b7a3a;
+      }
+
+      &--out {
+        background: #fde8e8;
+        color: #b42318;
+      }
+    }
+
+    &__empty {
+      padding: 24px;
+      text-align: center;
+    }
+
+    &__table {
+      flex: 1;
+      overflow-x: auto;
+      overflow-y: auto;
+      margin-top: 24px;
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+
+        .mat-column-date {
+          width: 170px;
+        }
+
+        .mat-column-type {
+          width: 120px;
+        }
+
+        .mat-column-quantity,
+        .mat-column-stockAfter {
+          width: 120px;
+        }
+
+        td,
+        th {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      th {
+        background: inky-colors("secondary", 300) !important;
+        @include inky-fonts($body-100);
+        color: white;
+        text-align: left;
+        font-weight: bold;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      td {
+        @include inky-fonts($body-200);
+      }
+
+      th,
+      td {
+        text-align: left;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+
+      tr {
+        transition: background 0.3s ease-in-out;
+
+        &:hover {
+          background: inky-colors("neutral", 200) !important;
+        }
+      }
+    }
+  }
+}

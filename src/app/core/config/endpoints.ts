@@ -41,5 +41,6 @@ export const PUBLISHER_ENDPOINTS = {
 
 export const STOCK_ENDPOINTS = {
   register: () => `${API_BASE}/stock-movements`,
+  getAll: () => `${API_BASE}/stock-movements`,
   weeklySummary: () => `${API_BASE}/stock-movements/weekly-summary`,
 } as const;
