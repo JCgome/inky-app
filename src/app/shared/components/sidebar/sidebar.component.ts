@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ROUTES } from '@app/shared/constants/route-constants';
 
 @Component({
   selector: 'app-sidebar',
@@ -59,7 +60,7 @@ export class SidebarComponent {
 
   private loadMenuItems(): void {
     const pagesRoute = this.router.config.find(
-      (route) => route.component?.name === 'PagesComponent',
+      (route) => route.path === ROUTES.dashboard,
     );
 
     if (pagesRoute && pagesRoute.children) {
