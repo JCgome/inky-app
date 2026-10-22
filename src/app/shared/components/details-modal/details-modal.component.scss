@@ -1,5 +1,6 @@
 @import "src/styles/base/colors";
 @import "src/styles/base/_typography.scss";
+@import "src/styles/base/responsive";
 
 .view {
   padding: 2rem;
@@ -72,6 +73,29 @@
       @include inky-fonts($body-200);
       margin-left: 0.1rem;
       color: inky-colors("neutral", 800) !important;
+    }
+  }
+}
+
+@include mobile {
+  .view {
+    padding: 1rem;
+
+    &__header {
+      padding: 0 28px;
+    }
+
+    &__body {
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    &__image {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      aspect-ratio: 5 / 7;
     }
   }
 }

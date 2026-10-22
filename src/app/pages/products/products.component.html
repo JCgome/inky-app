@@ -31,7 +31,12 @@
         </button>
       </div>
     </div>
-    <mat-tab-group class="products__tabs" animationDuration="0ms">
+    <app-spinner-cube *ngIf="loading"></app-spinner-cube>
+    <mat-tab-group
+      [hidden]="loading"
+      class="products__tabs"
+      animationDuration="0ms"
+    >
       <mat-tab>
         <ng-template mat-tab-label>
           {{ tabs.active | translate }} ({{ dataSource.data.length }})

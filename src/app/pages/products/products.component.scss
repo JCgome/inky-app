@@ -158,3 +158,28 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  :host .products__head {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+
+    &-actions {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 8px;
+
+      &-new,
+      &-register {
+        width: auto;
+        min-width: 0;
+        padding: 0 16px;
+      }
+    }
+  }
+
+  :host .products__filters {
+    padding: 12px 0 0;
+  }
+}

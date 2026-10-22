@@ -4,7 +4,9 @@
     <h1 class="dashboard__head-title">{{ labels.title | translate }}</h1>
   </header>
 
-  <div class="dashboard__kpis">
+  <app-spinner-cube *ngIf="loading"></app-spinner-cube>
+
+  <div class="dashboard__kpis" [hidden]="loading">
     <mat-card class="dashboard__kpi">
       <span class="dashboard__kpi-label">{{ labels.kpi_titles | translate }}</span>
       <strong class="dashboard__kpi-value">{{ totalTitles | number }}</strong>

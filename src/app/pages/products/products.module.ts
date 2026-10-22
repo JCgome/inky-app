@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './products.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { MaterialModule } from '@app/shared/models/material.module';
+import { SharedModule } from '@app/shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { AddProductsComponent } from './add-products/add-products.component';
 
@@ -13,6 +14,7 @@ import { AddProductsComponent } from './add-products/add-products.component';
     ProductsRoutingModule,
     MaterialModule,
     TranslateModule,
+    SharedModule,
   ],
 })
 export class ProductsModule {}

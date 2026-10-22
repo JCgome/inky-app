@@ -12,11 +12,12 @@ export class LanguageService {
   private initLanguage() {
     const savedLang =
       localStorage.getItem('lang') || this.translate.getBrowserLang();
-    this.translate.use(savedLang?.match(/en|es/) ? savedLang : 'en');
+    this.setLanguage(savedLang?.match(/en|es/) ? savedLang : 'en');
   }
 
   setLanguage(lang: string) {
     this.translate.use(lang);
+    document.documentElement.lang = lang;
     localStorage.setItem('lang', lang);
   }
 

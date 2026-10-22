@@ -1,6 +1,7 @@
 {
   "replicable": {
     "btn_cancel": "Cancel",
+    "close": "Close",
     "btn_save": "Save",
     "btn_delete": "Delete",
     "btn_register": "Register",
@@ -8,12 +9,69 @@
     "heading_delete": "Deletion Confirmation",
     "title_delete": "You are about to permanently delete this record. Please confirm to proceed."
   },
+  "notifications": {
+    "stock_in": "Stock entry registered successfully",
+    "stock_out": "Stock exit registered successfully",
+    "stock_error": "The movement could not be registered",
+    "category_created": "Category created successfully",
+    "category_updated": "Category updated successfully",
+    "category_error": "The category could not be saved",
+    "author_created": "Author created successfully",
+    "author_updated": "Author updated successfully",
+    "author_error": "The author could not be saved",
+    "product_created": "Product created successfully",
+    "product_updated": "Product updated successfully",
+    "product_error": "The product could not be saved",
+    "product_isbn_error": "The product could not be created with that ISBN",
+    "stock_insufficient": "Not enough stock to register the exit"
+  },
+  "store": {
+    "total_stock": "Total stock",
+    "out_of_stock": "Out of stock products",
+    "total_value": "Total value",
+    "product": "Product",
+    "status": "Status"
+  },
+  "not_found": {
+    "title": "Oops... looks like you got lost.",
+    "text": "We could not find what you are looking for, but we can take you back home",
+    "button": "Back to home"
+  },
+  "errors": {
+    "network": "Cannot reach the server",
+    "server": "Server error. Please try again later",
+    "forbidden": "You do not have permission to perform this action",
+    "delete_conflict": "Cannot delete: the record is in use"
+  },
   "sidebar": {
+    "title": "My library",
     "dashboard": "Dashboard",
     "products": "Products",
     "categories": "Categories",
+    "authors": "Authors",
     "history": "History",
     "store": "Stock"
+  },
+  "history": {
+    "title": "History",
+    "search": "Search",
+    "search_ph": "Title or note",
+    "type": "Type",
+    "all": "All",
+    "in": "In",
+    "out": "Out",
+    "from": "From",
+    "to": "To",
+    "clear": "Clear",
+    "empty": "No movements",
+    "columns": {
+      "date": "Date",
+      "book": "Book",
+      "type": "Type",
+      "quantity": "Quantity",
+      "stock_after": "Stock after",
+      "note": "Note"
+    }
   },
   "home": {
     "welcome": "Welcome to our application!",
@@ -74,7 +132,39 @@
       "type": "Type of movement",
       "product_stock": "Product",
       "stock": "Stock",
-      "description": "Description"
+      "description": "Description",
+      "in": "Entry",
+      "out": "Exit",
+      "available": "Available: {{n}}",
+      "exceeds": "Exceeds available stock ({{n}})",
+      "invalid_qty": "Whole quantity greater than 0"
+    },
+    "errors": {
+      "required": "Required field",
+      "isbn_invalid": "Invalid ISBN-13 (13 digits and a valid check digit)",
+      "isbn_duplicated": "A product with that ISBN already exists",
+      "price_min": "Price must be greater than 0",
+      "year": "Invalid year",
+      "pages": "Invalid number of pages"
+    }
+  },
+  "authors": {
+    "title": "Authors",
+    "new": "New author",
+    "search_ph": "Search author",
+    "name": "Name",
+    "books": "Books",
+    "actions": "Actions",
+    "empty": "No authors",
+    "edit": "Edit",
+    "delete": "Delete",
+    "delete_blocked": "Cannot delete: it has books",
+    "delete_heading": "Delete author",
+    "delete_message": "This will permanently delete the author. Do you want to proceed?",
+    "form": {
+      "name": "Name",
+      "required": "Name is required",
+      "duplicated": "An author with that name already exists"
     }
   },
   "categories": {

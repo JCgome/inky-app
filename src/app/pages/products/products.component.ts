@@ -19,6 +19,7 @@ import { RegisterStockComponent } from '@app/shared/components/register-stock/re
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
+  loading = true;
   labels = {
     product: 'product.products',
     isbn: 'product.code',
@@ -113,9 +114,14 @@ export class ProductsComponent implements OnInit {
   }
 
   private loadProducts(): void {
-    this.productService.getProducts(true).subscribe((productos) => {
-      this.dataSource.data = productos.filter((p) => p.active);
-      this.inactiveDataSource.data = productos.filter((p) => !p.active);
+    this.loading = true;
+    this.productService.getProducts(true).subscribe({
+      next: (productos) => {
+        this.dataSource.data = productos.filter((p) => p.active);
+        this.inactiveDataSource.data = productos.filter((p) => !p.active);
+        this.loading = false;
+      },
+      error: () => (this.loading = false),
     });
   }
 
@@ -156,7 +162,6 @@ export class ProductsComponent implements OnInit {
 
   goAddRegister() {
     const dialogConfig = {
-      with: 'auto',
       height: 'auto',
       disableClose: true,
     };
@@ -182,7 +187,8 @@ export class ProductsComponent implements OnInit {
     this.productService.getProductById(id).subscribe((product) => {
       this.dialog.open(DetailsModalComponent, {
         width: '50vw',
-        height: '60vh',
+        minWidth: '320px',
+        maxHeight: '90vh',
         autoFocus: false,
         disableClose: true,
         data: {
@@ -220,7 +226,7 @@ export class ProductsComponent implements OnInit {
   goDeleteProduct(id: number): void {
     const dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '30vw',
-      height: '45vh',
+      minWidth: '320px',
       disableClose: true,
     });
 

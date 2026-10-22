@@ -191,3 +191,23 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+@media screen and (max-width: 576px) {
+  :host .dashboard__table {
+    .mat-column-isbn {
+      display: none;
+    }
+
+    .mat-column-stock {
+      width: 70px;
+    }
+
+    .mat-column-status {
+      width: 100px;
+    }
+  }
+
+  :host .dashboard__panel {
+    padding: 14px;
+  }
+}

@@ -1,0 +1,13 @@
+<div class="toast toast--{{ data.type }}" role="status">
+  <mat-icon class="toast__icon">{{ icon }}</mat-icon>
+  <span class="toast__message">{{ data.message | translate: data.params }}</span>
+  <button
+    mat-icon-button
+    type="button"
+    class="toast__close"
+    [attr.aria-label]="'replicable.close' | translate"
+    (click)="close()"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

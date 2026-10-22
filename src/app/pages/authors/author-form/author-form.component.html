@@ -1,0 +1,43 @@
+<section class="author-form">
+  <div class="author-form__header">
+    <h1 class="author-form__header-title">
+      {{ (author ? labels.title_edit : labels.title_new) | translate }}
+    </h1>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      type="button"
+      [attr.aria-label]="'replicable.close' | translate"
+      class="author-form__header-close"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="form" class="author-form__form" (ngSubmit)="save()">
+    <div class="author-form__fields">
+      <label class="author-form__labels">{{ labels.name | translate }}</label>
+      <mat-form-field appearance="outline">
+        <input matInput formControlName="name" maxlength="100" />
+        <mat-error *ngIf="form.controls.name.hasError('duplicated')">
+          {{ labels.duplicated | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.controls.name.hasError('required')">
+          {{ labels.required | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="author-form__actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="author-form__actions-buttons"
+        [disabled]="saving"
+      >
+        {{ labels.btn_save | translate }}
+      </button>
+    </div>
+  </form>
+</section>

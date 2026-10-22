@@ -1,5 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ROUTES } from '@app/shared/constants/route-constants';
 import {
   Author,
@@ -10,14 +11,10 @@ import {
   Publisher,
 } from '@app/core/models';
 import { CatalogService } from '@app/core/services/catalog.service';
+import { NotificationService } from '@app/core/services/notification.service';
 import { ProductService } from '@app/core/services/product.service';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { isbn13Validator } from '@app/shared/validators/isbn.validator';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-products',
@@ -62,6 +59,7 @@ export class AddProductsComponent implements OnInit {
     private fb: FormBuilder,
     private productService: ProductService,
     private catalogService: CatalogService,
+    private notification: NotificationService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -70,11 +68,17 @@ export class AddProductsComponent implements OnInit {
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(255)]],
       authorIds: [[] as number[], Validators.required],
-      isbn: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
+      isbn: ['', [Validators.required, isbn13Validator]],
       categoryId: [null as number | null],
-      yearPublished: [null as number | null, [Validators.min(1000), Validators.max(2100)]],
-      price: [null as number | null, [Validators.required, Validators.min(0)]],
-      pages: [null as number | null, Validators.min(1)],
+      yearPublished: [
+        null as number | null,
+        [Validators.min(1000), Validators.max(new Date().getFullYear() + 1)],
+      ],
+      price: [null as number | null, [Validators.required, Validators.min(0.01)]],
+      pages: [
+        null as number | null,
+        [Validators.min(1), Validators.pattern(/^\d+$/)],
+      ],
       format: [''],
       language: [''],
       publisherId: [null as number | null],
@@ -85,7 +89,7 @@ export class AddProductsComponent implements OnInit {
     this.isbnForm = this.fb.group({
       isbn: ['', [Validators.required, isbn13Validator]],
       categoryId: [null as number | null],
-      price: [null as number | null, [Validators.required, Validators.min(0)]],
+      price: [null as number | null, [Validators.required, Validators.min(0.01)]],
       format: [''],
       language: [''],
       providerName: [''],
@@ -126,7 +130,24 @@ export class AddProductsComponent implements OnInit {
         ? this.productService.updateProduct(this.editingProductId, product)
         : this.productService.createProduct(product);
 
-    request$.subscribe(() => this.goCancel());
+    request$.subscribe({
+      next: () => {
+        this.notification.success(
+          this.isEditMode
+            ? 'notifications.product_updated'
+            : 'notifications.product_created'
+        );
+        this.goCancel();
+      },
+      error: (err: HttpErrorResponse) => {
+        // ISBN único: el backend responde con conflicto si ya existe.
+        if (err.status === 409) {
+          this.form.controls['isbn'].setErrors({ duplicated: true });
+        } else {
+          this.notification.error('notifications.product_error');
+        }
+      },
+    });
   }
 
   guardarPorIsbn() {
@@ -145,7 +166,19 @@ export class AddProductsComponent implements OnInit {
       providerName: v.providerName || undefined,
     };
 
-    this.productService.createFromIsbn(request).subscribe(() => this.goCancel());
+    this.productService.createFromIsbn(request).subscribe({
+      next: () => {
+        this.notification.success('notifications.product_created');
+        this.goCancel();
+      },
+      error: (err: HttpErrorResponse) => {
+        if (err.status === 409) {
+          this.isbnForm.controls['isbn'].setErrors({ duplicated: true });
+        } else {
+          this.notification.error('notifications.product_isbn_error');
+        }
+      },
+    });
   }
 
   private toFormValue(product: Product) {
@@ -185,8 +218,3 @@ export class AddProductsComponent implements OnInit {
   }
 }
 
-/** El backend acepta espacios y guiones; valida 13 dígitos tras limpiarlos. */
-function isbn13Validator(control: AbstractControl): ValidationErrors | null {
-  const value = String(control.value ?? '').replace(/[\s-]/g, '');
-  return !value || /^\d{13}$/.test(value) ? null : { isbn: true };
-}

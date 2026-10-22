@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Category } from '@app/core/models';
 import { CatalogService } from '@app/core/services/catalog.service';
+import { NotificationService } from '@app/core/services/notification.service';
 
 @Component({
   selector: 'app-category-form',
@@ -34,6 +35,7 @@ export class CategoryFormComponent {
   constructor(
     private fb: FormBuilder,
     private catalogService: CatalogService,
+    private notification: NotificationService,
     private dialogRef: MatDialogRef<CategoryFormComponent, boolean>,
     @Inject(MAT_DIALOG_DATA) public category: Category | null
   ) {}
@@ -56,12 +58,21 @@ export class CategoryFormComponent {
       : this.catalogService.createCategory(request);
 
     call.subscribe({
-      next: () => this.dialogRef.close(true),
+      next: () => {
+        this.notification.success(
+          this.category
+            ? 'notifications.category_updated'
+            : 'notifications.category_created'
+        );
+        this.dialogRef.close(true);
+      },
       error: (err: HttpErrorResponse) => {
         this.saving = false;
         // Nombre único: el backend responde con conflicto si ya existe.
         if (err.status === 409) {
           this.form.controls.name.setErrors({ duplicated: true });
+        } else {
+          this.notification.error('notifications.category_error');
         }
       },
     });

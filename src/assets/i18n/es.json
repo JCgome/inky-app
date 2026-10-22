@@ -1,6 +1,7 @@
 {
   "replicable": {
     "btn_cancel": "Cancelar",
+    "close": "Cerrar",
     "btn_save": "Guardar",
     "btn_delete": "Desactivar",
     "btn_register": "Registrar",
@@ -8,12 +9,69 @@
     "heading_delete": "Solicitud de desactivación",
     "title_delete": "Esta acción desactivará el registro. ¿Deseas proceder?"
   },
+  "notifications": {
+    "stock_in": "Entrada registrada correctamente",
+    "stock_out": "Salida registrada correctamente",
+    "stock_error": "No se pudo registrar el movimiento",
+    "category_created": "Categoría creada correctamente",
+    "category_updated": "Categoría actualizada correctamente",
+    "category_error": "No se pudo guardar la categoría",
+    "author_created": "Autor creado correctamente",
+    "author_updated": "Autor actualizado correctamente",
+    "author_error": "No se pudo guardar el autor",
+    "product_created": "Producto creado correctamente",
+    "product_updated": "Producto actualizado correctamente",
+    "product_error": "No se pudo guardar el producto",
+    "product_isbn_error": "No se pudo crear el producto con ese ISBN",
+    "stock_insufficient": "Stock insuficiente para registrar la salida"
+  },
+  "store": {
+    "total_stock": "Total de stock",
+    "out_of_stock": "Productos agotados",
+    "total_value": "Valor total",
+    "product": "Producto",
+    "status": "Estado"
+  },
+  "not_found": {
+    "title": "Oops... parece que te perdiste.",
+    "text": "No encontramos lo que buscas, pero podemos ayudarte a volver al inicio",
+    "button": "Volver al inicio"
+  },
+  "errors": {
+    "network": "No hay conexión con el servidor",
+    "server": "Error del servidor. Inténtalo de nuevo más tarde",
+    "forbidden": "No tienes permisos para realizar esta acción",
+    "delete_conflict": "No se puede eliminar: el registro está en uso"
+  },
   "sidebar": {
+    "title": "Mi librería",
     "dashboard": "Panel de control",
     "products": "Productos",
     "categories": "Categorias",
+    "authors": "Autores",
     "history": "Historial",
     "store": "Almacen"
+  },
+  "history": {
+    "title": "Historial",
+    "search": "Buscar",
+    "search_ph": "Título o nota",
+    "type": "Tipo",
+    "all": "Todos",
+    "in": "Entrada",
+    "out": "Salida",
+    "from": "Desde",
+    "to": "Hasta",
+    "clear": "Limpiar",
+    "empty": "Sin movimientos",
+    "columns": {
+      "date": "Fecha",
+      "book": "Libro",
+      "type": "Tipo",
+      "quantity": "Cantidad",
+      "stock_after": "Stock final",
+      "note": "Nota"
+    }
   },
   "home": {
     "welcome": "¡Bienvenido a nuestra aplicación!",
@@ -75,7 +133,39 @@
       "type": "Tipo de movimiento",
       "product_stock": "Producto",
       "stock": "Cantidad",
-      "description": "Descripcion"
+      "description": "Descripcion",
+      "in": "Entrada",
+      "out": "Salida",
+      "available": "Disponible: {{n}}",
+      "exceeds": "Supera el stock disponible ({{n}})",
+      "invalid_qty": "Cantidad entera mayor que 0"
+    },
+    "errors": {
+      "required": "Campo obligatorio",
+      "isbn_invalid": "ISBN-13 no válido (13 dígitos y dígito de control correcto)",
+      "isbn_duplicated": "Ya existe un producto con ese ISBN",
+      "price_min": "El precio debe ser mayor que 0",
+      "year": "Año no válido",
+      "pages": "Número de páginas no válido"
+    }
+  },
+  "authors": {
+    "title": "Autores",
+    "new": "Nuevo autor",
+    "search_ph": "Buscar autor",
+    "name": "Nombre",
+    "books": "Libros",
+    "actions": "Acciones",
+    "empty": "No hay autores",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "delete_blocked": "No se puede eliminar: tiene libros",
+    "delete_heading": "Eliminar autor",
+    "delete_message": "Esta acción eliminará el autor de forma permanente. ¿Deseas proceder?",
+    "form": {
+      "name": "Nombre",
+      "required": "El nombre es obligatorio",
+      "duplicated": "Ya existe un autor con ese nombre"
     }
   },
   "categories": {

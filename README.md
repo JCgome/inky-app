@@ -1,27 +1,48 @@
 # Inky
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+Panel de gestión de librería (inventario, catálogo y movimientos de stock).
+Angular 16 + Angular Material + PrimeNG + ng2-charts, con i18n (es/en) vía ngx-translate.
 
-## Development server
+## Secciones
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Dashboard, Productos (alta manual o por ISBN), Categorías, Autores, Almacén (stock) e Historial de movimientos.
 
-## Code scaffolding
+## Requisitos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Node 18+ y npm
+- Backend REST de Inky (por defecto en `http://localhost:8080`)
 
-## Build
+## Desarrollo
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm install
+npm start        # http://localhost:4200
+```
 
-## Running unit tests
+`proxy.conf.json` redirige `/api` a `http://localhost:8080`, y `environment.ts` usa `API_URL: '/api'`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Build de producción
 
-## Running end-to-end tests
+```bash
+npm run build    # salida en dist/inky
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Antes de desplegar, define la URL real del backend en `src/environments/environment.prod.ts` (`API_URL`)
+y en la directiva `connect-src` de la CSP de `vercel.json`.
 
-## Further help
+## Despliegue (Vercel)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+`vercel.json` ya configura el build, el fallback SPA a `index.html`, la caché de assets y las cabeceras
+de seguridad (CSP, HSTS, etc.). El backend debe permitir CORS desde el dominio del frontend.
+
+## CI
+
+`.github/workflows/ci.yml` compila en producción en cada push y PR a `develop` y `main`.
+El job de tests es informativo (no bloquea) hasta que los specs estén al día.
+Vercel despliega desde Git por su cuenta; el CI solo valida.
+
+## Tests
+
+```bash
+npm test         # Karma + Jasmine
+```

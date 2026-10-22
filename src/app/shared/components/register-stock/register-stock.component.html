@@ -6,7 +6,7 @@
     <button
       mat-icon-button
       mat-dialog-close
-      aria-label="Cerrar"
+      [attr.aria-label]="'replicable.close' | translate"
       class="register__header-close"
     >
       <mat-icon>close</mat-icon>
@@ -17,8 +17,8 @@
       <label class="register__labels">{{ labels.type | translate }}</label>
       <mat-form-field appearance="outline">
         <mat-select formControlName="type">
-          <mat-option value="IN">Entrada</mat-option>
-          <mat-option value="OUT">Salida</mat-option>
+          <mat-option value="IN">{{ 'product.register_stock.in' | translate }}</mat-option>
+          <mat-option value="OUT">{{ 'product.register_stock.out' | translate }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -26,11 +26,21 @@
     <div class="register__fields">
       <label class="register__labels">{{ labels.products | translate }}</label>
       <mat-form-field appearance="outline">
-        <mat-select formControlName="bookId">
-          <mat-option *ngFor="let p of products" [value]="p.id">
-            {{ p.title }} ({{ p.isbn }})
+        <input
+          matInput
+          type="text"
+          [formControl]="productSearch"
+          [matAutocomplete]="productAuto"
+        />
+        <mat-autocomplete
+          #productAuto="matAutocomplete"
+          [displayWith]="displayProduct"
+          (optionSelected)="onProductSelected($event)"
+        >
+          <mat-option *ngFor="let p of filteredProducts" [value]="p">
+            {{ p.title }} ({{ authorNames(p) }})
           </mat-option>
-        </mat-select>
+        </mat-autocomplete>
       </mat-form-field>
     </div>
 
@@ -38,6 +48,15 @@
       <label class="register__labels">{{ labels.stock | translate }}</label>
       <mat-form-field appearance="outline">
         <input matInput formControlName="quantity" type="number" min="1" />
+        <mat-hint *ngIf="selected">
+          {{ 'product.register_stock.available' | translate: { n: selected.stockCurrent } }}
+        </mat-hint>
+        <mat-error *ngIf="form.controls['quantity'].hasError('exceedsStock')">
+          {{ 'product.register_stock.exceeds' | translate: { n: selected?.stockCurrent } }}
+        </mat-error>
+        <mat-error *ngIf="form.controls['quantity'].hasError('min') || form.controls['quantity'].hasError('pattern')">
+          {{ 'product.register_stock.invalid_qty' | translate }}
+        </mat-error>
       </mat-form-field>
     </div>
 

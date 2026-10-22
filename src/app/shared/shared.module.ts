@@ -8,12 +8,12 @@ import { HeadComponent } from './components/head/head.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { TranslateModule } from '@ngx-translate/core';
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { DetailsModalComponent } from './components/details-modal/details-modal.component';
 import { RegisterStockComponent } from './components/register-stock/register-stock.component';
+import { NotificationToastComponent } from './components/notification-toast/notification-toast.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import { RegisterStockComponent } from './components/register-stock/register-sto
     DialogDeleteComponent,
     DetailsModalComponent,
     RegisterStockComponent,
+    NotificationToastComponent,
   ],
   exports: [
     TranslateModule,
@@ -41,7 +42,6 @@ import { RegisterStockComponent } from './components/register-stock/register-sto
     TranslateModule,
     RouterModule,
     MaterialModule,
-    BrowserModule,
     BreadcrumbModule,
   ],
 })
