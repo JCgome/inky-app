@@ -2,7 +2,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  box-sizing: border-box;
   height: 100%;
 }
 
@@ -41,4 +42,22 @@ mat-sidenav {
 mat-sidenav,
 mat-sidenav-content {
   transition: margin-left 300ms ease, width 300ms ease;
+}
+
+// Tablet y móvil: la página ocupa todo el ancho útil y se reduce el margen.
+@media (max-width: 1024px) {
+  .fixed-content {
+    padding: 20px 16px;
+  }
+
+  :host ::ng-deep .fixed-content > *:not(router-outlet) {
+    width: 100% !important;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .fixed-content {
+    padding: 12px 10px;
+  }
 }

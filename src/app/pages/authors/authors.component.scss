@@ -1,5 +1,6 @@
 @import "src/styles/base/colors";
 @import "src/styles/base/_typography.scss";
+@import "src/styles/base/responsive";
 
 :host {
   display: flex;
@@ -70,6 +71,39 @@
       padding: 24px;
       text-align: center;
       color: inky-colors("neutral", 700);
+    }
+  }
+}
+
+@include mobile {
+  :host .authors__head-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  :host .authors__head-search {
+    flex: 1 1 100%;
+    width: auto;
+  }
+
+  :host .authors__head-new {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  :host .authors__table table {
+    th,
+    td {
+      padding: 0 8px;
+    }
+
+    .mat-column-books {
+      width: 64px;
+    }
+
+    .mat-column-actions {
+      width: 120px;
     }
   }
 }

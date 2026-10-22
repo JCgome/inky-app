@@ -188,7 +188,8 @@ export class ProductsComponent implements OnInit {
     this.productService.getProductById(id).subscribe((product) => {
       this.dialog.open(DetailsModalComponent, {
         width: '50vw',
-        height: '60vh',
+        minWidth: '320px',
+        maxHeight: '90vh',
         autoFocus: false,
         disableClose: true,
         data: {
@@ -226,7 +227,7 @@ export class ProductsComponent implements OnInit {
   goDeleteProduct(id: number): void {
     const dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '30vw',
-      height: '45vh',
+      minWidth: '320px',
       disableClose: true,
     });
 

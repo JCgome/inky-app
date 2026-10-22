@@ -47,3 +47,17 @@
     }
   }
 }
+
+@include tablet {
+  .not-found {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 100%;
+    padding: 2rem 1.5rem;
+
+    &__content-button {
+      width: auto;
+      min-width: 160px;
+    }
+  }
+}

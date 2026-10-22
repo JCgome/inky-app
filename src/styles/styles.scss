@@ -26,3 +26,17 @@ body {
     min-width: 0 !important;
   }
 }
+
+// Paginador compacto en pantallas pequeñas
+@include mobile {
+  .mat-mdc-paginator-container {
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+
+  .mat-mdc-paginator-range-label {
+    margin: 0 8px 0 0;
+    white-space: nowrap;
+  }
+}

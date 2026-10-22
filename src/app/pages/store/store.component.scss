@@ -189,3 +189,36 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  :host .stock__cards {
+    flex-direction: column;
+  }
+
+  :host .stock__card {
+    flex: none;
+    height: auto;
+    min-height: 120px;
+  }
+
+  :host .stock__head-actions {
+    margin-top: 0;
+  }
+
+  :host .stock__filters {
+    padding: 12px 0 0;
+  }
+
+  :host .stock__table table {
+    min-width: 760px;
+  }
+}
+
+@media (max-width: 1100px) {
+  :host .stock__card-total-content img,
+  :host .stock__card-low-content img,
+  :host .stock__card-hight-content img {
+    width: 35%;
+    min-width: 0;
+  }
+}

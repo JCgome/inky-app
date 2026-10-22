@@ -143,3 +143,22 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  :host .history__head {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  :host .history__head-actions {
+    margin-top: 0;
+  }
+
+  :host .history__filters {
+    padding: 12px 0 0;
+  }
+
+  :host .history__table table {
+    min-width: 760px;
+  }
+}

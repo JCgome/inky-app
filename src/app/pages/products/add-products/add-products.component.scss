@@ -119,3 +119,32 @@
     overflow: visible !important;
   }
 }
+
+@media (max-width: 768px) {
+  :host {
+    height: auto;
+    margin-top: 0;
+    align-items: flex-start;
+  }
+
+  :host .add-products {
+    max-height: none;
+    padding: 1rem 0;
+
+    &__layout {
+      padding: 1rem 0;
+    }
+
+    &__image-wrapper {
+      padding: 1rem;
+    }
+
+    &__actions {
+      flex-direction: column-reverse;
+    }
+
+    &__btn {
+      width: 100%;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 @import "src/styles/base/colors";
 @import "src/styles/base/_typography.scss";
+@import "src/styles/base/responsive";
 
 .category-form {
   max-width: 600px;
@@ -56,5 +57,11 @@
       @include inky-fonts($body-300);
       white-space: nowrap;
     }
+  }
+}
+
+@include mobile {
+  .category-form {
+    padding: 2rem 1.25rem;
   }
 }
