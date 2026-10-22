@@ -162,7 +162,6 @@ export class ProductsComponent implements OnInit {
 
   goAddRegister() {
     const dialogConfig = {
-      with: 'auto',
       height: 'auto',
       disableClose: true,
     };

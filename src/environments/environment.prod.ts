@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API_URL: 'https://api.inky.example.com/api',
+  API_URL: 'https://inky-api-itd7.onrender.com/api',
 };
