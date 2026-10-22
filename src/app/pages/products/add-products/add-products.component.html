@@ -34,6 +34,9 @@
                       type="text"
                       inputmode="numeric"
                     />
+                    <mat-error *ngIf="isbnForm.controls['isbn'].hasError('duplicated')">{{ 'product.errors.isbn_duplicated' | translate }}</mat-error>
+                    <mat-error *ngIf="isbnForm.controls['isbn'].hasError('isbn')">{{ 'product.errors.isbn_invalid' | translate }}</mat-error>
+                    <mat-error *ngIf="isbnForm.controls['isbn'].hasError('required')">{{ 'product.errors.required' | translate }}</mat-error>
                   </mat-form-field>
                 </div>
 
@@ -49,9 +52,11 @@
                       matInput
                       formControlName="price"
                       type="number"
-                      min="0"
+                      min="0.01"
                       step="0.01"
                     />
+                    <mat-error *ngIf="isbnForm.controls['price'].hasError('required')">{{ 'product.errors.required' | translate }}</mat-error>
+                    <mat-error *ngIf="isbnForm.controls['price'].hasError('min')">{{ 'product.errors.price_min' | translate }}</mat-error>
                   </mat-form-field>
                 </div>
 
@@ -182,6 +187,9 @@
                   maxlength="13"
                   inputmode="numeric"
                 />
+                <mat-error *ngIf="form.controls['isbn'].hasError('duplicated')">{{ 'product.errors.isbn_duplicated' | translate }}</mat-error>
+                <mat-error *ngIf="form.controls['isbn'].hasError('isbn')">{{ 'product.errors.isbn_invalid' | translate }}</mat-error>
+                <mat-error *ngIf="form.controls['isbn'].hasError('required')">{{ 'product.errors.required' | translate }}</mat-error>
               </mat-form-field>
             </div>
 
@@ -192,6 +200,7 @@
               }}</label>
               <mat-form-field appearance="outline" class="add-products__field">
                 <input matInput formControlName="yearPublished" type="number" />
+                <mat-error>{{ 'product.errors.year' | translate }}</mat-error>
               </mat-form-field>
             </div>
 
@@ -205,9 +214,11 @@
                   matInput
                   formControlName="price"
                   type="number"
-                  min="0"
+                  min="0.01"
                   step="0.01"
                 />
+                <mat-error *ngIf="form.controls['price'].hasError('required')">{{ 'product.errors.required' | translate }}</mat-error>
+                <mat-error *ngIf="form.controls['price'].hasError('min')">{{ 'product.errors.price_min' | translate }}</mat-error>
               </mat-form-field>
             </div>
 
@@ -232,6 +243,7 @@
               }}</label>
               <mat-form-field appearance="outline" class="add-products__field">
                 <input matInput formControlName="pages" type="number" />
+                <mat-error>{{ 'product.errors.pages' | translate }}</mat-error>
               </mat-form-field>
             </div>
 

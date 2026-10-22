@@ -1,6 +1,7 @@
 {
   "replicable": {
     "btn_cancel": "Cancelar",
+    "close": "Cerrar",
     "btn_save": "Guardar",
     "btn_delete": "Desactivar",
     "btn_register": "Registrar",
@@ -21,7 +22,26 @@
     "product_created": "Producto creado correctamente",
     "product_updated": "Producto actualizado correctamente",
     "product_error": "No se pudo guardar el producto",
-    "product_isbn_error": "No se pudo crear el producto con ese ISBN"
+    "product_isbn_error": "No se pudo crear el producto con ese ISBN",
+    "stock_insufficient": "Stock insuficiente para registrar la salida"
+  },
+  "store": {
+    "total_stock": "Total de stock",
+    "out_of_stock": "Productos agotados",
+    "total_value": "Valor total",
+    "product": "Producto",
+    "status": "Estado"
+  },
+  "not_found": {
+    "title": "Oops... parece que te perdiste.",
+    "text": "No encontramos lo que buscas, pero podemos ayudarte a volver al inicio",
+    "button": "Volver al inicio"
+  },
+  "errors": {
+    "network": "No hay conexión con el servidor",
+    "server": "Error del servidor. Inténtalo de nuevo más tarde",
+    "forbidden": "No tienes permisos para realizar esta acción",
+    "delete_conflict": "No se puede eliminar: el registro está en uso"
   },
   "sidebar": {
     "title": "Mi librería",
@@ -113,7 +133,20 @@
       "type": "Tipo de movimiento",
       "product_stock": "Producto",
       "stock": "Cantidad",
-      "description": "Descripcion"
+      "description": "Descripcion",
+      "in": "Entrada",
+      "out": "Salida",
+      "available": "Disponible: {{n}}",
+      "exceeds": "Supera el stock disponible ({{n}})",
+      "invalid_qty": "Cantidad entera mayor que 0"
+    },
+    "errors": {
+      "required": "Campo obligatorio",
+      "isbn_invalid": "ISBN-13 no válido (13 dígitos y dígito de control correcto)",
+      "isbn_duplicated": "Ya existe un producto con ese ISBN",
+      "price_min": "El precio debe ser mayor que 0",
+      "year": "Año no válido",
+      "pages": "Número de páginas no válido"
     }
   },
   "authors": {

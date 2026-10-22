@@ -24,5 +24,3 @@ $inky-palettes: (
   "basic": $inky-basic,
   "success": $inky-success,
 );
-
-@include mat.all-component-themes($inky-theme);

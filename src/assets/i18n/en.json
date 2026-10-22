@@ -1,6 +1,7 @@
 {
   "replicable": {
     "btn_cancel": "Cancel",
+    "close": "Close",
     "btn_save": "Save",
     "btn_delete": "Delete",
     "btn_register": "Register",
@@ -21,7 +22,26 @@
     "product_created": "Product created successfully",
     "product_updated": "Product updated successfully",
     "product_error": "The product could not be saved",
-    "product_isbn_error": "The product could not be created with that ISBN"
+    "product_isbn_error": "The product could not be created with that ISBN",
+    "stock_insufficient": "Not enough stock to register the exit"
+  },
+  "store": {
+    "total_stock": "Total stock",
+    "out_of_stock": "Out of stock products",
+    "total_value": "Total value",
+    "product": "Product",
+    "status": "Status"
+  },
+  "not_found": {
+    "title": "Oops... looks like you got lost.",
+    "text": "We could not find what you are looking for, but we can take you back home",
+    "button": "Back to home"
+  },
+  "errors": {
+    "network": "Cannot reach the server",
+    "server": "Server error. Please try again later",
+    "forbidden": "You do not have permission to perform this action",
+    "delete_conflict": "Cannot delete: the record is in use"
   },
   "sidebar": {
     "title": "My library",
@@ -112,7 +132,20 @@
       "type": "Type of movement",
       "product_stock": "Product",
       "stock": "Stock",
-      "description": "Description"
+      "description": "Description",
+      "in": "Entry",
+      "out": "Exit",
+      "available": "Available: {{n}}",
+      "exceeds": "Exceeds available stock ({{n}})",
+      "invalid_qty": "Whole quantity greater than 0"
+    },
+    "errors": {
+      "required": "Required field",
+      "isbn_invalid": "Invalid ISBN-13 (13 digits and a valid check digit)",
+      "isbn_duplicated": "A product with that ISBN already exists",
+      "price_min": "Price must be greater than 0",
+      "year": "Invalid year",
+      "pages": "Invalid number of pages"
     }
   },
   "authors": {

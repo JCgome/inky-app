@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Product, StockMovementRequest } from '@app/core/models';
 import { NotificationService } from '@app/core/services/notification.service';
@@ -22,6 +25,7 @@ export class RegisterStockComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   productSearch = new FormControl<Product | string | null>('');
+  selected: Product | null = null;
   labels = {
     title_register: 'product.register_stock.title_register',
     type: 'product.register_stock.type',
@@ -45,10 +49,20 @@ export class RegisterStockComponent implements OnInit {
       bookId: [null as number | null, Validators.required],
       quantity: [
         null as number | null,
-        [Validators.required, Validators.min(1)],
+        [
+          Validators.required,
+          Validators.min(1),
+          Validators.pattern(/^\d+$/),
+          this.stockAvailableValidator,
+        ],
       ],
       note: ['', Validators.maxLength(255)],
     });
+
+    // La disponibilidad depende del tipo de movimiento y del producto elegido.
+    this.form.controls['type'].valueChanges.subscribe(() =>
+      this.form.controls['quantity'].updateValueAndValidity()
+    );
 
     this.productService.getProducts().subscribe((p) => {
       this.products = p;
@@ -58,7 +72,9 @@ export class RegisterStockComponent implements OnInit {
     this.productSearch.valueChanges.subscribe((value) => {
       // Typing again invalidates the previous selection
       if (typeof value === 'string') {
+        this.selected = null;
         this.form.patchValue({ bookId: null });
+        this.form.controls['quantity'].updateValueAndValidity();
       }
       this.filteredProducts = this.filterProducts(value);
     });
@@ -72,8 +88,21 @@ export class RegisterStockComponent implements OnInit {
     p && typeof p !== 'string' ? `${p.title} (${this.authorNames(p)})` : '';
 
   onProductSelected(event: MatAutocompleteSelectedEvent): void {
-    this.form.patchValue({ bookId: (event.option.value as Product).id });
+    this.selected = event.option.value as Product;
+    this.form.patchValue({ bookId: this.selected.id });
+    this.form.controls['quantity'].updateValueAndValidity();
   }
+
+  /** Una salida no puede superar el stock actual del producto. */
+  private stockAvailableValidator = (
+    control: AbstractControl
+  ): ValidationErrors | null => {
+    const isOut = this.form?.get('type')?.value === 'OUT';
+    if (!isOut || !this.selected) return null;
+    return Number(control.value) > this.selected.stockCurrent
+      ? { exceedsStock: { available: this.selected.stockCurrent } }
+      : null;
+  };
 
   private filterProducts(value: Product | string | null): Product[] {
     const term = (typeof value === 'string' ? value : '').trim().toLowerCase();
@@ -111,7 +140,12 @@ export class RegisterStockComponent implements OnInit {
         );
         this.dialogRef.close(true);
       },
-      error: () => this.notification.error('notifications.stock_error'),
+      error: (err: HttpErrorResponse) =>
+        this.notification.error(
+          err.status === 409 || err.status === 400
+            ? 'notifications.stock_insufficient'
+            : 'notifications.stock_error'
+        ),
     });
   }
 }

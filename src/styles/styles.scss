@@ -1,5 +1,6 @@
 @use "@angular/material" as mat;
 @import "base/theme";
+@include mat.all-component-themes($inky-theme);
 @import "base/typography";
 @import "base/responsive";
 @import "components/table";
