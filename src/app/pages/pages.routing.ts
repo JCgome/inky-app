@@ -4,6 +4,7 @@ import { PagesComponent } from './pages.component';
 import { ROUTES } from '@app/shared/constants/route-constants';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { AuthorsComponent } from './authors/authors.component';
 import { StoreComponent } from './store/store.component';
 import { HistoryComponent } from './history/history.component';
 
@@ -27,6 +28,11 @@ const routes: Routes = [
         path: ROUTES.categories,
         component: CategoriesComponent,
         data: { title: 'sidebar.categories', icon: 'category' },
+      },
+      {
+        path: ROUTES.authors,
+        component: AuthorsComponent,
+        data: { title: 'sidebar.authors', icon: 'edit_note' },
       },
       {
         path: ROUTES.store,

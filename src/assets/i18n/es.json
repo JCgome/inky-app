@@ -15,6 +15,9 @@
     "category_created": "Categoría creada correctamente",
     "category_updated": "Categoría actualizada correctamente",
     "category_error": "No se pudo guardar la categoría",
+    "author_created": "Autor creado correctamente",
+    "author_updated": "Autor actualizado correctamente",
+    "author_error": "No se pudo guardar el autor",
     "product_created": "Producto creado correctamente",
     "product_updated": "Producto actualizado correctamente",
     "product_error": "No se pudo guardar el producto",
@@ -25,6 +28,7 @@
     "dashboard": "Panel de control",
     "products": "Productos",
     "categories": "Categorias",
+    "authors": "Autores",
     "history": "Historial",
     "store": "Almacen"
   },
@@ -110,6 +114,25 @@
       "product_stock": "Producto",
       "stock": "Cantidad",
       "description": "Descripcion"
+    }
+  },
+  "authors": {
+    "title": "Autores",
+    "new": "Nuevo autor",
+    "search_ph": "Buscar autor",
+    "name": "Nombre",
+    "books": "Libros",
+    "actions": "Acciones",
+    "empty": "No hay autores",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "delete_blocked": "No se puede eliminar: tiene libros",
+    "delete_heading": "Eliminar autor",
+    "delete_message": "Esta acción eliminará el autor de forma permanente. ¿Deseas proceder?",
+    "form": {
+      "name": "Nombre",
+      "required": "El nombre es obligatorio",
+      "duplicated": "Ya existe un autor con ese nombre"
     }
   },
   "categories": {

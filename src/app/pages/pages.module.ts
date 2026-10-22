@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
+import { AuthorsComponent } from './authors/authors.component';
+import { AuthorFormComponent } from './authors/author-form/author-form.component';
 import { StoreComponent } from './store/store.component';
 import { HistoryComponent } from './history/history.component';
 import { CategoryFormComponent } from './categories/category-form/category-form.component';
@@ -20,6 +22,8 @@ import { CategoryBooksComponent } from './categories/category-books/category-boo
     HistoryComponent,
     CategoryFormComponent,
     CategoryBooksComponent,
+    AuthorsComponent,
+    AuthorFormComponent,
   ],
   exports: [
     PagesComponent,

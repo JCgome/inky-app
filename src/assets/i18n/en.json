@@ -15,6 +15,9 @@
     "category_created": "Category created successfully",
     "category_updated": "Category updated successfully",
     "category_error": "The category could not be saved",
+    "author_created": "Author created successfully",
+    "author_updated": "Author updated successfully",
+    "author_error": "The author could not be saved",
     "product_created": "Product created successfully",
     "product_updated": "Product updated successfully",
     "product_error": "The product could not be saved",
@@ -25,6 +28,7 @@
     "dashboard": "Dashboard",
     "products": "Products",
     "categories": "Categories",
+    "authors": "Authors",
     "history": "History",
     "store": "Stock"
   },
@@ -109,6 +113,25 @@
       "product_stock": "Product",
       "stock": "Stock",
       "description": "Description"
+    }
+  },
+  "authors": {
+    "title": "Authors",
+    "new": "New author",
+    "search_ph": "Search author",
+    "name": "Name",
+    "books": "Books",
+    "actions": "Actions",
+    "empty": "No authors",
+    "edit": "Edit",
+    "delete": "Delete",
+    "delete_blocked": "Cannot delete: it has books",
+    "delete_heading": "Delete author",
+    "delete_message": "This will permanently delete the author. Do you want to proceed?",
+    "form": {
+      "name": "Name",
+      "required": "Name is required",
+      "duplicated": "An author with that name already exists"
     }
   },
   "categories": {
